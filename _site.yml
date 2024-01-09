@@ -19,12 +19,12 @@ navbar:
           href: day1_3.html
     - text: "Intro to R part 3"
       menu:
-        - text: "Module 5: Plotting in Base R"
-          href: day2_1.html
+        - text: "Module 5: Data Visualization in Base R"
+          href: day3_5.html
         - text: "Module 6: Basics of ggplot"
-          href: day2_2.html
+          href: day3_6.html
         - text: "Module 7: Advanced ggplot (to be added)"
-          href: day2_3.html
+          href: day3_7.html
     - text: "Generalized linear models"
       menu:
         - text: "Module 1: GLM Example Analysis (to be added)"

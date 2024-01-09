@@ -84,7 +84,7 @@ Okay, now we're ready to go!
 
 
 ```{r echo=FALSE}
-rmd2rscript <- function(infile="day1_1.Rmd"){    # function for converting markdown to scripts
+rmd2rscript <- function(infile="day2_4.Rmd"){    # function for converting markdown to scripts
   outfile1 <- gsub(".Rmd",".R",infile)
   outfile2 <- gsub(".Rmd",".txt",infile)
   close( file( outfile1, open="w" ) )   # clear output file

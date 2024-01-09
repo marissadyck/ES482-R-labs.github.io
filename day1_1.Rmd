@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE,
 #  ES482 R labs   
 #      University of Victoria, Victoria BC Canada             
 
-#  Getting started with R: the basics 
+#  Module 1: R basics
 
 ```
 

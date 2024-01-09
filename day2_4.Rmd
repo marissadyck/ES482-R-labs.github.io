@@ -23,10 +23,10 @@ library(tidyverse)
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
-#  R Crash Course, Day 1 Module 2
- # Casa Tisaru Lepsa, Romania 
+#  ES482 R labs   
+#      University of Victoria, Victoria BC Canada             
 
-#  Working with data
+#  Module 4: data manipulation
 
 library(tidyverse)
 

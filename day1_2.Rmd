@@ -14,6 +14,14 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r echo=FALSE}
+
+#  ES482 R labs   
+#      University of Victoria, Victoria BC Canada             
+
+#  Module 2: Base R
+
+```
 ## Materials
 
 ### Scripts
