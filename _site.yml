@@ -1,0 +1,43 @@
+name: "ES482 R labs"
+output_dir: "."
+navbar:
+  title: "ES482 R labs"
+  left:
+    - text: "Home"
+      href: home.html
+    - text: "Intro to R part 1"
+      menu:
+        - text: "Module 1: R 101"
+          href: day1_1.html
+        - text: "Module 2: Base R"
+          href: day1_2.html
+    - text: "Intro to R part 2"
+      menu:
+        - text: "Module 3: Working with data"
+          href: day2_3.html
+        - text: "Module 4: Data manipulation"
+          href: day1_3.html
+    - text: "Intro to R part 3"
+      menu:
+        - text: "Module 5: Plotting in Base R"
+          href: day2_1.html
+        - text: "Module 6: Basics of ggplot"
+          href: day2_2.html
+        - text: "Module 7: Advanced ggplot (to be added)"
+          href: day2_3.html
+    - text: "Generalized linear models"
+      menu:
+        - text: "Module 1: GLM Example Analysis (to be added)"
+          href: day3_1.html
+    - text: "Data"
+      href: data.html
+    - text: "Links"
+      href: links.html
+    - text: "Surveys"
+      href: surveys.html
+    - text: 'Terms'
+      href: terms.html
+   
+      
+      
+      
