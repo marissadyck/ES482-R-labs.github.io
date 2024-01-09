@@ -1,8 +1,8 @@
 ---
 title: "Data"
-author: "R Crash Course"
+author: "ES482 R labs"
 output: html_document
-date: "2023-06-26"
+date: "2024"
 ---
 
 ```{r setup, include=FALSE}

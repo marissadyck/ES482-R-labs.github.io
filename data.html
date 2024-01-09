@@ -9,13 +9,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="R Crash Course" />
+<meta name="author" content="ES482 R labs" />
 
-<meta name="date" content="2023-06-26" />
+<meta name="date" content="2024-01-01" />
 
 <title>Data</title>
 
-<script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -180,8 +180,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -189,16 +189,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -247,66 +240,81 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">R Crash Course 2023</a>
+      <a class="navbar-brand" href="index.html">ES482 R labs</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Home</a>
+  <a href="home.html">Home</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Day 1
+    Intro to R part 1
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="day1_1.html">Module 1: R basics</a>
+      <a href="day1_1.html">Module 1: R 101</a>
     </li>
     <li>
-      <a href="day1_2.html">Module 1.2: Working with data</a>
-    </li>
-    <li>
-      <a href="day1_3.html">Submodule 1.3: Data formatting</a>
+      <a href="day1_2.html">Module 2: Base R</a>
     </li>
   </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Day 2
+    Intro to R part 2
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="day2_1.html">Module 1: Plotting in base R</a>
+      <a href="day2_3.html">Module 3: Working with data</a>
     </li>
     <li>
-      <a href="day2_2.html">Module 2: Basics of ggplot</a>
-    </li>
-    <li>
-      <a href="day2_3.html">Module 3: Advance ggplot</a>
+      <a href="day1_3.html">Module 4: Data manipulation</a>
     </li>
   </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Day 3
+    Intro to R part 3
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="day3_1.html">Module 1: GLM Example Analysis</a>
+      <a href="day2_1.html">Module 5: Plotting in Base R</a>
+    </li>
+    <li>
+      <a href="day2_2.html">Module 6: Basics of ggplot</a>
+    </li>
+    <li>
+      <a href="day2_3.html">Module 7: Advanced ggplot (to be added)</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Generalized linear models
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="day3_1.html">Module 1: GLM Example Analysis (to be added)</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="data.html">Data sets</a>
+  <a href="data.html">Data</a>
 </li>
 <li>
-  <a href="Links.html">Links</a>
+  <a href="links.html">Links</a>
+</li>
+<li>
+  <a href="surveys.html">Surveys</a>
 </li>
 <li>
   <a href="terms.html">Terms</a>
@@ -324,8 +332,8 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Data</h1>
-<h4 class="author">R Crash Course</h4>
-<h4 class="date">2023-06-26</h4>
+<h4 class="author">ES482 R labs</h4>
+<h4 class="date">2024</h4>
 
 </div>
 

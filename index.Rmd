@@ -55,7 +55,6 @@ Before we dig in and get started with the modules, you should install R and RStu
 [Download and install RStudio](https://www.rstudio.com/products/rstudio/download/)    (use free version!)      
 
 
-
 ### Download cheat sheets
 Also, it can be very helpful to print out R 'cheat sheets' and bring that with you or save them as PDFs to your hard drive. Here are some links:
 
@@ -67,7 +66,7 @@ Also, it can be very helpful to print out R 'cheat sheets' and bring that with y
 
 To ensure we maximize time in lab please also download the data files for this course from the [Data](data.html) tab and save this in a folder on your hardrive. *We will move these to a specific folder for the course when we cover folder organization on the first day of lab*
 
-Double click the each data file to download. Some will open a save 
+Double click the each data file to download. The .txt files will open in a viewer window and you will need to right click to save them. The .csv files should open directly in your directory to save. **Important DO NOT change the file names**.
 
 ### Take pre course survey
 
