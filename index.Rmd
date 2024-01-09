@@ -80,7 +80,7 @@ Once you've downloaded R, RStudio, and the associated cheat sheets for this cour
 Okay, now we're ready to go!
 
 
-[--go to first lab--](Intro_to_R_part1.html)
+[--go to first lab module--](day1_1.html)
 
 
 ```{r echo=FALSE}
