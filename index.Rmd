@@ -71,7 +71,7 @@ Also, it can be very helpful to print out R 'cheat sheets' and bring that with y
 
 To ensure we maximize time in lab please also download the data files for this course from the [Data](data.html) tab and save this in a folder on your hard drive. *We will move these to a specific folder for the course when we cover folder organization on the first day of lab*
 
-Double click the each data file to download. The .txt files will open in a viewer window and you will need to right click to save them. The .csv files should open directly in your directory to save. **Important DO NOT change the file names**.
+Right click (or command-click for MAcs) each file. The .txt files will open in a viewer window and you will need to right click to save them. The .csv files should download directly in your downloads folder and you can move them where you want to save them. **Important DO NOT change the file names**.
 
 ### Take pre course survey
 
@@ -95,7 +95,7 @@ Please return and complete this post course survey at the end of the semester
 Before you leave today please take a few moments to complete the [post-course survey](https://qfreeaccountssjc1.az1.qualtrics.com/jfe/form/SV_8wdzQHkevQRmpkG). 
 
 ```{r echo=FALSE}
-rmd2rscript <- function(infile="day3_5.Rmd"){    # function for converting markdown to scripts
+rmd2rscript <- function(infile="mod_2_ggplot.Rmd"){    # function for converting markdown to scripts
   outfile1 <- gsub(".Rmd",".R",infile)
   outfile2 <- gsub(".Rmd",".txt",infile)
   close( file( outfile1, open="w" ) )   # clear output file
@@ -154,10 +154,11 @@ rmd2rscript2 <- function(infile="LECTURE2.Rmd"){    # function for converting ma
 
 ```{r echo=FALSE, eval=FALSE}
 
-rmd2rscript2("day1_2.Rmd")
-rmd2rscript2("day2_3.Rmd")
-rmd2rscript2("day2_4.Rmd")
-rmd2rscript2("day3_5.Rmd")
+rmd2rscript2("mod_2_baseR.Rmd")
+rmd2rscript2("mod_3_data.Rmd")
+rmd2rscript2("mod_4_data_manipulation.Rmd")
+rmd2rscript2("mod_1_plots_baseR.Rmd")
+rmd2rscript2("mod_2_ggplot.Rmd")
 
 ## TODO: make sure there are pdf copies of all the modules... 
 
