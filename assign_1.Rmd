@@ -1,0 +1,138 @@
+---
+title: "Assignment 1"
+author: "Base R"
+date: "Due 19 January 2024"
+output: 
+  html_document:
+    code_folding: show
+    theme: journal
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      cache = TRUE)
+```
+
+```{r echo=FALSE}
+
+#  ES482 R labs   
+#      University of Victoria, Victoria BC Canada             
+
+#  Assignment 1: base R
+
+```
+
+
+## 1 Create a vector
+Create a vector called 'myvec' using any of the methods you learned with numbers 1 to 10. *Note there are multiple ways to do this*. 
+
+```{r echo=FALSE}
+
+# answer 1 (the most parsimonious)
+myvec <- 1:10
+
+# answer 2
+myvec <- c(1, 10)
+
+# answer 3 (time consuming)
+myvec <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+# answer 4 (unecessarily complicated for this exercise but works)
+myvec <- seq(1, 10, by = 1)
+```
+
+## 2 Create a matrix with `rbind()`
+Create a 3 row by 2 column matrix named 'mymat'. Use the `rbind()` **function** to bind the following three rows/vectors together:
+
+```
+c(1,4) 
+c(2,5) 
+c(3,6)
+```
+
+```{r echo=FALSE}
+
+rbind(
+c(1,4),
+c(2,5),
+c(3,6)
+)
+
+```
+
+## 3 Extracting objects from data
+Get the names of columns in the data frame you created earlier 'mydf'. *Hint see the R functions to explore data section*. Then extract all rows for column 5 by name, do the same thing using the element position e.g. `[]`
+```{r echo=FALSE}
+# code to create mydf
+my.data <- data.frame(
+  Obs.Id = 1:100,
+  Treatment = rep(c("A","B","C","D","E"),
+                  each = 20),
+  Block = rep(1:20,
+              times = 5),
+  Germination = rpois(100,
+                      lambda = rep(c(1,5,4,7,1),
+                                   each = 20)),   # random poisson variable
+  AvgHeight = rnorm(100,
+                    mean = rep(c(10,30,31,25,35,7),
+                               each = 20))
+)
+
+mydf = my.data[21:30, ]  
+
+# answer for problem 1
+names(mydf)
+
+mydf$AvgHeight
+
+mydf[, 5]
+
+```
+
+## 4 Create a matrix
+Create a new matrix called 'mymat2' that includes all the data from columns 3 to 5 of data frame mydf. *HINT: use the `as.matrix()` function to coerce a data frame into a matrix. Since we didn't cover this function you may need to look it up in the help files.*
+
+```{r echo=FALSE}
+
+as.matrix(mydf[, 3:5])
+
+```
+
+
+## 5 Create a list
+Create a list named 'mylist' that is composed of a vector: 1:3, a matrix: matrix(1:6, nrow = 3, ncol = 2), and a data frame: data.frame(x =c (1, 2, 3), y = c(TRUE, FALSE, TRUE), z = c("a", "a", "b")).
+
+```{r echo=FALSE}
+
+#create an empty list
+mylist <- list()
+
+# add a vector of 1 to 3 to the list
+mylist[[1]] <- 1:3
+
+# add a matrix to the list
+mylist[[2]] <- matrix(1:6,
+                      nrow = 3,
+                      ncol = 2)
+
+# add a data frame to the list
+mylist[[3]] <- data.frame(x = c(1, 2,3 ),
+                          y = c(TRUE, FALSE, TRUE),
+                          z = c("a", "a", "b"))
+
+# print the list
+mylist
+
+```
+
+## 6 Extracting objects from lists
+Extract the second and third observation from the 1st column of the data frame in 'mylist' (the list created above). 
+
+```{r echo=FALSE}
+
+# call mylist then reference the position of the data frame in the list [[3]], then the column in the data frame [[1]], and finally the observations within that columns c(2, 3)
+mylist[[3]][[1]][c(2, 3)]
+
+```

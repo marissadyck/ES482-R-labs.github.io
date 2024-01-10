@@ -29,6 +29,12 @@ navbar:
       menu:
         - text: "Module 1: Basiscs of GLMs"
           href: mod_1_glm.html
+    - text: "Assignments"
+      menu: 
+      - text: "Assignment 1"
+        href: assign_1.html
+      - text: "Assignment 2"
+        href: assign_2.html
     - text: "Data"
       href: data.html
     - text: "Links"
