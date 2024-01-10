@@ -282,7 +282,7 @@ We didn't cover a lot for plotting in **base R** because I find *ggplot2* to be 
 [Towards Data Science - Base Plotting in R](https://towardsdatascience.com/base-plotting-in-r-eb365da06b22)
 
 
-[--go to next module--](day2_2.html)
+[--go to next module--](day3_6.html)
 
 
 
