@@ -85,11 +85,11 @@ Once you've downloaded R, RStudio, and the associated cheat sheets and data for 
 Okay, now we're ready to go!
 
 
-[--go to first lab module--](day1_1.html)
+[--go to first lab module](mod_1_R101.html)
 
 
 ```{r echo=FALSE}
-rmd2rscript <- function(infile="day2_3.Rmd"){    # function for converting markdown to scripts
+rmd2rscript <- function(infile="day3_5.Rmd"){    # function for converting markdown to scripts
   outfile1 <- gsub(".Rmd",".R",infile)
   outfile2 <- gsub(".Rmd",".txt",infile)
   close( file( outfile1, open="w" ) )   # clear output file

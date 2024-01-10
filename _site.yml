@@ -8,7 +8,7 @@ navbar:
     - text: "Intro to R part 1"
       menu:
         - text: "Module 1: R 101"
-          href: day1_1.html
+          href: mod_1_R101.html
         - text: "Module 2: Base R"
           href: day1_2.html
     - text: "Intro to R part 2"
