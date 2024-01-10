@@ -152,7 +152,7 @@ seq(from = 1,
 # the below is read the same as above even though we didn't supply the from =, to =, and by = arguments because this is they are in the specified for this function
 seq(1, 10, 1)
 
-# as long as we specify the aguments we can also enter them in a different order
+# as long as we specify the arguments we can also enter them in a different order
 seq(to = 10,
     from = 1,
     by = 1)
@@ -235,7 +235,7 @@ Now, staying in Rstudio move any cheat sheets you have already downloaded to the
 ### Download script for today
 Click [here](mod_2_baseR.R) to download the script for this today's lab! I recommend right-clicking (or command-clicking for Macs) on the link and selecting the "Save As" option from the context menu. Save the script to the 'scripts' folder in the 'R Crash Course' folder we just created, which will serve as your **working directory** for this course. 
 
-### Open day1_2 script
+### Open script
 To open this script in RStudio, we will use the **files** tab again. If this tab is not already open, open it and navigate to the 'scripts' folder, then <span style="color: blue;">click the day1_2.R script</span> this will automatically open this script in your current RStudio session.
 
 ### Open a blank script
