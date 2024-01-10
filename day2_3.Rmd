@@ -1,7 +1,7 @@
 ---
 title: "Intro to R part 2 - Module 3"
 author: "Module 3: Working with data"
-date: "12 January 2024"
+date: "19 January 2024"
 output: 
   html_document: 
     code_folding: show
@@ -42,15 +42,16 @@ library(tidyverse)
 
 2. Load your script in RStudio. To do this, open RStudio and click on the folder icon in the toolbar at the top to load your script.    
 
-Let's get started working with data in R!
-
 ### Cheat sheets
 
 Make sure to save these to your cheatsheets folder
 
 [Tidyverse cheat sheet](https://www.datacamp.com/cheat-sheet/tidyverse-cheat-sheet-for-beginners)     
 [readr cheat sheet](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_data-import.pdf)    
-[tidyr and dplyr cheat sheets](https://www.rstudio.com/resources/cheatsheets/)  Scroll down to data tidying with tidyr **&** data transofrmation with dplyr
+[tidyr and dplyr cheat sheets](https://www.rstudio.com/resources/cheatsheets/)  Scroll down to data tidying with tidyr **&** data transformation with dplyr
+
+
+Let's get started working with data in R!
 
 ## Working directory
 
@@ -291,7 +292,7 @@ data.df[, 2] < 74 | data.df[, 2] == 91   # use the logical OR operator
 
 This image from Wickham and Grolemund's excellent [R for Data Science](https://r4ds.had.co.nz/index.html) book can help conceptualize the combination operators:
 
-![](images/transform_logical.png){width=50%}
+![](images/transform_logical.png){width=70%}
 
 ### Data subsetting using boolean logic
 
@@ -302,7 +303,7 @@ Let's use them to subset data - select only those rows/observations that meet a 
 
 ```{r}
 
-  # Subsetting data base R----------------------
+  # Sub-setting data base R----------------------
 
 # select those rows of data for which second column is less than 74
 data.df[data.df[, "Import"] < 74, ]  
@@ -376,7 +377,7 @@ ggplot2::diamonds   # note the use of the package name followed by two colons- t
 ```
 
 ## Tidyverse
-The tidyverse is a collection of packages introduced by Hadley and Wickham that all work together using a similar design, syntax, and data structure (**tidy data**) for data science. It will be useful to have your [tidyverse cheat sheet](https://www.datacamp.com/cheat-sheet/tidyverse-cheat-sheet-for-beginners), [reader cheat sheet](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_data-import.pdf),  and [tidyr & dplyr cheat sheets](https://www.rstudio.com/resources/cheatsheets/) during the rest of this module.
+The tidyverse is a collection of packages introduced by Hadley and Wickham that all work together using a similar design, syntax, and data structure (**tidy data**) for data science. It will be useful to have your [tidyverse cheat sheet](https://www.datacamp.com/cheat-sheet/tidyverse-cheat-sheet-for-beginners), [reader cheat sheet](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_data-import.pdf), and [tidyr & dplyr cheat sheets](https://www.rstudio.com/resources/cheatsheets/) during the rest of this module.
 
 ### What is tidy data
 All of the tidyverse set of packages are designed to work with *Tidy* formatted data.
@@ -880,8 +881,8 @@ You might notice a problem with the way the data are entered here. We will fix t
 ## Practice Problems
 
 ### 1 Export data
-Save the altered turtles data as a comma seperated file to the data folder in your working directory using the 'readr' package and name it 'turtles_tidy'
-```{r class.source = 'fold-hide'}
+Save the altered turtles data as a comma separated file to the data folder in your working directory using the 'readr' package and name it 'turtles_tidy'
+```{r echo=FALSE}
 
 write_csv(turtles.df,
           'data/turtles_tidy.csv')
@@ -897,7 +898,7 @@ Download the [brown bear damage data](data/bear_2008_2016.csv) and save it in th
 * change dist_to_town to m_to_town and dist_to_forest to m_to_forest (m for meters)    
 * Finally, use one of the functions we've covered to view/print your data to check that it worked.
 
-```{r class.source = 'fold-hide'}
+```{r echo=FALSE}
 
 bear_data <- read_csv('data/bear_2008_2016.csv') %>% 
   
@@ -919,7 +920,7 @@ head(bear_data)
 * Change 'targetspp' from **character** to **factor** using *dplyr* make sure to overwrite the previous bear data so the changes are saved    
 * Use the 'levels()' **function** to check if this worked. HINT: Use the help file if you aren't familiar with 'levels()'
 
-```{r class.source = 'fold-hide'}
+```{r echo=FALSE}
 
 str(bear_data)
 
@@ -934,7 +935,7 @@ levels(bear_data$targetspp)
 * Now that we know there are 3 livestock types (groups), subset the data to include only the rows for 'ovine' 
 * In the same code chunk select the columns damage, year, month, bear_abund, landcover_code, and altitude
 * Save this to your **environment** as 'bear_sheep_data'
-```{r class.source = 'fold-hide'}
+```{r echo=FALSE}
 
 bear_sheep_data <- bear_data %>% 
   
@@ -957,7 +958,7 @@ head(bear_sheep_data)
 ### 5 Summarise 
 * Using the bear_sheep_data, calculate the mean, sd and SE (the formula for SE is sd / sqrt(n)) for altitude. *This last part might be tricky at first but give it a try and remember you can always google things and check the 'help' files*
 
-```{r class.source = 'fold-hide'}
+```{r echo=FALSE}
 
 bear_sheep_data %>% 
   summarise(mean_alt = mean(altitude),

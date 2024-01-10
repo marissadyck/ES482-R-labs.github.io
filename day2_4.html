@@ -11,7 +11,7 @@
 
 <meta name="author" content="Module 4: Working with data continued - data manipulation" />
 
-<meta name="date" content="2024-01-12" />
+<meta name="date" content="2024-01-19" />
 
 <title>Intro to R part 2 - Module 4</title>
 
@@ -325,7 +325,7 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="home.html">Home</a>
+  <a href="index.html">Home</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -365,13 +365,13 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="day2_1.html">Module 5: Plotting in Base R</a>
+      <a href="day3_5.html">Module 5: Data Visualization in Base R</a>
     </li>
     <li>
-      <a href="day2_2.html">Module 6: Basics of ggplot</a>
+      <a href="day3_6.html">Module 6: Basics of ggplot</a>
     </li>
     <li>
-      <a href="day2_3.html">Module 7: Advanced ggplot (to be added)</a>
+      <a href="day3_7.html">Module 7: Advanced ggplot (to be added)</a>
     </li>
   </ul>
 </li>
@@ -422,7 +422,7 @@ div.tocify {
 <h1 class="title toc-ignore">Intro to R part 2 - Module 4</h1>
 <h4 class="author">Module 4: Working with data continued - data
 manipulation</h4>
-<h4 class="date">12 January 2024</h4>
+<h4 class="date">19 January 2024</h4>
 
 </div>
 
@@ -1951,12 +1951,6 @@ turtles_tidy %&gt;%
 <h3>1 Remove NAs</h3>
 <p>Using the turtles_tidy data, remove all rows with NAs and create a
 new dataset from this called “turtles_no_na”</p>
-<pre class="r fold-hide"><code>turtles_no_na &lt;- turtles_tidy %&gt;% 
-  
-  # remove rows with NA
-  na.omit()
-
-turtles_no_na</code></pre>
 <pre><code>## # A tibble: 15 × 5
 ##      tag sex    c_length h_width weight
 ##    &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
@@ -1987,27 +1981,10 @@ based on the “weight” variable using case_when whereby</p>
 </ul>
 <p>(There are two answers below because I expect people to potentially
 choose two ways to do this)</p>
-<pre class="r fold-hide"><code>turtles_tidy &lt;- turtles_tidy %&gt;% 
-  mutate(size.class = case_when(
-    weight &lt; 3 ~ &quot;juvenile&quot;,
-    weight &gt; 6 ~ &quot;adult&quot;,
-    TRUE  ~ &quot;subadult&quot;
-  ))
-
-turtles_tidy$size.class</code></pre>
 <pre><code>##  [1] &quot;adult&quot;    &quot;adult&quot;    &quot;juvenile&quot; &quot;juvenile&quot; &quot;subadult&quot; &quot;adult&quot;   
 ##  [7] &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;    &quot;juvenile&quot; &quot;adult&quot;    &quot;juvenile&quot;
 ## [13] &quot;subadult&quot; &quot;subadult&quot; &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;   
 ## [19] &quot;adult&quot;    &quot;juvenile&quot; &quot;adult&quot;</code></pre>
-<pre class="r fold-hide"><code># alternatively
-turtles_tidy &lt;- turtles_tidy %&gt;% 
-  mutate(size_class = case_when(
-    weight &lt; 3 ~ &quot;juvenile&quot;,
-    weight &gt; 6 ~ &quot;adult&quot;,
-    weight &gt;= 3 &amp; weight &lt;= 6 ~ &#39;subadult&#39;
-  ))
-
-turtles_tidy$size_class</code></pre>
 <pre><code>##  [1] &quot;adult&quot;    &quot;adult&quot;    &quot;juvenile&quot; &quot;juvenile&quot; &quot;subadult&quot; &quot;adult&quot;   
 ##  [7] &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;    &quot;juvenile&quot; &quot;adult&quot;    &quot;juvenile&quot;
 ## [13] &quot;subadult&quot; &quot;subadult&quot; &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;   
@@ -2017,24 +1994,6 @@ turtles_tidy$size_class</code></pre>
 <h3>3 Replace values with NA</h3>
 <p>In the turtles_tidy data replace ALL variable values for tags 104 and
 105 with NAs</p>
-<pre class="r fold-hide"><code># list of tags we do not trust the data for
-bad.tags &lt;- c(104,105)
-
-turtles_tidy %&gt;% 
-  mutate(
-    sex = replace(sex,
-                  tag %in% bad.tags,
-                  NA),
-    c_length = replace(c_length,
-                       tag %in% bad.tags,
-                       NA),
-    h_width = replace(h_width,
-                      tag %in% bad.tags,
-                      NA),
-    weight = replace(weight,
-                     tag %in% bad.tags,
-                     NA)
-  )</code></pre>
 <pre><code>## # A tibble: 21 × 7
 ##      tag sex    c_length h_width weight size.class size_class
 ##    &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     
@@ -2049,14 +2008,6 @@ turtles_tidy %&gt;%
 ##  9    12 female     44      7.55   8.9  adult      adult     
 ## 10    13 &lt;NA&gt;       28      4.85   1.97 juvenile   juvenile  
 ## # ℹ 11 more rows</code></pre>
-<pre class="r fold-hide"><code># or... use some more tidyverse helper functions and tricks!
-
-turtles_tidy %&gt;% 
-  mutate(across(
-    c(&quot;sex&quot;,&quot;c_length&quot;,&quot;h_width&quot;, &quot;weight&quot;),
-    ~replace(.x,
-             tag %in% bad.tags,
-             NA)))</code></pre>
 <pre><code>## # A tibble: 21 × 7
 ##      tag sex    c_length h_width weight size.class size_class
 ##    &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     
@@ -2085,8 +2036,6 @@ soil &lt;- carData::Soils    # load example data</code></pre>
 column called nutrients (again there are two possible solutions (really
 more than that but two I expect peopl to use))</p></li>
 </ul>
-<pre class="r fold-hide"><code>#See what variables it contains...
-head(soil)  </code></pre>
 <pre><code>##   Group Contour Depth Gp Block   pH     N Dens   P    Ca   Mg    K   Na Conduc
 ## 1     1     Top  0-10 T0     1 5.40 0.188 0.92 215 16.35 7.65 0.72 1.14   1.09
 ## 2     1     Top  0-10 T0     2 5.65 0.165 1.04 208 12.25 5.15 0.71 0.94   1.35
@@ -2094,14 +2043,6 @@ head(soil)  </code></pre>
 ## 4     1     Top  0-10 T0     4 5.14 0.169 1.10 248 11.92 7.88 1.09 1.01   1.64
 ## 5     2     Top 10-30 T1     1 5.14 0.164 1.12 174 14.17 8.12 0.70 2.17   1.85
 ## 6     2     Top 10-30 T1     2 5.10 0.094 1.22 129  8.55 6.92 0.81 2.67   3.18</code></pre>
-<pre class="r fold-hide"><code># Use &#39;tidyverse&#39; to reshape the data 
-
-soil_nut &lt;- pivot_longer(soil, 
-                         cols = c(&quot;Ca&quot;,&quot;Mg&quot;,&quot;K&quot;, &quot;Na&quot;), 
-                         names_to = &quot;nutrient&quot;,
-                         values_to = &quot;value&quot; )
-
-soil_nut</code></pre>
 <pre><code>## # A tibble: 192 × 12
 ##    Group Contour Depth Gp    Block    pH     N  Dens     P Conduc nutrient value
 ##    &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
@@ -2116,13 +2057,6 @@ soil_nut</code></pre>
 ##  9 1     Top     0-10  T0    3      5.14 0.26   0.95   300   1.41 Ca       13.0 
 ## 10 1     Top     0-10  T0    3      5.14 0.26   0.95   300   1.41 Mg        5.68
 ## # ℹ 182 more rows</code></pre>
-<pre class="r fold-hide"><code># alternatively
-soil_nut &lt;- pivot_longer(soil, 
-                         cols = Ca:Na, 
-                         names_to = &quot;nutrient&quot;,
-                         values_to = &quot;value&quot; )
-
-soil_nut</code></pre>
 <pre><code>## # A tibble: 192 × 12
 ##    Group Contour Depth Gp    Block    pH     N  Dens     P Conduc nutrient value
 ##    &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;

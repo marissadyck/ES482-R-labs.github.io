@@ -1,7 +1,7 @@
 ---
 title: "Intro to R part 2 - Module 4"
 author: "Module 4: Working with data continued - data manipulation"
-date: "12 January 2024"
+date: "19 January 2024"
 output: 
   html_document: 
     code_folding: show
@@ -766,7 +766,7 @@ turtles_tidy %>%
 ### 1 Remove NAs
 Using the turtles_tidy data, remove all rows with NAs and create a new dataset from this called "turtles_no_na" 
 
-```{r class.source = 'fold-hide'}
+```{r echo=FALSE}
 turtles_no_na <- turtles_tidy %>% 
   
   # remove rows with NA
@@ -785,7 +785,7 @@ Using the turtles_no_na data, make a new variable called "size_class" based on t
 * weights between 3 and 6 are subadult
 
 (There are two answers below because I expect people to potentially choose two ways to do this)
-```{r class.source = 'fold-hide'}
+```{r echo=FALSE}
 
 turtles_tidy <- turtles_tidy %>% 
   mutate(size.class = case_when(
@@ -810,7 +810,7 @@ turtles_tidy$size_class
 
 ### 3 Replace values with NA
 In the turtles_tidy data replace ALL variable values for tags 104 and 105 with NAs
-```{r class.source = 'fold-hide'}
+```{r echo=FALSE}
 # list of tags we do not trust the data for
 bad.tags <- c(104,105)
 
@@ -852,7 +852,7 @@ soil <- carData::Soils    # load example data
 * look at the first few lines of data in "soil"
 
 * Pivot the data so that columns Ca - Na are contained in one column called nutrients (again there are two possible solutions (really more than that but two I expect peopl to use))
-```{r class.source = 'fold-hide'}
+```{r echo=FALSE}
 
 #See what variables it contains...
 head(soil)  

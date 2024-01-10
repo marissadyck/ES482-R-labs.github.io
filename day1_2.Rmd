@@ -516,7 +516,7 @@ ncol(my.data)
 
 
 ## Practice problems
-Below are some practice problems for you to work through based on the material we just covered. For all exercises the result is shown immediately after the question but the code is hidden. Try your best to tackle the problems without checking the answers, remember you can always look up information for a particular **function** using `?function name`to open the **help** window. Once you think you've got it you can check your code against mine by clicking the 'code' icon to the upper right of the answer.
+Below are some practice problems for you to work through based on the material we just covered. For all exercises the results will be available on this website after I've graded the assignments. You have until the start of lab the following week to complete the practice problems for all modules we've covered. These are meant to test your knowledge of the material we've covered and help you learn to work with real data. These are meant to mimic working in R in the real world and you will have to modify code from the module and possibly learn to use a new function to complete these assignment. Remember you can always look up information for a particular **function** using `?function name`to open the **help** window. 
 
 ### 1 Create a vector
 Create a vector called 'myvec' using any of the methods you learned with numbers 1 to 10. *Note there are multiple ways to do this*. 
