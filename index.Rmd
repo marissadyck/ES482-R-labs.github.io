@@ -14,18 +14,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
  * **When?** Friday's @2:30 - 3:30pm
  * **Where?** MacLaurin Building room D110
- * **What to prepare?** Please bring your laptop computer! Also, install R and RStudio prior to the course (see [links](Links.html)). 
+ * **What to prepare?** Please bring your laptop computer! Also, install R and RStudio prior to the course and following the instructions below on 'To do before lab 1'.    
+ * **Office hours:** My "office hours" will immediately follow lab each week until 5:00pm in MacLaurin Building D110 (assuming there is no class after us). I encourage you to stay and work on the practice problems with your peers and I can answer any questions you have regarding the lab material, assignments, working with your own data etc. during this time.   
  
 ## Facilitators
 [Marissa Dyck](https://github.com/marissadyck)  
 University of Victoria    
 Environmental Studies     
-Email: [marissadyck17@gmail.com](marissadyck17@gmail.com)   
+Email: [marissadyck@uvic.ca](mailto:marissadyck@uvic.ca)   
 
 [Jason Fisher](http://www.acmelab.ca/the-lab.html)  
 University of Victoria    
 Environmental Studies   
-Email: [fisherj@uvic.ca](fisherj@uvic.ca)   
+Email: [fisherj@uvic.ca](mailto:fisherj@uvic.ca)   
 
 ## Contributors
 This workshop is based on content from an R Bootcamp run by Dr. Kevin Shoemaker at University of Nevada Reno (https://github.com/kevintshoemaker/R-Bootcamp)
@@ -33,7 +34,7 @@ This workshop is based on content from an R Bootcamp run by Dr. Kevin Shoemaker 
 [Kevin Shoemaker](http://naes.unr.edu/shoemaker/)	
 University of Nevada Reno  
 Department of Natural Resources and Environmental Science       
-Email: [kshoemaker@cabnr.unr.edu](kshoemaker@cabnr.unr.edu)
+Email: [kshoemaker@cabnr.unr.edu](mailto:kshoemaker@cabnr.unr.edu)
 
 ## About
 
@@ -43,7 +44,7 @@ This workshop is designed for beginner to intermediate R users and will focus on
 
 All code will be available as scripts that you can download from this website (at the top of each module page on this website) and load up in RStudio. That way you won't need to constantly copy and paste from the web!  
 
-## Before we get started
+## To do before lab 1
 
 Please complete the following tasks BEFORE the first lab on Friday January 12th. We have a lot of material to cover in a short time and completing the following tasks will save time at the start of lab and ensure everyone is ready.
 
@@ -56,9 +57,9 @@ Before we dig in and get started with the modules, you should install R and RStu
 
 
 ### Download cheat sheets
-Also, it can be very helpful to print out R 'cheat sheets' and bring that with you or save them as PDFs to your hard drive. Here are some links:
+Also, it can be very helpful to print out R 'cheat sheets' and bring that with you or save them as PDFs to your hard drive. We will try to have some physical copies available during lab. Here are some links:
 
-[Base R cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/05/base-r.pdf)           
+[Base R cheatsheet](https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf)           
 [R reference card](https://cran.r-project.org/doc/contrib/Short-refcard.pdf)  
 [Various R cheatsheets](https://posit.co/resources/cheatsheets/?type=posit-cheatsheets&_page=2/) (I recommend the following 3: 'Data tidying with tidyr', 'Data transformation with dpylr', and 'Data visualization with ggplot2' cheat sheets for this course)
 
@@ -70,7 +71,7 @@ Double click the each data file to download. The .txt files will open in a viewe
 
 ### Take pre course survey
 
-Once you've downloaded R, RStudio, and the associated cheat sheets for this course please complete the pre-course survey. This will act as an indicator that you have completed the necessary tasks to prepare for the first lab and help me gauge everyone's experience level and the effectiveness of this course 
+Once you've downloaded R, RStudio, and the associated cheat sheets and data for this course please complete the pre-course survey. This will act as an indicator that you have completed the necessary tasks to prepare for the first lab and help me gauge everyone's experience level and the effectiveness of this course later on.
 
 [pre-course survey](https://qfreeaccountssjc1.az1.qualtrics.com/jfe/form/SV_bOcrXH4CuosgK7s)
 
@@ -84,7 +85,7 @@ Okay, now we're ready to go!
 
 
 ```{r echo=FALSE}
-rmd2rscript <- function(infile="day2_4.Rmd"){    # function for converting markdown to scripts
+rmd2rscript <- function(infile="day1_2.Rmd"){    # function for converting markdown to scripts
   outfile1 <- gsub(".Rmd",".R",infile)
   outfile2 <- gsub(".Rmd",".txt",infile)
   close( file( outfile1, open="w" ) )   # clear output file

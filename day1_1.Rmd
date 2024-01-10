@@ -34,10 +34,10 @@ You will be introduced to a lot of new material very quickly in this course, and
 Below are links to good R "cheat sheets" for today's lab (we will add more for each today's lab or you can see [links](Links.html) for a list of all cheat sheets):
 
 RStudio
-[Rstudio cheat sheet](https://posit.co/reSources/cheatsheets/) (you will need to scroll down to find the RStudio IDE cheatsheet) 
+[Rstudio cheat sheet](https://posit.co/reSources/cheatsheets/) (you will need to scroll down to find the RStudio IDE cheatsheet)     
 
 Base R
-(We won't be using base R a ton but it is good to have a solid understanding of the base functions)
+(We won't be using base R a ton but it is good to have a solid understanding of the base functions)   
 [Base R Cheat sheet](https://www.i3s.unice.fr/~malapert/R/pdf/base-r.pdf)        
 [R reference card](https://cran.r-project.org/doc/contrib/Short-refcard.pdf)
 

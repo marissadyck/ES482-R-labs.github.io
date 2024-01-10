@@ -1,5 +1,5 @@
 ---
-title: "Intro to R part 1"
+title: "Intro to R part 1 - Module 2"
 author: "Module 2: Base R - using base R with different types of data/objects"
 date: "12 January 2024"
 output: 
@@ -26,10 +26,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Scripts
 You should have already downloaded the script for this module and save it to the scripts folder in your R labs folder.
-If you missed this step do this now by clicking [here](day1_2.R)    
+If you missed this step do this now by right-clicking (or command-clicking for Macs) [here](day1_2.R).    
 
 ### Cheat sheets
-You should also already have downloaded the cheat sheets in the prior module but if not here are the cheatsheets we will use in this module.
+You should also already have downloaded the cheat sheets in the prior module but if not here are the cheat sheets we will use in this module.
 
 [Base R Cheat sheet](https://www.i3s.unice.fr/~malapert/R/pdf/base-r.pdf)        
 [R reference card](https://cran.r-project.org/doc/contrib/Short-refcard.pdf)
@@ -521,7 +521,7 @@ Below are some practice problems for you to work through based on the material w
 ### 1 Create a vector
 Create a vector called 'myvec' using any of the methods you learned with numbers 1 to 10. *Note there are multiple ways to do this*. 
 
-```{r class.source = 'fold-hide'}
+```{r echo=FALSE}
 
 # answer 1 (the most parsimonious)
 myvec <- 1:10
@@ -537,7 +537,7 @@ myvec <- seq(1, 10, by = 1)
 ```
 
 ### 2 Create a matrix with `rbind()`
-Create a 3 row by 2 column matrix named 'mymat'. Use the `rbind()` **function** to bind the following three rows/vecotors together:
+Create a 3 row by 2 column matrix named 'mymat'. Use the `rbind()` **function** to bind the following three rows/vectors together:
 
 ```
 c(1,4) 
@@ -545,7 +545,7 @@ c(2,5)
 c(3,6)
 ```
 
-```{r class.source = 'fold-hide'}
+```{r echo=FALSE}
 
 rbind(
 c(1,4),
@@ -557,7 +557,7 @@ c(3,6)
 
 ### 3 Extracting objects from data
 Get the names of columns in the data frame you created earlier 'mydf'. *Hint see the R functions to explore data section*. Then extract all rows for column 5 by name, do the same thing using the element position e.g. `[]`
-```{r class.source = 'fold-hide'}
+```{r echo=FALSE}
 
 names(mydf)
 
@@ -570,7 +570,7 @@ mydf[, 5]
 ### 4 Create a matrix
 Create a new matrix called 'mymat2' that includes all the data from columns 3 to 5 of data frame mydf. *HINT: use the `as.matrix()` function to coerce a data frame into a matrix. Since we didn't cover this function you may need to look it up in the help files.*
 
-```{r class.source = 'fold-hide'}
+```{r echo=FALSE}
 
 as.matrix(mydf[, 3:5])
 
@@ -580,7 +580,7 @@ as.matrix(mydf[, 3:5])
 ### 5 Create a list
 Create a list named 'mylist' that is composed of a vector: 1:3, a matrix: matrix(1:6, nrow = 3, ncol = 2), and a data frame: data.frame(x =c (1, 2, 3), y = c(TRUE, FALSE, TRUE), z = c("a", "a", "b")).
 
-```{r class.source = 'fold-hide'}
+```{r echo=FALSE}
 
 #create an empty list
 mylist <- list()
@@ -606,7 +606,7 @@ mylist
 ### 6 Extracting objects from lists
 Extract the second and third observation from the 1st column of the data frame in 'mylist' (the list created above). 
 
-```{r class.source = 'fold-hide'}
+```{r echo=FALSE}
 
 # call mylist then reference the position of the data frame in the list [[3]], then the column in the data frame [[1]], and finally the observations within that columns c(2, 3)
 mylist[[3]][[1]][c(2, 3)]

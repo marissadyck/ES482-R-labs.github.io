@@ -13,7 +13,7 @@
 
 <meta name="date" content="2024-01-12" />
 
-<title>Intro to R part 1</title>
+<title>Intro to R part 1 - Module 2</title>
 
 <script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -325,7 +325,7 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="home.html">Home</a>
+  <a href="index.html">Home</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -365,13 +365,13 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="day2_1.html">Module 5: Plotting in Base R</a>
+      <a href="day3_5.html">Module 5: Data Visualization in Base R</a>
     </li>
     <li>
-      <a href="day2_2.html">Module 6: Basics of ggplot</a>
+      <a href="day3_6.html">Module 6: Basics of ggplot</a>
     </li>
     <li>
-      <a href="day2_3.html">Module 7: Advanced ggplot (to be added)</a>
+      <a href="day3_7.html">Module 7: Advanced ggplot (to be added)</a>
     </li>
   </ul>
 </li>
@@ -419,7 +419,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Intro to R part 1</h1>
+<h1 class="title toc-ignore">Intro to R part 1 - Module 2</h1>
 <h4 class="author">Module 2: Base R - using base R with different types
 of data/objects</h4>
 <h4 class="date">12 January 2024</h4>
@@ -433,12 +433,13 @@ of data/objects</h4>
 <h3>Scripts</h3>
 <p>You should have already downloaded the script for this module and
 save it to the scripts folder in your R labs folder. If you missed this
-step do this now by clicking <a href="day1_2.R">here</a></p>
+step do this now by right-clicking (or command-clicking for Macs) <a
+href="day1_2.R">here</a>.</p>
 </div>
 <div id="cheat-sheets" class="section level3">
 <h3>Cheat sheets</h3>
 <p>You should also already have downloaded the cheat sheets in the prior
-module but if not here are the cheatsheets we will use in this
+module but if not here are the cheat sheets we will use in this
 module.</p>
 <p><a href="https://www.i3s.unice.fr/~malapert/R/pdf/base-r.pdf">Base R
 Cheat sheet</a><br />
@@ -865,32 +866,32 @@ built in random number generators:</p>
 
 # 10 samples from std. normal
 rnorm(10)                    </code></pre>
-<pre><code>##  [1] -0.88620990  0.64038858  0.06611002  0.97625376  2.43372862  1.18462191
-##  [7] -1.32465686 -0.66830404 -0.17258191 -1.24492144</code></pre>
+<pre><code>##  [1]  0.51504190 -1.41804577 -0.24324923 -0.08285540 -0.15236969  0.04040238
+##  [7] -0.19318634 -1.16163142  1.32155112  0.14226070</code></pre>
 <pre class="r"><code># 10 samples from Normal(-2,4^2)
 rnorm(10, 
       mean= -2, 
       sd = 4)      </code></pre>
-<pre><code>##  [1] -3.2845327 -0.9353575  3.7005784 -9.1353708 -0.3839708 -3.1456164
-##  [7] -6.1411307 -1.7221142 -5.9178281 -5.2448179</code></pre>
+<pre><code>##  [1]  6.7317024 -3.5689390  1.1659491 -3.8070434  1.2663183 -0.4518861
+##  [7] -7.2063620 -4.3798925 -4.2547584 -1.9950533</code></pre>
 <pre class="r"><code># 5 samples from Binom(3,0.5)
 rbinom(5,
        size = 3,
        prob = .5)  </code></pre>
-<pre><code>## [1] 3 2 0 2 2</code></pre>
+<pre><code>## [1] 2 2 1 1 0</code></pre>
 <pre class="r"><code># 5 samples from Binom(3,0.1)
 rbinom(5, 3, .1)            </code></pre>
-<pre><code>## [1] 0 1 0 0 2</code></pre>
+<pre><code>## [1] 0 2 0 0 1</code></pre>
 <pre class="r"><code># 10 standard uniform random numbers
 runif(10)  </code></pre>
-<pre><code>##  [1] 0.17729969 0.74736161 0.40269692 0.72420933 0.98665321 0.45542328
-##  [7] 0.04285751 0.75662551 0.35078490 0.30480580</code></pre>
+<pre><code>##  [1] 0.53001272 0.88215423 0.66529550 0.79840279 0.69111241 0.04568627
+##  [7] 0.91074041 0.12591982 0.35764211 0.62230877</code></pre>
 <pre class="r"><code>  # 10 uniform random numbers from [-1,1]
 runif(10,
       min = -1,
       max = 1)      </code></pre>
-<pre><code>##  [1] -0.4820722 -0.8791836  0.4443269 -0.6141153  0.5934741  0.6974648
-##  [7] -0.8511426 -0.3502444  0.0144116  0.4255935</code></pre>
+<pre><code>##  [1] -0.69091431  0.07540878  0.06697320 -0.27847229 -0.11681350  0.22084381
+##  [7] -0.62592887 -0.92633670 -0.06448901  0.76550729</code></pre>
 </div>
 <div id="making-fake-data" class="section level3">
 <h3>Making fake data</h3>
@@ -914,137 +915,137 @@ my.data &lt;- data.frame(
 
 my.data</code></pre>
 <pre><code>##     Obs.Id Treatment Block Germination AvgHeight
-## 1        1         A     1           1  8.991661
-## 2        2         A     2           1  9.577091
-## 3        3         A     3           0  9.074376
-## 4        4         A     4           0 11.828769
-## 5        5         A     5           0  8.693214
-## 6        6         A     6           4 11.137254
-## 7        7         A     7           2 10.847438
-## 8        8         A     8           2  9.633278
-## 9        9         A     9           0 11.001279
-## 10      10         A    10           0  9.967034
-## 11      11         A    11           1 10.276139
-## 12      12         A    12           0 10.617936
-## 13      13         A    13           0 12.090345
-## 14      14         A    14           1  9.377696
-## 15      15         A    15           1 11.092669
-## 16      16         A    16           2  9.546459
-## 17      17         A    17           1 10.646499
-## 18      18         A    18           0  9.718800
-## 19      19         A    19           1 10.030795
-## 20      20         A    20           3  8.382099
-## 21      21         B     1           3 28.147002
-## 22      22         B     2           5 28.417743
-## 23      23         B     3           6 27.843723
-## 24      24         B     4           4 29.501182
-## 25      25         B     5           2 28.892738
-## 26      26         B     6           2 30.591561
-## 27      27         B     7           2 28.266399
-## 28      28         B     8           4 30.152152
-## 29      29         B     9           7 29.217002
-## 30      30         B    10           8 30.463846
-## 31      31         B    11           4 30.372286
-## 32      32         B    12           2 30.570206
-## 33      33         B    13           5 31.466074
-## 34      34         B    14           5 30.878781
-## 35      35         B    15           3 30.370681
-## 36      36         B    16           4 30.690797
-## 37      37         B    17           4 29.295561
-## 38      38         B    18           5 29.930774
-## 39      39         B    19           5 30.503236
-## 40      40         B    20           6 31.201314
-## 41      41         C     1           5 29.775364
-## 42      42         C     2           6 29.774868
-## 43      43         C     3           6 31.948124
-## 44      44         C     4           3 29.973081
-## 45      45         C     5           5 30.559351
-## 46      46         C     6           3 32.950797
-## 47      47         C     7           5 31.823248
-## 48      48         C     8           5 31.398050
-## 49      49         C     9           4 31.111336
-## 50      50         C    10           5 31.807912
-## 51      51         C    11           6 29.362512
-## 52      52         C    12           6 31.093262
-## 53      53         C    13           5 29.184315
-## 54      54         C    14           3 30.904082
-## 55      55         C    15           7 32.847790
-## 56      56         C    16           2 32.097649
-## 57      57         C    17           4 31.796406
-## 58      58         C    18           1 32.729716
-## 59      59         C    19           4 30.230146
-## 60      60         C    20           4 31.907252
-## 61      61         D     1           8 25.110601
-## 62      62         D     2           9 25.311751
-## 63      63         D     3           2 25.443796
-## 64      64         D     4           8 24.480614
-## 65      65         D     5           5 23.842678
-## 66      66         D     6           6 26.174305
-## 67      67         D     7          11 24.793048
-## 68      68         D     8           7 23.144874
-## 69      69         D     9           6 25.872156
-## 70      70         D    10           5 24.090152
-## 71      71         D    11           9 26.807490
-## 72      72         D    12           4 25.675481
-## 73      73         D    13           9 23.701435
-## 74      74         D    14           5 25.659784
-## 75      75         D    15           6 25.010568
-## 76      76         D    16          12 23.817758
-## 77      77         D    17           5 26.907626
-## 78      78         D    18           5 25.605130
-## 79      79         D    19           8 23.964645
-## 80      80         D    20           5 24.963429
-## 81      81         E     1           1 35.035879
-## 82      82         E     2           1 34.693008
-## 83      83         E     3           2 34.404415
-## 84      84         E     4           1 34.322238
-## 85      85         E     5           0 35.829939
-## 86      86         E     6           1 33.882662
-## 87      87         E     7           0 35.118321
-## 88      88         E     8           3 35.078946
-## 89      89         E     9           0 34.900566
-## 90      90         E    10           0 34.653047
-## 91      91         E    11           1 34.945873
-## 92      92         E    12           3 36.727445
-## 93      93         E    13           0 35.649281
-## 94      94         E    14           2 35.194317
-## 95      95         E    15           1 32.674345
-## 96      96         E    16           0 35.702384
-## 97      97         E    17           2 36.314842
-## 98      98         E    18           0 35.132206
-## 99      99         E    19           2 33.775663
-## 100    100         E    20           3 34.193076</code></pre>
+## 1        1         A     1           1 11.003318
+## 2        2         A     2           2 10.626357
+## 3        3         A     3           0  9.044821
+## 4        4         A     4           1  9.637555
+## 5        5         A     5           1 10.428521
+## 6        6         A     6           2  9.907621
+## 7        7         A     7           1  8.610791
+## 8        8         A     8           0 10.239361
+## 9        9         A     9           0  8.314099
+## 10      10         A    10           0 10.687720
+## 11      11         A    11           1 11.365136
+## 12      12         A    12           2 10.782236
+## 13      13         A    13           1  8.996907
+## 14      14         A    14           1  9.580060
+## 15      15         A    15           1  8.258797
+## 16      16         A    16           1 10.762137
+## 17      17         A    17           2  8.623471
+## 18      18         A    18           1 10.872374
+## 19      19         A    19           0 11.019184
+## 20      20         A    20           0  9.138755
+## 21      21         B     1           4 27.939704
+## 22      22         B     2           8 30.142037
+## 23      23         B     3           2 28.669131
+## 24      24         B     4           5 29.732276
+## 25      25         B     5           5 28.881270
+## 26      26         B     6           2 31.773944
+## 27      27         B     7           6 31.044380
+## 28      28         B     8           2 29.918896
+## 29      29         B     9           8 29.850766
+## 30      30         B    10           2 30.508945
+## 31      31         B    11           5 29.409098
+## 32      32         B    12           7 29.720335
+## 33      33         B    13           4 30.622695
+## 34      34         B    14           2 29.604284
+## 35      35         B    15           7 31.051649
+## 36      36         B    16           7 28.832730
+## 37      37         B    17           5 29.709895
+## 38      38         B    18           6 29.409902
+## 39      39         B    19          10 29.380121
+## 40      40         B    20           6 32.078722
+## 41      41         C     1           1 30.585273
+## 42      42         C     2           5 30.947966
+## 43      43         C     3           3 31.081913
+## 44      44         C     4           9 31.359978
+## 45      45         C     5           7 31.399153
+## 46      46         C     6           3 29.799575
+## 47      47         C     7           5 31.409945
+## 48      48         C     8           2 31.196130
+## 49      49         C     9           3 30.792545
+## 50      50         C    10           5 29.815614
+## 51      51         C    11           5 29.575441
+## 52      52         C    12           6 30.864331
+## 53      53         C    13           5 31.209306
+## 54      54         C    14           4 31.974624
+## 55      55         C    15          11 30.807205
+## 56      56         C    16           3 30.454619
+## 57      57         C    17           4 31.976036
+## 58      58         C    18           5 29.513842
+## 59      59         C    19           3 30.622169
+## 60      60         C    20           2 30.957030
+## 61      61         D     1          10 24.389686
+## 62      62         D     2           8 25.245457
+## 63      63         D     3           7 25.585158
+## 64      64         D     4           7 24.993779
+## 65      65         D     5           5 24.716531
+## 66      66         D     6           6 26.247107
+## 67      67         D     7           7 23.821423
+## 68      68         D     8           6 24.749190
+## 69      69         D     9           8 24.409035
+## 70      70         D    10           9 24.855033
+## 71      71         D    11           7 24.547635
+## 72      72         D    12          11 25.179931
+## 73      73         D    13           5 26.526708
+## 74      74         D    14           7 24.464068
+## 75      75         D    15           8 24.464188
+## 76      76         D    16           6 24.027522
+## 77      77         D    17           9 24.030914
+## 78      78         D    18           8 22.732909
+## 79      79         D    19           9 24.007162
+## 80      80         D    20           3 24.724027
+## 81      81         E     1           1 35.420462
+## 82      82         E     2           0 35.237052
+## 83      83         E     3           2 35.435735
+## 84      84         E     4           0 33.798050
+## 85      85         E     5           0 35.007754
+## 86      86         E     6           0 35.909713
+## 87      87         E     7           1 36.962921
+## 88      88         E     8           2 35.135662
+## 89      89         E     9           1 34.053502
+## 90      90         E    10           0 36.058238
+## 91      91         E    11           0 35.748666
+## 92      92         E    12           0 34.241462
+## 93      93         E    13           0 38.128192
+## 94      94         E    14           3 34.879773
+## 95      95         E    15           1 36.537291
+## 96      96         E    16           0 33.890795
+## 97      97         E    17           2 34.644888
+## 98      98         E    18           0 36.705998
+## 99      99         E    19           1 34.593581
+## 100    100         E    20           0 34.492856</code></pre>
 <pre class="r"><code># Use the &quot;summary()&quot; function to summarize each column in the data frame.
 summary(my.data)   </code></pre>
 <pre><code>##      Obs.Id        Treatment             Block        Germination   
 ##  Min.   :  1.00   Length:100         Min.   : 1.00   Min.   : 0.00  
 ##  1st Qu.: 25.75   Class :character   1st Qu.: 5.75   1st Qu.: 1.00  
 ##  Median : 50.50   Mode  :character   Median :10.50   Median : 3.00  
-##  Mean   : 50.50                      Mean   :10.50   Mean   : 3.53  
-##  3rd Qu.: 75.25                      3rd Qu.:15.25   3rd Qu.: 5.00  
-##  Max.   :100.00                      Max.   :20.00   Max.   :12.00  
+##  Mean   : 50.50                      Mean   :10.50   Mean   : 3.72  
+##  3rd Qu.: 75.25                      3rd Qu.:15.25   3rd Qu.: 6.00  
+##  Max.   :100.00                      Max.   :20.00   Max.   :11.00  
 ##    AvgHeight     
-##  Min.   : 8.382  
-##  1st Qu.:24.059  
-##  Median :29.638  
-##  Mean   :26.212  
-##  3rd Qu.:31.917  
-##  Max.   :36.727</code></pre>
+##  Min.   : 8.259  
+##  1st Qu.:24.300  
+##  Median :29.657  
+##  Mean   :26.131  
+##  3rd Qu.:31.402  
+##  Max.   :38.128</code></pre>
 <pre class="r"><code># extract rows 21 to 30 and store as a new data frame
 mydf = my.data[21:30, ]  
 
 mydf</code></pre>
 <pre><code>##    Obs.Id Treatment Block Germination AvgHeight
-## 21     21         B     1           3  28.14700
-## 22     22         B     2           5  28.41774
-## 23     23         B     3           6  27.84372
-## 24     24         B     4           4  29.50118
-## 25     25         B     5           2  28.89274
-## 26     26         B     6           2  30.59156
-## 27     27         B     7           2  28.26640
-## 28     28         B     8           4  30.15215
-## 29     29         B     9           7  29.21700
-## 30     30         B    10           8  30.46385</code></pre>
+## 21     21         B     1           4  27.93970
+## 22     22         B     2           8  30.14204
+## 23     23         B     3           2  28.66913
+## 24     24         B     4           5  29.73228
+## 25     25         B     5           5  28.88127
+## 26     26         B     6           2  31.77394
+## 27     27         B     7           6  31.04438
+## 28     28         B     8           2  29.91890
+## 29     29         B     9           8  29.85077
+## 30     30         B    10           2  30.50894</code></pre>
 <pre class="r"><code># access a column of the data frame by name
 mydf$Treatment </code></pre>
 <pre><code>##  [1] &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot;</code></pre>
@@ -1093,31 +1094,15 @@ mine by clicking the ‘code’ icon to the upper right of the answer.</p>
 <p>Create a vector called ‘myvec’ using any of the methods you learned
 with numbers 1 to 10. <em>Note there are multiple ways to do
 this</em>.</p>
-<pre class="r fold-hide"><code># answer 1 (the most parsimonious)
-myvec &lt;- 1:10
-
-# answer 2
-myvec &lt;- c(1, 10)
-
-# answer 3 (time consuming)
-myvec &lt;- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-
-# answer 4 (unecessarily complicated for this exercise but works)
-myvec &lt;- seq(1, 10, by = 1)</code></pre>
 </div>
 <div id="create-a-matrix-with-rbind" class="section level3">
 <h3>2 Create a matrix with <code>rbind()</code></h3>
 <p>Create a 3 row by 2 column matrix named ‘mymat’. Use the
 <code>rbind()</code> <strong>function</strong> to bind the following
-three rows/vecotors together:</p>
+three rows/vectors together:</p>
 <pre><code>c(1,4) 
 c(2,5) 
 c(3,6)</code></pre>
-<pre class="r fold-hide"><code>rbind(
-c(1,4),
-c(2,5),
-c(3,6)
-)</code></pre>
 <pre><code>##      [,1] [,2]
 ## [1,]    1    4
 ## [2,]    2    5
@@ -1129,14 +1114,11 @@ c(3,6)
 ‘mydf’. <em>Hint see the R functions to explore data section</em>. Then
 extract all rows for column 5 by name, do the same thing using the
 element position e.g. <code>[]</code></p>
-<pre class="r fold-hide"><code>names(mydf)</code></pre>
 <pre><code>## [1] &quot;Obs.Id&quot;      &quot;Treatment&quot;   &quot;Block&quot;       &quot;Germination&quot; &quot;AvgHeight&quot;</code></pre>
-<pre class="r fold-hide"><code>mydf$AvgHeight</code></pre>
-<pre><code>##  [1] 28.14700 28.41774 27.84372 29.50118 28.89274 30.59156 28.26640 30.15215
-##  [9] 29.21700 30.46385</code></pre>
-<pre class="r fold-hide"><code>mydf[, 5]</code></pre>
-<pre><code>##  [1] 28.14700 28.41774 27.84372 29.50118 28.89274 30.59156 28.26640 30.15215
-##  [9] 29.21700 30.46385</code></pre>
+<pre><code>##  [1] 27.93970 30.14204 28.66913 29.73228 28.88127 31.77394 31.04438 29.91890
+##  [9] 29.85077 30.50894</code></pre>
+<pre><code>##  [1] 27.93970 30.14204 28.66913 29.73228 28.88127 31.77394 31.04438 29.91890
+##  [9] 29.85077 30.50894</code></pre>
 </div>
 <div id="create-a-matrix" class="section level3">
 <h3>4 Create a matrix</h3>
@@ -1145,42 +1127,23 @@ columns 3 to 5 of data frame mydf. <em>HINT: use the
 <code>as.matrix()</code> function to coerce a data frame into a matrix.
 Since we didn’t cover this function you may need to look it up in the
 help files.</em></p>
-<pre class="r fold-hide"><code>as.matrix(mydf[, 3:5])</code></pre>
 <pre><code>##    Block Germination AvgHeight
-## 21     1           3  28.14700
-## 22     2           5  28.41774
-## 23     3           6  27.84372
-## 24     4           4  29.50118
-## 25     5           2  28.89274
-## 26     6           2  30.59156
-## 27     7           2  28.26640
-## 28     8           4  30.15215
-## 29     9           7  29.21700
-## 30    10           8  30.46385</code></pre>
+## 21     1           4  27.93970
+## 22     2           8  30.14204
+## 23     3           2  28.66913
+## 24     4           5  29.73228
+## 25     5           5  28.88127
+## 26     6           2  31.77394
+## 27     7           6  31.04438
+## 28     8           2  29.91890
+## 29     9           8  29.85077
+## 30    10           2  30.50894</code></pre>
 </div>
 <div id="create-a-list" class="section level3">
 <h3>5 Create a list</h3>
 <p>Create a list named ‘mylist’ that is composed of a vector: 1:3, a
 matrix: matrix(1:6, nrow = 3, ncol = 2), and a data frame: data.frame(x
 =c (1, 2, 3), y = c(TRUE, FALSE, TRUE), z = c(“a”, “a”, “b”)).</p>
-<pre class="r fold-hide"><code>#create an empty list
-mylist &lt;- list()
-
-# add a vector of 1 to 3 to the list
-mylist[[1]] &lt;- 1:3
-
-# add a matrix to the list
-mylist[[2]] &lt;- matrix(1:6,
-                      nrow = 3,
-                      ncol = 2)
-
-# add a data frame to the list
-mylist[[3]] &lt;- data.frame(x = c(1, 2,3 ),
-                          y = c(TRUE, FALSE, TRUE),
-                          z = c(&quot;a&quot;, &quot;a&quot;, &quot;b&quot;))
-
-# print the list
-mylist</code></pre>
 <pre><code>## [[1]]
 ## [1] 1 2 3
 ## 
@@ -1200,8 +1163,6 @@ mylist</code></pre>
 <h3>6 Extracting objects from lists</h3>
 <p>Extract the second and third observation from the 1st column of the
 data frame in ‘mylist’ (the list created above).</p>
-<pre class="r fold-hide"><code># call mylist then reference the position of the data frame in the list [[3]], then the column in the data frame [[1]], and finally the observations within that columns c(2, 3)
-mylist[[3]][[1]][c(2, 3)]</code></pre>
 <pre><code>## [1] 2 3</code></pre>
 <p><a href="day2_3.html">–go to next module–</a></p>
 </div>

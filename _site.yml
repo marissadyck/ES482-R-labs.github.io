@@ -4,7 +4,7 @@ navbar:
   title: "ES482 R labs"
   left:
     - text: "Home"
-      href: home.html
+      href: index.html
     - text: "Intro to R part 1"
       menu:
         - text: "Module 1: R 101"
