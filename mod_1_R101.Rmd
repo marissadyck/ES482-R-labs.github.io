@@ -1,5 +1,5 @@
 ---
-title: "Intro to R part 1 - Module 1"
+title: "Intro to R"
 author: "Module 1: R 101 aka what is R and RStudio? And how to use them most effectively"
 date: "12 January 2024"
 output: 
@@ -233,7 +233,7 @@ I was taught this basic file structure in a R course that I took as a graduate s
 Now, staying in Rstudio move any cheat sheets you have already downloaded to the cheat sheets folder you just created. To do this first navigate to where you saved the cheat sheets at the start of lab, select all the files, and using the cog icon after 'rename' to open a drop down menu of additional options. Select 'Move...' and then navigate back to your cheatsheets folder to move the selected files to this location.
 
 ### Download script for today
-Click [here](day1_2.R) to download the script for this today's lab! I recommend right-clicking (or command-clicking for Macs) on the link and selecting the "Save As" option from the context menu. Save the script to the 'scripts' folder in the 'R Crash Course' folder we just created, which will serve as your **working directory** for this course. 
+Click [here](mod_2_baseR.R) to download the script for this today's lab! I recommend right-clicking (or command-clicking for Macs) on the link and selecting the "Save As" option from the context menu. Save the script to the 'scripts' folder in the 'R Crash Course' folder we just created, which will serve as your **working directory** for this course. 
 
 ### Open day1_2 script
 To open this script in RStudio, we will use the **files** tab again. If this tab is not already open, open it and navigate to the 'scripts' folder, then <span style="color: blue;">click the day1_2.R script</span> this will automatically open this script in your current RStudio session.
@@ -331,4 +331,4 @@ Functions:
 
 ![](https://media.tenor.com/bCfpwMjfAi0AAAAC/cat-typing.gif)
 
-[--go to next module--](day1_2.html)
+[--go to next module--](mod_2_baseR.html)

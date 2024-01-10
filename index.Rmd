@@ -88,6 +88,12 @@ Okay, now we're ready to go!
 [--go to first lab module](mod_1_R101.html)
 
 
+## Post course survey
+
+Please return and complete this post course survey at the end of the semester
+
+Before you leave today please take a few moments to complete the [post-course survey](https://qfreeaccountssjc1.az1.qualtrics.com/jfe/form/SV_8wdzQHkevQRmpkG). 
+
 ```{r echo=FALSE}
 rmd2rscript <- function(infile="day3_5.Rmd"){    # function for converting markdown to scripts
   outfile1 <- gsub(".Rmd",".R",infile)
