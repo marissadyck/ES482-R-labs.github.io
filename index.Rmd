@@ -44,6 +44,10 @@ This workshop is designed for beginner to intermediate R users and will focus on
 
 All code will be available as scripts that you can download from this website (at the top of each module page on this website) and load up in RStudio. That way you won't need to constantly copy and paste from the web!  
 
+## Course Schedule
+
+[Course schedule](images/ES482_class_schedule.xlsx)
+
 ## To do before lab 1
 
 Please complete the following tasks BEFORE the first lab on Friday January 12th. We have a lot of material to cover in a short time and completing the following tasks will save time at the start of lab and ensure everyone is ready.
@@ -65,7 +69,7 @@ Also, it can be very helpful to print out R 'cheat sheets' and bring that with y
 
 ### Download data
 
-To ensure we maximize time in lab please also download the data files for this course from the [Data](data.html) tab and save this in a folder on your hardrive. *We will move these to a specific folder for the course when we cover folder organization on the first day of lab*
+To ensure we maximize time in lab please also download the data files for this course from the [Data](data.html) tab and save this in a folder on your hard drive. *We will move these to a specific folder for the course when we cover folder organization on the first day of lab*
 
 Double click the each data file to download. The .txt files will open in a viewer window and you will need to right click to save them. The .csv files should open directly in your directory to save. **Important DO NOT change the file names**.
 
@@ -144,11 +148,10 @@ rmd2rscript2 <- function(infile="LECTURE2.Rmd"){    # function for converting ma
 
 ```{r echo=FALSE, eval=FALSE}
 
-rmd2rscript2("day1_1.Rmd")
 rmd2rscript2("day1_2.Rmd")
-rmd2rscript2("day1_3.Rmd")
-rmd2rscript2("day2_1.Rmd")
-rmd2rscript2("day2_2.Rmd")
+rmd2rscript2("day2_3.Rmd")
+rmd2rscript2("day2_4.Rmd")
+rmd2rscript2("day3_5.Rmd")
 
 ## TODO: make sure there are pdf copies of all the modules... 
 
