@@ -45,3 +45,5 @@ There are no cheat sheets specific to this module but don't forget the ones you'
 ### Website
 
 Part of the material we will cover in this module is based off standardized R scripts and procedures developed by ACME colleagues at the [WildCam Network](https://wildcams.ca/protocols/)
+
+## 
