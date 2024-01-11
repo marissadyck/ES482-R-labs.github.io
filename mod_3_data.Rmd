@@ -34,9 +34,9 @@ library(tidyverse)
 
 ```
 
-## Get materials for this module
+## Materials
 
-### Load script for this module
+### Script
 
 1. Click [here](mod_3_data.R) to download the script! Save the script to the project directory you set up in the previous module.
 
@@ -50,8 +50,6 @@ Make sure to save these to your cheatsheets folder
 [readr cheat sheet](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_data-import.pdf)    
 [tidyr and dplyr cheat sheets](https://www.rstudio.com/resources/cheatsheets/)  Scroll down to data tidying with tidyr **&** data transformation with dplyr
 
-
-Let's get started working with data in R!
 
 ## Working directory
 

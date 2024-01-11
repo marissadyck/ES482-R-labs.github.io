@@ -32,9 +32,9 @@ library(tidyverse)
 
 ```
 
-## Get materials for this module
+## Materials
 
-### Load script for this module
+### Script
 
 1. Click [here](mod_4_data_manipulation.R) to download the script! Save the script to the 'scripts'' folder in your project directory you set up in the previous module.
 

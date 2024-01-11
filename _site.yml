@@ -25,16 +25,22 @@ navbar:
           href: mod_3_ggplot_adv.html
         - text: "Module 4: Beyond ggplot (more coming)"
           href: mod_4_beyond_ggplot.html
-    - text: "Generalized linear models"
+    - text: "Camera Data"
       menu:
-        - text: "Module 1: Basiscs of GLMs"
-          href: mod_1_glm.html
+        - text: "Module 1: Camera data organization and exploration"
+          href: mod_1_cam_data.html
+    - text: "Statistical Modeling"
+      menu:
+        - text: "Module 1: Basiscs of data exploration and modeling"
+          href: mod_2_glm.html
+        - text: "Module 2: Basiscs of Generalized linear models (GLMs)"
+          href: mod_2_glm.html
     - text: "Assignments"
       menu: 
-      - text: "Assignment 1"
-        href: assign_1.html
-      - text: "Assignment 2"
-        href: assign_2.html
+        - text: "Assignment 1"
+          href: assign_1.html
+        - text: "Assignment 2"
+          href: assign_2.html
     - text: "Data"
       href: data.html
     - text: "Links"

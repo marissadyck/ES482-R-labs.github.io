@@ -39,17 +39,17 @@ Visualization often plays a major role in the research process, from quality ass
 
 The data visualization package *ggplot2* makes it very easy and straightforward to create a lot of different types of plots, from simple to complex.  In this module, we'll introduce ggplot syntax and briefly survey some of the package's plotting capabilities.
 
-## Get materials for this module
-
-### Cheat sheets
-
-A good ggplot cheat sheet can be found here: [ggplot cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
+## Materials
 
 ### Script
 
 1. Click [here](mod_2_ggplot.R) to download the script.  Save the script to the scripts folder (R Project folder).
 
 2. Load your script in RStudio. To do this, open RStudio and click the **files** window and select the scripts folder and then this script.
+
+### Cheat sheets
+
+A good ggplot cheat sheet can be found here: [ggplot cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
 
 Let's get started plotting!
 
