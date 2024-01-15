@@ -36,6 +36,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **Files** - You can view, access, rename, delete, etc. files from your computer. This panel by default shows you files in your current working directory. It is also one of multiple panels in the bottom right window.
 
+**For-loops** - A way to execute a set of statements for multiple objects.
+
 **Function** - Objects that contain multiple interrelated statements that are run together in a predefined order. 
 
 **Geometric objects** - Are elements that we mark on the plot (e.g., points, lines, bars).  
@@ -45,6 +47,8 @@ knitr::opts_chunk$set(echo = TRUE)
 **Hex codes** - A hex code is a representation of how much red, green, and blue exist in a color. A hex code consists of six characters and can be used in the `col =` and `fill =` arguments in `ggplots()`. 
 
 **History** - Shows you everything you've evaluated during your current session. By default this is the second panel in the top right window.
+
+**Iteration** - When you want to do the same thing to multiple inputs.
 
 
 ## K - O

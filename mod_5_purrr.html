@@ -9,16 +9,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="ES482 R labs" />
+<meta name="author" content="Module 5: The wonders of Purrr" />
 
-<meta name="date" content="2024-01-01" />
+<meta name="date" content="2024-01-26" />
 
-<title>Data</title>
+<title>Intro to R</title>
 
 <script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -31,7 +31,11 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
@@ -218,7 +222,73 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
 
 
 
@@ -228,6 +298,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -374,35 +454,69 @@ $(document).ready(function () {
 
 <div id="header">
 
-
-
-<h1 class="title toc-ignore">Data</h1>
-<h4 class="author">ES482 R labs</h4>
-<h4 class="date">2024</h4>
-
-</div>
-
-
-<p><a href="data/data.txt">Example Whitespace delimited data</a></p>
-<p><a href="data/data.csv">Example Comma delimited data</a></p>
-<p><a href="data/data_missing.txt">Example missing data</a></p>
-<p><a href="data/turtle_data.txt">Turtle Data</a></p>
-<p><a href="data/bear_2008_2016.csv">Bear data</a></p>
-<p><a href="data/pagube_2008_2016_spatial.csv">Bear glm example raw
-data</a></p>
-<p><a href="data/cows.csv">Bear glm example cow data</a></p>
-<p><a href="data/Bobcat_necropsy_data.csv">Bobcat necropsy data</a></p>
-<div id="added-after-12-january-2024" class="section level4">
-<h4>Added after 12 January 2024</h4>
-<p><a href="data/bobcat_collection_data.csv">Bobcat collection data for
-Purrr</a></p>
-<p><a href="data/bobcat_necropsy_only_data.csv">Bobcat necropsy data for
-Purrr</a></p>
-<p><a href="data/bobcat_age_data.csv">Bobcat age data for Purrr</a></p>
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
 </div>
 
 
 
+<h1 class="title toc-ignore">Intro to R</h1>
+<h4 class="author">Module 5: The wonders of Purrr</h4>
+<h4 class="date">26 January 2024</h4>
+
+</div>
+
+
+<div id="materials" class="section level2">
+<h2>Materials</h2>
+<div id="scripts" class="section level3">
+<h3>Scripts</h3>
+<ol style="list-style-type: decimal">
+<li><p>Click <a href="mod_5_purrr.R">here</a> to download the script!
+Save the script to the project directory you set up in the previous
+module.</p></li>
+<li><p>Load your script in RStudio. To do this, open RStudio and click
+on the folder icon in the toolbar at the top to load your
+script.</p></li>
+</ol>
+</div>
+<div id="cheat-sheets" class="section level3">
+<h3>Cheat sheets</h3>
+<p>Save this to your cheat sheet folder</p>
+<p><a
+href="https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_purrr.pdf">Purrr
+cheat sheet</a></p>
+</div>
+</div>
+<div id="what-is-purrr" class="section level2">
+<h2>What is Purrr</h2>
+<p>Often times you will want to apply the same <strong>function</strong>
+or multiple <strong>functions</strong> to multiple
+<strong>objects</strong> or inputs this is called
+<strong>iteration</strong>. In <strong>Base R</strong>,
+<strong>iterations</strong> are achieved by using
+<strong>for-loops</strong>, which are cumbersome and not very intuitive.
+If you’ve taken an R class before and covered
+<strong>for-loops</strong>, you are probably already nervous. But do not
+fear Tidyverse has made a package to conduct <strong>iteration</strong>
+operations that is much more user-friendly… and it has a cute inviting
+name, <em>Purrr</em></p>
+<p><img src="images/purrr_cat.jpeg" /></p>
+<p>Let’s go through a few examples of how the <em>Purrr</em> package can
+be used</p>
+<p>##Purrr map</p>
+<p>As you can see from the <a
+href="cheatsheets/purrr_cheat_sheet.pdf">Purrr cheat sheet</a></p>
+</div>
+
+
+
+</div>
+</div>
 
 </div>
 
@@ -434,7 +548,41 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

@@ -31,7 +31,8 @@ Please let me know if there are other links you think should be included on this
 [Base R Cheat sheet](https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf)            
  [Short Reference Card](https://cran.r-project.org/doc/contrib/Short-refcard.pdf)  
  [More comprehensive reference card](https://cran.r-project.org/doc/contrib/Baggott-refcard-v2.pdf) 
- [Tidyverse cheat sheet](https://www.datacamp.com/cheat-sheet/tidyverse-cheat-sheet-for-beginners)    
+ [Tidyverse cheat sheet](https://www.datacamp.com/cheat-sheet/tidyverse-cheat-sheet-for-beginners)  
+ [Purrr cheat sheet](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_purrr.pdf)   
  [RStudio cheatsheets- very useful!](https://www.rstudio.com/resources/cheatsheets/)  Includes cheat sheets for R markdown, shiny, data wrangling with "dplyr" and much more! 
  
 ## R Introductory Tutorials and Courses

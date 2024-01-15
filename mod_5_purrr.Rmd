@@ -1,0 +1,59 @@
+---
+title: "Intro to R"
+author: "Module 5: The wonders of Purrr"
+date: "26 January 2024"
+output: 
+  html_document:
+    code_folding: show
+    theme: journal
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo=FALSE}
+
+#  ES482 R labs   
+#      University of Victoria, Victoria BC Canada             
+
+#  Module 5: The wonders of Purrr
+
+```
+## Materials
+
+### Scripts
+
+1. Click [here](mod_5_purrr.R) to download the script! Save the script to the project directory you set up in the previous module.
+
+2. Load your script in RStudio. To do this, open RStudio and click on the folder icon in the toolbar at the top to load your script.    
+
+### Cheat sheets
+
+Save this to your cheat sheet folder
+
+[Purrr cheat sheet](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_purrr.pdf)    
+
+## What is Purrr
+
+Often times you will want to apply the same **function** or multiple **functions** to multiple **objects** or inputs this is called **iteration**. In **Base R**, **iterations** are achieved by using **for-loops**, which are cumbersome and not very intuitive. If you've taken an R class before and covered **for-loops**, you are probably already nervous. But do not fear Tidyverse has made a package to conduct **iteration** operations that is much more user-friendly... and it has a cute inviting name, *Purrr*
+
+![](images/purrr_cat.jpeg)
+
+Let's go through a few examples of how the *Purrr* package can be used
+
+##Purrr map
+
+As you can see from the [Purrr cheat sheet](cheatsheets/purrr_cheat_sheet.pdf), the *Purrr* package has a lot of usages. For the purposes of this course we will mostly focus on applying **functions** with *Purrr* (upper left).
+
+To apply the same **function/s** to a number of **objects** we use the `map()` **function**. 
+
+Let's go through an example WITHOUT using *Purrr* first and then apply the **tidyverse** alternative.
+
+```{r}
+
+
+
+```

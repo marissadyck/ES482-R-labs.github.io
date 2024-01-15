@@ -22,6 +22,8 @@ knitr::opts_chunk$set(echo = TRUE,
 
 #  Module 1: R basics
 
+library(ggplot2)
+library(dplyr)
 ```
 
 Welcome to the 2024 ES482 R labs! 
@@ -96,11 +98,12 @@ The last window contains several tabs including **files** which is useful to see
 
 You can also check your current **working directory** by running the command `getwd()` in the **console**. Do this now, type <span style="color: blue;">*getwd()*</span> in the **console** and hit enter. 
 
- ```{r results=F, echo=FALSE}
+```{r results=F, echo=FALSE}
 
 getwd()
 
 ```
+
 What does R return?
 
 If you haven't set your **working directory** yet, R will likely return `/`. If anything else appears then you have already set your **working directory**, don't worry about this for now we will create a **project directory** for this course later. 
@@ -124,13 +127,13 @@ Now let's go over a few other ways to use the **help** window.
  
 Look at your Base R Cheat Sheet under the "Getting Help" section. This shows a few other ways you can access the **help** panel. The first is by typing a `?` before a **function** and running that code. Let's try it. In the **source** panel type <span style="color: blue;">*?seq*</span> and run the code. 
 
- ```{r results = T}
+```{r results = T}
 
 # Using the help file ----------------------
 
 ?seq
 
- ```
+```
 
 This should again open up **R documentation** in the **help** window, but for a different **function**. Now we are looking at the base R function `seq()`. This is useful, but you probably wouldn't want this saved in your **R script** because it would run every time you run your code. Instead, we would probably use the **console**. Click out of the **help** window by selecting any other tab in that window, then cut a paste your code <span style="color: blue;">*?seq*</span> to the **console** and hit enter. This will again open up the **help** window with the information for `seq()`, but now it isn't saved in your script so it won't open the window every time you run the rest of your code. 
 
@@ -256,7 +259,7 @@ Before we can start coding we need to set our **working directory** which essent
 
 Remember, you can easily check your file path in the **files** panel so you don't have to navigate out of R to do this.
 
- ```{r results=T, echo = FALSE}
+```{r results=T, echo = FALSE}
 
 setwd("/Users/marissadyck/Library/CloudStorage/OneDrive-OhioUniversity/R Crash Course")
 
@@ -325,9 +328,30 @@ Functions:
 
 # there are spaces between each comment and between the '#' operator and the start of the comment text
 
+# get mtcars data and create new object for filtered data
+mtcars_6cyl <- mtcars %>% 
+  
+  # filter to only data with 6 cylinders
+  filter(cyl == 6)
+  
+# plot filtered data wt x mpg  
+ggplot(data = mtcars_6cyl, 
+       aes(x = wt, y = mpg)) +
+  
+  # graph with columns
+  geom_col()
 
+
+# example of same code but messy
+# notice there are no comments so you wouldn't remember what you did each step and the code is all smooshed together so it would be hard to check for coding errors/typos
+
+mtcars_6cyl <-mtcars%>% 
+filter(cyl==6)
+
+ggplot(data=mtcars_6cyl, aes(x=wt,y=mpg)) + geom_col()
 
 ```
+
 
 >Now that we have covered some coding best practices, we are ready to do some coding of our own!
 

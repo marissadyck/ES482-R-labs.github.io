@@ -24,3 +24,12 @@ knitr::opts_chunk$set(echo = TRUE)
 [Bear glm example cow data](data/cows.csv)
 
 [Bobcat necropsy data](data/Bobcat_necropsy_data.csv)
+
+
+#### Added after 12 January 2024
+
+[Bobcat collection data for Purrr](data/bobcat_collection_data.csv)
+
+[Bobcat necropsy data for Purrr](data/bobcat_necropsy_only_data.csv)
+
+[Bobcat age data for Purrr](data/bobcat_age_data.csv)

@@ -1008,7 +1008,29 @@ line.<br />
 code.</p>
 <pre class="r"><code># example of clean code
 
-# there are spaces between each comment and between the &#39;#&#39; operator and the start of the comment text</code></pre>
+# there are spaces between each comment and between the &#39;#&#39; operator and the start of the comment text
+
+# get mtcars data and create new object for filtered data
+mtcars_6cyl &lt;- mtcars %&gt;% 
+  
+  # filter to only data with 6 cylinders
+  filter(cyl == 6)
+  
+# plot filtered data wt x mpg  
+ggplot(data = mtcars_6cyl, 
+       aes(x = wt, y = mpg)) +
+  
+  # graph with columns
+  geom_col()</code></pre>
+<p><img src="mod_1_R101_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="r"><code># example of same code but messy
+# notice there are no comments so you wouldn&#39;t remember what you did each step and the code is all smooshed together so it would be hard to check for coding errors/typos
+
+mtcars_6cyl &lt;-mtcars%&gt;% 
+filter(cyl==6)
+
+ggplot(data=mtcars_6cyl, aes(x=wt,y=mpg)) + geom_col()</code></pre>
+<p><img src="mod_1_R101_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
 <blockquote>
 <p>Now that we have covered some coding best practices, we are ready to
 do some coding of our own!</p>

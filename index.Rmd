@@ -20,12 +20,12 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Facilitators
 [Marissa Dyck](https://github.com/marissadyck)  
 University of Victoria    
-Environmental Studies     
+School of Environmental Studies     
 Email: [marissadyck@uvic.ca](mailto:marissadyck@uvic.ca)   
 
 [Jason Fisher](http://www.acmelab.ca/the-lab.html)  
 University of Victoria    
-Environmental Studies   
+School of Environmental Studies   
 Email: [fisherj@uvic.ca](mailto:fisherj@uvic.ca)   
 
 ## Contributors

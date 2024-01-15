@@ -555,7 +555,7 @@ summary(turtles.df)
 ```
 
 ### Renaming columns
-Notice the column names are capitalized in this dataset. Data are often entered this way, but this can lead to mistakes in your code if you forget to capitalize a variable. I prefer to keep everything lowercase when working in R to avoid this and extra keystrokes. There's an easy way to do this using the *dplyr* **package**.
+Notice the column names are capitalized in this data set. Data are often entered this way, but this can lead to mistakes in your code if you forget to capitalize a variable. I prefer to keep everything lowercase when working in R to avoid this and extra keystrokes. There's an easy way to do this using the *dplyr* **package**.
 
 ```{r}
 
