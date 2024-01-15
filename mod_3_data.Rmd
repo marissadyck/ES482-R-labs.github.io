@@ -101,7 +101,7 @@ Now let's read them into R!
 #  Import/Export data files into R with base R----------------------
 
 # read.table to import text file (if no delim specified, it will try to guess!)
-data.txt.df <- read.table("data/data.txt")  
+data.txt.df <- read.table("data/raw/data.txt")  
 
 
 ```
@@ -120,7 +120,7 @@ Data will often be saved as a .csv file (or separated by commas) we can load thi
 ```{r message=FALSE, warning=FALSE, results=TRUE}
 
 # read.csv to import textfile with columns separated by commas
-data.df <- read.csv("data/data.csv")
+data.df <- read.csv("data/raw/data.csv")
 
 #print data
 data.df
@@ -216,7 +216,7 @@ Again, there are many ways to write data to a file. Here are the basics using **
 
 # however if we did this for data.df we would just be making a copy, instead we can export a subset of the data we just ran in
 write.csv(data.df[, c("Country","Product")], # this tells R to save all rows for the 'Country' and 'Product' columns
-          file = "data_export.csv")   
+          file = "data/processed/data_export.csv")   
 
 ```
 

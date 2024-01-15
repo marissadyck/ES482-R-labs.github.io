@@ -15,7 +15,7 @@ navbar:
           href: mod_3_data.html
         - text: "Module 4: Data manipulation"
           href: mod_4_data_manipulation.html
-        - text: "Module 5: The wonders of Purrr (coming soon)"
+        - text: "Module 5: The wonders of Purrr"
           href: mod_5_purrr.html
     - text: "Data Visualization"
       menu:

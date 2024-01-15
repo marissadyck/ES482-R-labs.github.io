@@ -1366,7 +1366,7 @@ ggplot(sumTC, aes(x = dose, y = mean, fill = supp)) + geom_col(color = 'black', 
 ```
 
 
-## Practice problems
+ ## Practice problems
 
 These practice problems will incorporate some data manipulation from yesterday as well as data visualization from today. *
 

@@ -572,7 +572,7 @@ panel.</p>
 <pre class="r"><code>#  Import/Export data files into R with base R----------------------
 
 # read.table to import text file (if no delim specified, it will try to guess!)
-data.txt.df &lt;- read.table(&quot;data/data.txt&quot;)  </code></pre>
+data.txt.df &lt;- read.table(&quot;data/raw/data.txt&quot;)  </code></pre>
 <p>It is always useful to check what the data look like after they are
 read in. Can you recall one of the ways to view an object in R? <span
 style="color: blue;">View the data.txt.df object</span></p>
@@ -605,7 +605,7 @@ data.txt.df</code></pre>
 <p>Data will often be saved as a .csv file (or separated by commas) we
 can load this data using read.csv</p>
 <pre class="r"><code># read.csv to import textfile with columns separated by commas
-data.df &lt;- read.csv(&quot;data/data.csv&quot;)
+data.df &lt;- read.csv(&quot;data/raw/data.csv&quot;)
 
 #print data
 data.df</code></pre>
@@ -718,7 +718,7 @@ basics using <strong>base R</strong></p>
 
 # however if we did this for data.df we would just be making a copy, instead we can export a subset of the data we just ran in
 write.csv(data.df[, c(&quot;Country&quot;,&quot;Product&quot;)], # this tells R to save all rows for the &#39;Country&#39; and &#39;Product&#39; columns
-          file = &quot;data_export.csv&quot;)   </code></pre>
+          file = &quot;data/processed/data_export.csv&quot;)   </code></pre>
 </div>
 </div>
 <div id="working-with-data-base-r" class="section level2">

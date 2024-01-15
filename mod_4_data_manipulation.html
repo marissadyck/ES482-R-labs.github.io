@@ -347,7 +347,7 @@ div.tocify {
       <a href="mod_4_data_manipulation.html">Module 4: Data manipulation</a>
     </li>
     <li>
-      <a href="mod_5_purrr.html">Module 5: The wonders of Purrr (coming soon)</a>
+      <a href="mod_5_purrr.html">Module 5: The wonders of Purrr</a>
     </li>
   </ul>
 </li>
@@ -502,7 +502,7 @@ created in module 1_2 (e.g. <em>turtles_tidy</em>) and print it to the
 <pre class="r fold-hide"><code>  # import data ----------------------
 
 # read in altered turtles data
-turtles_tidy &lt;- read_csv(&#39;data/turtles_tidy.csv&#39;)
+turtles_tidy &lt;- read_csv(&#39;data/processed/turtles_tidy.csv&#39;)
 
 # print data
 turtles_tidy</code></pre>
@@ -841,9 +841,6 @@ already. Females has been entered two different ways (‘female’ and
 particularly when multiple people are in charge of entering the data.
 There are multiple ways to fix this, let’s look at a few using
 <strong>tidyverse</strong>.</p>
-</div>
-<div id="modifying-data" class="section level2">
-<h2>Modifying data</h2>
 <div id="replace" class="section level3">
 <h3>Replace</h3>
 <p>First, we can use the <code>mutate()</code> and
@@ -933,7 +930,7 @@ values which works better with <strong>factors</strong>, it is
 # read in turtles data again and set &#39;sex&#39; to factor to overwrite the changes we made with the last code chunk, and in the same code chunk we will &#39;recode&#39; the &#39;sex&#39; column
 
 # read in altered turtles data
-turtles_tidy &lt;- read_csv(&#39;data/turtles_tidy.csv&#39;) %&gt;% 
+turtles_tidy &lt;- read_csv(&#39;data/processed/turtles_tidy.csv&#39;) %&gt;% 
   
   # change sex to a factor
   mutate(sex = as.factor(sex),
@@ -2023,8 +2020,8 @@ based on the “weight” variable using case_when whereby</p>
 <li><p>weights greater than 6 are adult</p></li>
 <li><p>weights between 3 and 6 are subadult</p></li>
 </ul>
-<p>(There are two answers below because I expect people to potentially
-choose two ways to do this)</p>
+<p>(There are multiple ways to do this but they will yield the same
+answer)</p>
 <pre><code>##  [1] &quot;adult&quot;    &quot;adult&quot;    &quot;juvenile&quot; &quot;juvenile&quot; &quot;subadult&quot; &quot;adult&quot;   
 ##  [7] &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;    &quot;juvenile&quot; &quot;adult&quot;    &quot;juvenile&quot;
 ## [13] &quot;subadult&quot; &quot;subadult&quot; &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;   

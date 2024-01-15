@@ -52,7 +52,7 @@ We will continue working with the turtles data set for part of this module, but 
   # import data ----------------------
 
 # read in altered turtles data
-turtles_tidy <- read_csv('data/turtles_tidy.csv')
+turtles_tidy <- read_csv('data/processed/turtles_tidy.csv')
 
 # print data
 turtles_tidy
@@ -198,8 +198,6 @@ str(turtles_tidy)
 
 Do you notice anything else that could be a problem with the sex variable in this dataset? Maybe you noticed this in the last module already. Females has been entered two different ways ('female' and 'fem'). This is a very common problem that can arise with data, particularly when multiple people are in charge of entering the data. There are multiple ways to fix this, let's look at a few using **tidyverse**.
 
-## Modifying data
-
 ### Replace
 First, we can use the `mutate()` and `replace()` **functions**. Recall that `mutate()` can create new columns or modify existing columns using existing variables in the data. Therefore, we can modify the sex column using this **function** and another **function** `replace()` which as the name suggests will replace existing values matching some criteria with a specified value.
 
@@ -263,7 +261,7 @@ It turns out we were correct, the `replace()` **function** which is a bser R **f
 # read in turtles data again and set 'sex' to factor to overwrite the changes we made with the last code chunk, and in the same code chunk we will 'recode' the 'sex' column
 
 # read in altered turtles data
-turtles_tidy <- read_csv('data/turtles_tidy.csv') %>% 
+turtles_tidy <- read_csv('data/processed/turtles_tidy.csv') %>% 
   
   # change sex to a factor
   mutate(sex = as.factor(sex),
@@ -784,7 +782,7 @@ Using the turtles_no_na data, make a new variable called "size_class" based on t
 
 * weights between 3 and 6 are subadult
 
-(There are two answers below because I expect people to potentially choose two ways to do this)
+(There are multiple ways to do this but they will yield the same answer)
 ```{r echo=FALSE}
 
 turtles_tidy <- turtles_tidy %>% 

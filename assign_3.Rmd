@@ -1,0 +1,149 @@
+---
+title: "Assignment 3"
+author: "Data manipulation"
+date: "Due 16 February 2024"
+output: 
+  html_document:
+    code_folding: show
+    theme: journal
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      cache = TRUE)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+#  ES482 R labs   
+#      University of Victoria, Victoria BC Canada             
+
+#  Assignment 3: Data manipulation
+
+library(tidyverse)
+```
+
+## 1 Remove NAs
+Using the turtles_tidy data, remove all rows with NAs and create a new dataset from this called "turtles_no_na" 
+
+```{r echo=FALSE, message=FALSE}
+
+# code to read in turtles data from earlier
+turtles_tidy <- read_csv('data/processed/turtles_tidy.csv') %>% 
+  
+  # change sex to a factor
+  mutate(sex = as.factor(sex),
+         sex = recode(sex, 
+                       fem = 'female'))
+
+# answer to Q1
+turtles_no_na <- turtles_tidy %>% 
+  
+  # remove rows with NA
+  na.omit()
+
+turtles_no_na
+```
+
+## 2 Make a new variable
+Using the turtles_no_na data, make a new variable called "size_class" based on the "weight" variable using case_when whereby
+
+* weights less than 3 are juvenile
+
+* weights greater than 6 are adult
+
+* weights between 3 and 6 are subadult
+
+(There are multiple ways to do this but they will yield the same answer)
+```{r echo=FALSE}
+
+turtles_tidy <- turtles_tidy %>% 
+  mutate(size.class = case_when(
+    weight < 3 ~ "juvenile",
+    weight > 6 ~ "adult",
+    TRUE  ~ "subadult"
+  ))
+
+turtles_tidy$size.class
+
+# alternatively
+turtles_tidy <- turtles_tidy %>% 
+  mutate(size_class = case_when(
+    weight < 3 ~ "juvenile",
+    weight > 6 ~ "adult",
+    weight >= 3 & weight <= 6 ~ 'subadult'
+  ))
+
+turtles_tidy$size_class
+```
+
+
+## 3 Replace values with NA
+In the turtles_tidy data replace ALL variable values for tags 104 and 105 with NAs
+```{r echo=FALSE}
+# list of tags we do not trust the data for
+bad.tags <- c(104,105)
+
+turtles_tidy %>% 
+  mutate(
+    sex = replace(sex,
+                  tag %in% bad.tags,
+                  NA),
+    c_length = replace(c_length,
+                       tag %in% bad.tags,
+                       NA),
+    h_width = replace(h_width,
+                      tag %in% bad.tags,
+                      NA),
+    weight = replace(weight,
+                     tag %in% bad.tags,
+                     NA)
+  )
+
+# or... use some more tidyverse helper functions and tricks!
+
+turtles_tidy %>% 
+  mutate(across(
+    c("sex","c_length","h_width", "weight"),
+    ~replace(.x,
+             tag %in% bad.tags,
+             NA)))
+
+```
+
+## 4 Pivot data
+Use the below code to read in the Soils data in the carData package
+```{r}
+# Load the example data 
+
+soil <- carData::Soils    # load example data
+```
+
+* look at the first few lines of data in "soil"
+
+* Pivot the data so that columns Ca - Na are contained in one column called nutrients (again there are two possible solutions (really more than that but two I expect peopl to use))
+```{r echo=FALSE}
+
+#See what variables it contains...
+head(soil)  
+
+# Use 'tidyverse' to reshape the data 
+
+soil_nut <- pivot_longer(soil, 
+                         cols = c("Ca","Mg","K", "Na"), 
+                         names_to = "nutrient",
+                         values_to = "value" )
+
+soil_nut
+
+# alternatively
+soil_nut <- pivot_longer(soil, 
+                         cols = Ca:Na, 
+                         names_to = "nutrient",
+                         values_to = "value" )
+
+soil_nut
+
+```

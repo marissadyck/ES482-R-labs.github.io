@@ -9,10 +9,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Base R" />
+<meta name="author" content="Data manipulation" />
 
 
-<title>Assignment 1</title>
+<title>Assignment 3</title>
 
 <script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -463,90 +463,137 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Assignment 1</h1>
-<h4 class="author">Base R</h4>
-<h4 class="date">Due 26 January 2024</h4>
+<h1 class="title toc-ignore">Assignment 3</h1>
+<h4 class="author">Data manipulation</h4>
+<h4 class="date">Due 16 February 2024</h4>
 
 </div>
 
 
-<div id="create-a-vector" class="section level2">
-<h2>1 Create a vector</h2>
-<p>Create a vector called ‘myvec’ using any of the methods you learned
-with numbers 1 to 10. <em>Note there are multiple ways to do
-this</em>.</p>
+<div id="remove-nas" class="section level2">
+<h2>1 Remove NAs</h2>
+<p>Using the turtles_tidy data, remove all rows with NAs and create a
+new dataset from this called “turtles_no_na”</p>
+<pre><code>## # A tibble: 15 × 5
+##      tag sex    c_length h_width weight
+##    &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+##  1    10 male       41      7.15    7.6
+##  2    11 female     46.4    8.18   11  
+##  3     3 female     42.8    7.32    8.6
+##  4     4 male       40      6.6     6.5
+##  5     5 female     45      8.05   10.9
+##  6    12 female     44      7.55    8.9
+##  7     6 female     40      6.53    6.2
+##  8     9 male       35      5.74    3.9
+##  9    17 female     35.1    6.04    4.5
+## 10    19 male       42.3    6.77    7.8
+## 11    22 female     48.1    8.55   12.8
+## 12   105 male       44      7.1     9  
+## 13    14 male       43      6.6     7.2
+## 14     7 female     48      8.67   13.5
+## 15   104 male       44      7.35    9</code></pre>
 </div>
-<div id="create-a-matrix-with-rbind" class="section level2">
-<h2>2 Create a matrix with <code>rbind()</code></h2>
-<p>Create a 3 row by 2 column matrix named ‘mymat’. Use the
-<code>rbind()</code> <strong>function</strong> to bind the following
-three rows/vectors together:</p>
-<pre><code>c(1,4) 
-c(2,5) 
-c(3,6)</code></pre>
-<pre><code>##      [,1] [,2]
-## [1,]    1    4
-## [2,]    2    5
-## [3,]    3    6</code></pre>
+<div id="make-a-new-variable" class="section level2">
+<h2>2 Make a new variable</h2>
+<p>Using the turtles_no_na data, make a new variable called “size_class”
+based on the “weight” variable using case_when whereby</p>
+<ul>
+<li><p>weights less than 3 are juvenile</p></li>
+<li><p>weights greater than 6 are adult</p></li>
+<li><p>weights between 3 and 6 are subadult</p></li>
+</ul>
+<p>(There are multiple ways to do this but they will yield the same
+answer)</p>
+<pre><code>##  [1] &quot;adult&quot;    &quot;adult&quot;    &quot;juvenile&quot; &quot;juvenile&quot; &quot;subadult&quot; &quot;adult&quot;   
+##  [7] &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;    &quot;juvenile&quot; &quot;adult&quot;    &quot;juvenile&quot;
+## [13] &quot;subadult&quot; &quot;subadult&quot; &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;   
+## [19] &quot;adult&quot;    &quot;juvenile&quot; &quot;adult&quot;</code></pre>
+<pre><code>##  [1] &quot;adult&quot;    &quot;adult&quot;    &quot;juvenile&quot; &quot;juvenile&quot; &quot;subadult&quot; &quot;adult&quot;   
+##  [7] &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;    &quot;juvenile&quot; &quot;adult&quot;    &quot;juvenile&quot;
+## [13] &quot;subadult&quot; &quot;subadult&quot; &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;   
+## [19] &quot;adult&quot;    &quot;juvenile&quot; &quot;adult&quot;</code></pre>
 </div>
-<div id="extracting-objects-from-data" class="section level2">
-<h2>3 Extracting objects from data</h2>
-<p>Get the names of columns in the data frame you created earlier
-‘mydf’. <em>Hint see the R functions to explore data section</em>. Then
-extract all rows for column 5 by name, do the same thing using the
-element position e.g. <code>[]</code></p>
-<pre><code>## [1] &quot;Obs.Id&quot;      &quot;Treatment&quot;   &quot;Block&quot;       &quot;Germination&quot; &quot;AvgHeight&quot;</code></pre>
-<pre><code>##  [1] 30.60342 31.59516 29.36262 30.17308 29.23013 31.25661 29.57206 28.90175
-##  [9] 28.72807 30.88740</code></pre>
-<pre><code>##  [1] 30.60342 31.59516 29.36262 30.17308 29.23013 31.25661 29.57206 28.90175
-##  [9] 28.72807 30.88740</code></pre>
+<div id="replace-values-with-na" class="section level2">
+<h2>3 Replace values with NA</h2>
+<p>In the turtles_tidy data replace ALL variable values for tags 104 and
+105 with NAs</p>
+<pre><code>## # A tibble: 21 × 7
+##      tag sex    c_length h_width weight size.class size_class
+##    &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     
+##  1    10 male       41      7.15   7.6  adult      adult     
+##  2    11 female     46.4    8.18  11    adult      adult     
+##  3     2 &lt;NA&gt;       24.3    4.42   1.65 juvenile   juvenile  
+##  4    15 &lt;NA&gt;       28.7    4.89   2.18 juvenile   juvenile  
+##  5    16 &lt;NA&gt;       32      5.37   3    subadult   subadult  
+##  6     3 female     42.8    7.32   8.6  adult      adult     
+##  7     4 male       40      6.6    6.5  adult      adult     
+##  8     5 female     45      8.05  10.9  adult      adult     
+##  9    12 female     44      7.55   8.9  adult      adult     
+## 10    13 &lt;NA&gt;       28      4.85   1.97 juvenile   juvenile  
+## # ℹ 11 more rows</code></pre>
+<pre><code>## # A tibble: 21 × 7
+##      tag sex    c_length h_width weight size.class size_class
+##    &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     
+##  1    10 male       41      7.15   7.6  adult      adult     
+##  2    11 female     46.4    8.18  11    adult      adult     
+##  3     2 &lt;NA&gt;       24.3    4.42   1.65 juvenile   juvenile  
+##  4    15 &lt;NA&gt;       28.7    4.89   2.18 juvenile   juvenile  
+##  5    16 &lt;NA&gt;       32      5.37   3    subadult   subadult  
+##  6     3 female     42.8    7.32   8.6  adult      adult     
+##  7     4 male       40      6.6    6.5  adult      adult     
+##  8     5 female     45      8.05  10.9  adult      adult     
+##  9    12 female     44      7.55   8.9  adult      adult     
+## 10    13 &lt;NA&gt;       28      4.85   1.97 juvenile   juvenile  
+## # ℹ 11 more rows</code></pre>
 </div>
-<div id="create-a-matrix" class="section level2">
-<h2>4 Create a matrix</h2>
-<p>Create a new matrix called ‘mymat2’ that includes all the data from
-columns 3 to 5 of data frame mydf. <em>HINT: use the
-<code>as.matrix()</code> function to coerce a data frame into a matrix.
-Since we didn’t cover this function you may need to look it up in the
-help files.</em></p>
-<pre><code>##    Block Germination AvgHeight
-## 21     1           7  29.32599
-## 22     2           9  29.28974
-## 23     3           8  30.24487
-## 24     4           6  30.28996
-## 25     5           6  29.41751
-## 26     6           9  30.58505
-## 27     7           5  29.56381
-## 28     8           3  30.21980
-## 29     9           3  30.54180
-## 30    10           1  31.11320</code></pre>
-</div>
-<div id="create-a-list" class="section level2">
-<h2>5 Create a list</h2>
-<p>Create a list named ‘mylist’ that is composed of a<br />
-- vector: 1:3,<br />
-- a matrix: matrix(1:6, nrow = 3, ncol = 2),<br />
-- and a data frame: data.frame(x =c (1, 2, 3), y = c(TRUE, FALSE, TRUE),
-z = c(“a”, “a”, “b”)).</p>
-<pre><code>## [[1]]
-## [1] 1 2 3
-## 
-## [[2]]
-##      [,1] [,2]
-## [1,]    1    4
-## [2,]    2    5
-## [3,]    3    6
-## 
-## [[3]]
-##   x     y z
-## 1 1  TRUE a
-## 2 2 FALSE a
-## 3 3  TRUE b</code></pre>
-</div>
-<div id="extracting-objects-from-lists" class="section level2">
-<h2>6 Extracting objects from lists</h2>
-<p>Extract the second and third observation from the 1st column of the
-data frame in ‘mylist’ (the list created above).</p>
-<pre><code>## [1] 2 3</code></pre>
+<div id="pivot-data" class="section level2">
+<h2>4 Pivot data</h2>
+<p>Use the below code to read in the Soils data in the carData
+package</p>
+<pre class="r"><code># Load the example data 
+
+soil &lt;- carData::Soils    # load example data</code></pre>
+<ul>
+<li><p>look at the first few lines of data in “soil”</p></li>
+<li><p>Pivot the data so that columns Ca - Na are contained in one
+column called nutrients (again there are two possible solutions (really
+more than that but two I expect peopl to use))</p></li>
+</ul>
+<pre><code>##   Group Contour Depth Gp Block   pH     N Dens   P    Ca   Mg    K   Na Conduc
+## 1     1     Top  0-10 T0     1 5.40 0.188 0.92 215 16.35 7.65 0.72 1.14   1.09
+## 2     1     Top  0-10 T0     2 5.65 0.165 1.04 208 12.25 5.15 0.71 0.94   1.35
+## 3     1     Top  0-10 T0     3 5.14 0.260 0.95 300 13.02 5.68 0.68 0.60   1.41
+## 4     1     Top  0-10 T0     4 5.14 0.169 1.10 248 11.92 7.88 1.09 1.01   1.64
+## 5     2     Top 10-30 T1     1 5.14 0.164 1.12 174 14.17 8.12 0.70 2.17   1.85
+## 6     2     Top 10-30 T1     2 5.10 0.094 1.22 129  8.55 6.92 0.81 2.67   3.18</code></pre>
+<pre><code>## # A tibble: 192 × 12
+##    Group Contour Depth Gp    Block    pH     N  Dens     P Conduc nutrient value
+##    &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
+##  1 1     Top     0-10  T0    1      5.4  0.188  0.92   215   1.09 Ca       16.4 
+##  2 1     Top     0-10  T0    1      5.4  0.188  0.92   215   1.09 Mg        7.65
+##  3 1     Top     0-10  T0    1      5.4  0.188  0.92   215   1.09 K         0.72
+##  4 1     Top     0-10  T0    1      5.4  0.188  0.92   215   1.09 Na        1.14
+##  5 1     Top     0-10  T0    2      5.65 0.165  1.04   208   1.35 Ca       12.2 
+##  6 1     Top     0-10  T0    2      5.65 0.165  1.04   208   1.35 Mg        5.15
+##  7 1     Top     0-10  T0    2      5.65 0.165  1.04   208   1.35 K         0.71
+##  8 1     Top     0-10  T0    2      5.65 0.165  1.04   208   1.35 Na        0.94
+##  9 1     Top     0-10  T0    3      5.14 0.26   0.95   300   1.41 Ca       13.0 
+## 10 1     Top     0-10  T0    3      5.14 0.26   0.95   300   1.41 Mg        5.68
+## # ℹ 182 more rows</code></pre>
+<pre><code>## # A tibble: 192 × 12
+##    Group Contour Depth Gp    Block    pH     N  Dens     P Conduc nutrient value
+##    &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
+##  1 1     Top     0-10  T0    1      5.4  0.188  0.92   215   1.09 Ca       16.4 
+##  2 1     Top     0-10  T0    1      5.4  0.188  0.92   215   1.09 Mg        7.65
+##  3 1     Top     0-10  T0    1      5.4  0.188  0.92   215   1.09 K         0.72
+##  4 1     Top     0-10  T0    1      5.4  0.188  0.92   215   1.09 Na        1.14
+##  5 1     Top     0-10  T0    2      5.65 0.165  1.04   208   1.35 Ca       12.2 
+##  6 1     Top     0-10  T0    2      5.65 0.165  1.04   208   1.35 Mg        5.15
+##  7 1     Top     0-10  T0    2      5.65 0.165  1.04   208   1.35 K         0.71
+##  8 1     Top     0-10  T0    2      5.65 0.165  1.04   208   1.35 Na        0.94
+##  9 1     Top     0-10  T0    3      5.14 0.26   0.95   300   1.41 Ca       13.0 
+## 10 1     Top     0-10  T0    3      5.14 0.26   0.95   300   1.41 Mg        5.68
+## # ℹ 182 more rows</code></pre>
 </div>
 
 
