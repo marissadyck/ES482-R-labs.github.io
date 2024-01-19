@@ -94,6 +94,7 @@ mydf[, 5]
 ## 4 Create a matrix
 Create a new matrix called 'mymat2' that includes all the data from columns 3 to 5 of data frame mydf. *HINT: use the `as.matrix()` function to coerce a data frame into a matrix. Since we didn't cover this function you may need to look it up in the help files.*
 
+> Note your values for some columns may be slighly different since the code to create mydf uses random number generators. 
 ```{r echo=FALSE}
 
 as.matrix(mydf[, 3:5])
