@@ -25,35 +25,31 @@ navbar:
           href: mod_2_ggplot.html
         - text: "Module 3: Advanced ggplot (coming soon)"
           href: mod_3_ggplot_adv.html
-        - text: "Module 4: Beyond ggplot (more coming)"
+        - text: "Module 4: Beyond ggplot"
           href: mod_4_beyond_ggplot.html
-    - text: "Camera Data"
+    - text: "Working with Camera Data"
       menu:
-        - text: "Module 1: Camera data organization and exploration"
+        - text: "Module 1: Camera data organization and exploration (coming soon)"
           href: mod_1_cam_data.html
     - text: "Statistical Modeling"
       menu:
-        - text: "Module 1: Basiscs of data exploration and modeling"
-          href: mod_1_models.html
-        - text: "Module 2: General and generalized linear models (GLMs)"
-          href: mod_2_glm.html
-        - text: "Module 3: Generalized mixed effects models (GLMMs)"
-          href: mod_3_glmm.html
-        - text: "Module 4: Occupancy models"
-          href: mod_4_occ.html
-        - text: "Module 5: Structural equation models (SEMs)"
-          href: mod_5_sem.html
+        - text: "Module 1: General and generalized linear models (GLMs) (coming soon)"
+          href: mod_1_glm.html
+        - text: "Module 2: Occupancy models (coming soon)"
+          href: mod_2_occ.html
+        - text: "Module 3: Structural equation models (SEMs) (coming soon)"
+          href: mod_3_sem.html
     - text: "Assignments"
       menu: 
         - text: "Assignment 1"
           href: assign_1.html
         - text: "Assignment 2"
           href: assign_2.html
-        - text: "Assignment 3"
+        - text: "Assignment 3 (coming soon)"
           href: assign_3.html
-        - text: "Assignment 4"
+        - text: "Assignment 4 (coming soon)"
           href: assign_4.html
-        - text: "Assignment 5"
+        - text: "Assignment 5 (coming soon)"
           href: assign_5.html
     - text: "Data"
       href: data.html

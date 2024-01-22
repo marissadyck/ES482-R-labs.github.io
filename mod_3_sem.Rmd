@@ -1,7 +1,7 @@
 ---
-title: "Working with Camera Data"
-author: 'Module 1: Camera data organization and exploration'
-date: "6 February 2024"
+title: "Statistical Modeling"
+author: 'Module 3: Structural equation models (SEMs)'
+date: "2024"
 output:
   html_document:
     code_folding: show
@@ -24,8 +24,8 @@ knitr::opts_chunk$set(
 #  ES482 R labs   
 #      University of Victoria, Victoria BC Canada             
 
-#  Working with Camera Data
-# Module 1: Camera data organization and exploration 
+#  Statistical Modeling
+# Module 3: Structural equation models (SEMs)
 
 
 ```
@@ -34,17 +34,13 @@ knitr::opts_chunk$set(
 
 ### Scripts
 
-1. Click [here](mod_1_cam_data.R) to download the script! Save the script to the 'scripts'' folder in your project directory you set up in the previous module.
+1. Click [here](mod_3_sem.R) to download the script! Save the script to the 'scripts'' folder in your project directory you set up in the previous module.
 
 2. Load your script in RStudio. To do this, open RStudio and click the **files** window and select the scripts folder and then this script.
 
 ### Cheat sheets
 
 There are no cheat sheets specific to this module but don't forget the ones you've already printed for previous modules!
-
-### Website
-
-Part of the material we will cover in this module is based off standardized R scripts and procedures developed by ACME colleagues at the [WildCam Network](https://wildcams.ca/protocols/)
 
 <center>
 ![](images/construction_dog.jpeg){width=40%}
