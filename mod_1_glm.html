@@ -483,10 +483,77 @@ this script.</p></li>
 <h3>Cheat sheets</h3>
 <p>There are no cheat sheets specific to this module but don’t forget
 the ones you’ve already printed for previous modules!</p>
+</div>
+</div>
+<div id="basics-of-a-glm" class="section level2">
+<h2>Basics of a GLM</h2>
+<p>A Generalized liner model (GLM) is a variation on a linear regression
+which allows the response variable to have a distribution other than the
+normal (Gaussian) distribution.</p>
+<div id="steps-of-glm" class="section level3">
+<h3>Steps of GLM</h3>
+<p>When applying a generalized linear model to your data follow the
+steps below</p>
+<ol style="list-style-type: decimal">
+<li><p>Choose the most appropriate distribution for the response
+variable. e.g., Gaussian, Poisson, negative binomial, gamma, binomial,
+etc.</p></li>
+<li><p>Define the systematic component in terms of explanatory
+variables.</p></li>
+<li><p>Specify the link between the mean of the response variable and
+the systematic part.</p></li>
+<li><p>Check model assumptions.</p></li>
+</ol>
+</div>
+</div>
+<div id="distributions" class="section level2">
+<h2>Distributions</h2>
+<p>Common non-normal distributions for wildlife data include…</p>
+<div id="binomial-distribution" class="section level3">
+<h3>Binomial distribution</h3>
+<p>The binomial distribution represents the probability of an outcome
+given only two options (e.g. 0s and 1s). Presence/absence data from
+remote camera traps is a great example of this.</p>
+<p><img src="images/binomial-distribution-formula.png" /></p>
+</div>
+<div id="poisson-distribution" class="section level3">
+<h3>Poisson distribution</h3>
+<p>The poisson distribution represents how many times an event is likely
+to occur over a specified period. Count data follow the poisson
+distribution.</p>
+<p><img src="images/poisson-distribution-formula.png" /></p>
+</div>
+<div id="negative-binomial-distribution" class="section level3">
+<h3>Negative binomial distribution</h3>
+</div>
+<div id="which-distribution-to-use" class="section level3">
+<h3>Which distribution to use?</h3>
+<p>Here is a helpful table from <a
+href="https://www.cabidigitallibrary.org/doi/abs/10.1079/PAVSNNR20127016">Thiele
+and Markussen 2012</a> you can use to determine which distribution you
+should use with your data.</p>
+<p><img src="images/glm_distributions.png" /></p>
+</div>
+</div>
+<div id="assumptions-of-glm" class="section level2">
+<h2>Assumptions of GLM</h2>
+<p>The data are independently distributed, i.e., cases are independent.
+The dependent variable does NOT need to be normally distributed, but it
+typically assumes a distribution from an exponential family
+(e.g. binomial, Poisson, multinomial, normal, etc.). A GLM does NOT
+assume a linear relationship between the response variable and the
+explanatory variables, but it does assume a linear relationship between
+the transformed expected response in terms of the link function and the
+explanatory variables; e.g., for binary logistic regression .
+Explanatory variables can be nonlinear transformations of some original
+variables. The homogeneity of variance does NOT need to be satisfied. In
+fact, it is not even possible in many cases given the model structure.
+Errors need to be independent but NOT normally distributed. Parameter
+estimation uses maximum likelihood estimation (MLE) rather than ordinary
+least squares (OLS).</p>
 <center>
 <img src="images/construction_dog.jpeg" style="width:40.0%" />
 </center>
-</div>
 </div>
 
 
