@@ -24,6 +24,8 @@ knitr::opts_chunk$set(echo = TRUE,
 
 ```
 
+## Submission
+Please email me a copy of your R script for this assignment my start of lab on Friday January 26th with your first and last name followed by assignment 1 as the file name (e.g. 'marissa_dyck_assignment1.R')
 
 ## 1 Create a vector
 Create a vector called 'myvec' using any of the methods you learned with numbers 1 to 10. *Note there are multiple ways to do this*. 
