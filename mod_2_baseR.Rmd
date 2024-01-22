@@ -621,6 +621,8 @@ mylist[[3]][[1]][c(2, 3)]
 ### Submission
 Please email me a copy of your R script for this assignment my start of lab on Friday January 26th with your first and last name followed by assignment 1 as the file name (e.g. 'marissa_dyck_assignment1.R')
 
+> You should always be following best coding practices (see Intro to R module 1) but especially for assingment submissions. Please make sure each problem has its own header so that I can easily navigate to your answers and that your code is well organized with spaces as described in the best coding practices section and comments as needed. 
+
 [--go to next module--](mod_3_data.html)
 
 
