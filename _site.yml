@@ -35,7 +35,7 @@ navbar:
       menu:
         - text: "Module 1: Linear regression (coming soon)"
           href: mod_1_lm.html
-        - text: "Module 2: Generalized linear models (GLMs) (coming soon)"
+        - text: "Module 2: Generalized linear models (GLMs)"
           href: mod_2_glm.html
         - text: "Module 3: General mixed effects models (GLMMs) (coming soon)"
           href: mod_3_glmm.html
