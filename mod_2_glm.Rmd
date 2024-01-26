@@ -32,6 +32,8 @@ library(PerformanceAnalytics)
 library(lme4)
 library(rphylopic)
 library(MuMIn)
+library(car)
+library(AER)
 ```
 
 ## Materials
@@ -101,6 +103,7 @@ The **poisson distribution** represents how many times an event is likely to occ
 
 ### Negative binomial distribution
 
+The negative binomial distribution is also used for count data but when the data are also over dispersed. We can check for dispersion using a **function** in R after we run our model.
 
 ### Which distribution to use?
 
@@ -128,6 +131,7 @@ hist(cows$damage)
 This histogram above should make it fairly clear that the **binomial distribution** would be a good fit for this data given the response variable contains 1s and 0s.
 
 ## Assumptions of GLM
+
 
 ### Independence
 
@@ -260,6 +264,47 @@ cows_global <- glm(damage ~ bear_abund +
 ```
 
 Printing the summary of our model gives us a lot of useful information but it can be overwhelming at first if you don't know what you are looking at so let's walk through it.
+
+### Test Assumptions
+
+Before interpreting any results from our model we need to check that our model meets the assumptions of a GLM that we covered earlier. 
+
+#### Homogeneity of variance
+
+We don't have any factor variables (groups) in our model so we wouldn't need to test this assumption but as an example we can set *year* as a factor and run Levene's test on a model that predicts *damage* as a function of *year* and interpret the result.
+```{r}
+
+cows <- cows %>% 
+  
+  # change year to a grouped variable (factor)
+  mutate(year = as.factor(year))
+  
+  # run levene test
+leveneTest(damage ~ year,
+                   data = cows)
+
+```
+
+With Levene's test we are testing the null hypothesis that the groups have similar variance so we want a p > 0.05, but our value is 0.001 which would indicate we've violated this assumption. 
+
+#### Dispersion
+
+We should ensure that our data is not over dispersed or we would want to use the negative binomial distribution. We can do this with some manual calculations using information from the model summary. We want to calculate a chi square approximation of residual deviance which equals (residual deviance / degrees of freedom)
+
+```{r}
+
+# test for over dispersion
+summary(cows_global)
+
+# calculate chi square approx. for residual deviance
+1629/1613 # 1.0009 
+
+# we want a value ~1 so our data is okay
+# value >1 is over dispersed
+# value <1 is under dispersed
+
+```
+
 
 ## Interpreting model output
 
@@ -603,6 +648,10 @@ Delta AICc represents the difference between the top model and each following mo
 The AICc weight represents the relatively likelihood of a model compared to all other models in the in the table where a value of 1.0 = the most likely. 
 
 For our model comparison we have a clear top model that is well above 2 AICc better than all the other models and is the most likely with a weight of 1.0.
+
+
+
+
 
 > There are no practice problems for this module as you will be working with your own data to run a GLM.
 

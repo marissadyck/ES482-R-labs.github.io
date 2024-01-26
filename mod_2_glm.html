@@ -590,6 +590,9 @@ the poisson distribution.</p>
 </div>
 <div id="negative-binomial-distribution" class="section level3">
 <h3>Negative binomial distribution</h3>
+<p>The negative binomial distribution is also used for count data but
+when the data are also over dispersed. We can check for dispersion using
+a <strong>function</strong> in R after we run our model.</p>
 </div>
 <div id="which-distribution-to-use" class="section level3">
 <h3>Which distribution to use?</h3>
@@ -815,6 +818,80 @@ model.</p>
 information but it can be overwhelming at first if you don’t know what
 you are looking at so let’s walk through it.</p>
 </div>
+<div id="test-assumptions" class="section level3">
+<h3>Test Assumptions</h3>
+<p>Before interpreting any results from our model we need to check that
+our model meets the assumptions of a GLM that we covered earlier.</p>
+<div id="homogeneity-of-variance-1" class="section level4">
+<h4>Homogeneity of variance</h4>
+<p>We don’t have any factor variables (groups) in our model so we
+wouldn’t need to test this assumption but as an example we can set
+<em>year</em> as a factor and run Levene’s test on a model that predicts
+<em>damage</em> as a function of <em>year</em> and interpret the
+result.</p>
+<pre class="r"><code>cows &lt;- cows %&gt;% 
+  
+  # change year to a grouped variable (factor)
+  mutate(year = as.factor(year))
+  
+  # run levene test
+leveneTest(damage ~ year,
+                   data = cows)</code></pre>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##         Df F value   Pr(&gt;F)   
+## group    8  3.0668 0.001967 **
+##       1611                    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>With Levene’s test we are testing the null hypothesis that the groups
+have similar variance so we want a p &gt; 0.05, but our value is 0.001
+which would indicate we’ve violated this assumption.</p>
+</div>
+<div id="dispersion" class="section level4">
+<h4>Dispersion</h4>
+<p>We should ensure that our data is not over dispersed or we would want
+to use the negative binomial distribution. We can do this with some
+manual calculations using information from the model summary. We want to
+calculate a chi square approximation of residual deviance which equals
+(residual deviance / degrees of freedom)</p>
+<pre class="r"><code># test for over dispersion
+summary(cows_global)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = damage ~ bear_abund + dist_to_forest + dist_to_town + 
+##     openhab_10k + ag_10k + shdi_10k, family = binomial, data = cows)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.5286  -0.7965  -0.5511   0.2031   2.3067  
+## 
+## Coefficients:
+##                  Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)    -1.513e+00  1.802e-01  -8.396  &lt; 2e-16 ***
+## bear_abund      1.430e-02  3.966e-03   3.605 0.000313 ***
+## dist_to_forest -9.324e-04  2.078e-04  -4.488 7.19e-06 ***
+## dist_to_town   -2.369e-05  3.858e-05  -0.614 0.539241    
+## openhab_10k     5.497e-01  6.525e-02   8.425  &lt; 2e-16 ***
+## ag_10k          2.092e-01  1.198e-01   1.746 0.080736 .  
+## shdi_10k        3.704e-01  8.474e-02   4.371 1.24e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 1822  on 1619  degrees of freedom
+## Residual deviance: 1629  on 1613  degrees of freedom
+## AIC: 1643
+## 
+## Number of Fisher Scoring iterations: 6</code></pre>
+<pre class="r"><code># calculate chi square approx. for residual deviance
+1629/1613 # 1.0009 </code></pre>
+<pre><code>## [1] 1.009919</code></pre>
+<pre class="r"><code># we want a value ~1 so our data is okay
+# value &gt;1 is over dispersed
+# value &lt;1 is under dispersed</code></pre>
+</div>
+</div>
 </div>
 <div id="interpreting-model-output" class="section level2">
 <h2>Interpreting model output</h2>
@@ -951,11 +1028,11 @@ original units of measurement were different.</p>
 <pre class="r"><code># calculate odds ratio for scaled coefficients
 exp(coefficients(cows_global))</code></pre>
 <pre><code>##           (Intercept)     scale(bear_abund) scale(dist_to_forest) 
-##             0.2544048             1.2653823             0.4124077 
-##   scale(dist_to_town)    scale(openhab_10k)         scale(ag_10k) 
-##             0.9489265             1.7244448             1.2088612 
-##       scale(shdi_10k) 
-##             1.4333377</code></pre>
+##             0.2276229             1.2653823             0.4124077 
+##   scale(dist_to_town)           openhab_10k                ag_10k 
+##             0.9489265             1.7327761             1.2326612 
+##              shdi_10k 
+##             1.4482428</code></pre>
 <p>Now the interpretation is a bit less intuitive because we have to
 consider the probability of damage for each standard deviation increase
 in the explanatory variable rather than each unit increase, but we can
@@ -977,11 +1054,11 @@ we need to apply the <em>inverse logit</em> function. The
 <pre class="r"><code># inverse logit of coefficients to get probabilities 
 plogis(coefficients(cows_global))</code></pre>
 <pre><code>##           (Intercept)     scale(bear_abund) scale(dist_to_forest) 
-##             0.2028092             0.5585734             0.2919891 
-##   scale(dist_to_town)    scale(openhab_10k)         scale(ag_10k) 
-##             0.4868970             0.6329527             0.5472780 
-##       scale(shdi_10k) 
-##             0.5890418</code></pre>
+##             0.1854176             0.5585734             0.2919891 
+##   scale(dist_to_town)           openhab_10k                ag_10k 
+##             0.4868970             0.6340717             0.5521040 
+##              shdi_10k 
+##             0.5915438</code></pre>
 <p>The <code>predict()</code> <strong>function</strong> is a more
 efficient way to get predicted probabilities from you model. With this
 <strong>function</strong> we can generate a new data frame that shows
@@ -1565,7 +1642,7 @@ ggplot(data = new_data_bear_pred, aes(x = bear_abund, y = fit)) +
   geom_ribbon(aes(ymin = lwr,
                   ymax = upr),
               alpha = 0.5) # changes opacity so you can see the main line</code></pre>
-<p><img src="mod_2_glm_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="mod_2_glm_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>Now we have a graphical representation of the relationship between
 bear abundance and the probability of bear predation on cows.</p>
 <p>For practice, make this graph look nicer by</p>
@@ -1625,7 +1702,7 @@ ggplot(data = new_data_bear_pred, aes(x = bear_abund, y = fit)) +
                ysize = 5,
                x = 73,
                y = 0.98)</code></pre>
-<p><img src="mod_2_glm_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="mod_2_glm_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 </div>
 </div>
 <div id="model-selection" class="section level2">
