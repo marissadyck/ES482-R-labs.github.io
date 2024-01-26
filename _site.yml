@@ -33,12 +33,16 @@ navbar:
           href: mod_1_cam_data.html
     - text: "Statistical Modeling"
       menu:
-        - text: "Module 1: General and generalized linear models (GLMs) (coming soon)"
-          href: mod_1_glm.html
-        - text: "Module 2: Occupancy models (coming soon)"
-          href: mod_2_occ.html
-        - text: "Module 3: Structural equation models (SEMs) (coming soon)"
-          href: mod_3_sem.html
+        - text: "Module 1: Linear regression (coming soon)"
+          href: mod_1_lm.html
+        - text: "Module 2: Generalized linear models (GLMs) (coming soon)"
+          href: mod_2_glm.html
+        - text: "Module 3: General mixed effects models (GLMMs) (coming soon)"
+          href: mod_3_glmm.html
+        - text: "Module 4: Occupancy models (coming soon)"
+          href: mod_4_occ.html
+        - text: "Module 5: Structural equation models (SEMs) (coming soon)"
+          href: mod_5_sem.html
     - text: "Assignments"
       menu: 
         - text: "Assignment 1"

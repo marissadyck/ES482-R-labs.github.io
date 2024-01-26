@@ -17,6 +17,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **Base R** - Refers to the built-in functions and operations that R can perform without loading any packages.
 
+**Binomial distribution** - Refers to a probability distribution that predicts the number of successes or probability of an event occuring when there are only two options.
+
 **Character** - Data types that are non-numeric (contain text instead of numbers), must be contained in quotes ''.
 
 **Comments** - Text that R does not evaluate. Comments are preceded by a '#'.
@@ -26,6 +28,8 @@ knitr::opts_chunk$set(echo = TRUE)
 **Data frame** - bjects are the basic data storage object in R. Data frames are a special type of list in which each list element is a vector of equal length. Each list element in a data frame is also known as a column. 
 
 **Dimensions** - rows and columns.
+
+**Effect size** - The magnitude 
 
 **Environment** - Shows you objects that are currently in your working space (environment). By default this is the first panel in the top right window.
 
@@ -67,12 +71,16 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **Object** - Variables that can take many types and are saved to the environment using the assignment operator.
 
+**Odds ratio** - A measure of association between a variable and an expected outcome, this represents the odds that an outcome will occur given a particular exposure compared to the odds of the outcome occurring in the absence of that exposure.
+
 
 ## P - Z
 
 **Packages** - Packages are collections of compiled code, functions, and sometimes data that you can access by installing them and then storing them to your library. You can look up packages in the third panel of the lower right window.
 
 **Plots** - This panel is where you can view plots you have created and export them (although there are better ways). By default this is the second panel in the bottom right window.
+
+**Poisson distribution** - A probability distribution that represents how many times an event is likely to occur over a period of time (discrete data).
 
 **R documentation** - Files that explain the usage, arguments, and include examples for various R functions, packages, and data.
 
@@ -81,6 +89,8 @@ knitr::opts_chunk$set(echo = TRUE)
 **RStudio project** - Enables your work to be bundled in a self-contained folder. When you open a project your directory will automatically be set to the location where the project is saved. Allows you to easily share code.
 
 **Scalar** - are the simplest data objects. A scalar is just a single value of any data type.
+
+**Scale** - The process of transforming the values of a data set to a specific range, often centered on zero and ranging from -1 to 1. 
 
 **Scales** - Map data values to the visual values of an aesthetic.
 

@@ -11,3 +11,7 @@ lubridate
 zoo
 xts
 PerformanceAnalytics
+Matrix
+lme4
+rphylopic
+MuMIn
