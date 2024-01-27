@@ -1,7 +1,7 @@
 ---
 title: "Intro to R"
 author: "Module 3: Working with data"
-date: "19 January 2024"
+date: "26 January 2024"
 output: 
   html_document: 
     code_folding: show
@@ -88,8 +88,8 @@ Before we can read data in, we need to put some data files in our working direct
 
 1. Download the following data files and store them in your 'data' folder in the R Crash Course working directory
 
-   - [Whitespace delimited data file](data/data.txt)      
-   - [Comma delimited data file](data/data.csv)      
+   - [Whitespace delimited data file](data/raw/data.txt)      
+   - [Comma delimited data file](data/raw/data.csv)      
    
    
 Once you have saved these files to your working directory, open one or two of them up (e.g., in Excel or a text editor) to see what's inside. You can do this directly in R using the **files** panel.
@@ -346,24 +346,24 @@ Let's install some **packages** that we will use for this module. There are a fe
 
 # Install packages 
 
-# install.packages("tidyr")
+# install.packages("tidyverse")
 
 ```
 *Notice that the package name is enclosed with quotations (" "). If you do not use the quotations the package will not be installed.
 
 ### Loading packages to library
-Each time you open a new R scession you need to load the **packages** you want to use into your **library**. To do this use the `library()` **function**
+Each time you open a new R session you need to load the **packages** you want to use into your **library**. To do this use the `library()` **function**
 
 ```{r message=FALSE, warning=FALSE, results=FALSE}
 
 # Load packages to library 
 
-library(tidyr)
+library(tidyverse)
 
 ```
 
 ### Built-in datasets
-Many **packages** come with built-in datasets as well. For, instance, ggplot2 comes with the "diamonds" data:
+Many **packages** come with built-in data sets as well. For, instance, ggplot2 comes with the "diamonds" data:
 
 ```{r}
 
@@ -403,7 +403,7 @@ We already covered a few ways to read in data with **base R** but since we will 
 
   # Read in tidy data ----------------------
 
-tidy_data.txt <- read_delim('data/data.txt')
+tidy_data.txt <- read_delim('data/raw/data.txt')
 
 # print data
 tidy_data.txt
@@ -424,7 +424,7 @@ The **function** to read in .csv files as tidy data is `read_csv()` in the *read
 
 ```{r}
 
-tidy_data.csv <- read_csv('data/data.csv')
+tidy_data.csv <- read_csv('data/raw/data.csv')
 
 # print the first few rows of data
 head(tidy_data.csv)
@@ -532,7 +532,7 @@ First we need to read the data in to R. Using the *reader* **package**, <span st
 # Data exploration with tidyverse ----------------------
 
 # read turtle_data.txt in to R using readr
-turtles.df <- read_delim('data/turtle_data.txt',
+turtles.df <- read_delim('data/raw/turtle_data.txt',
                          delim = '\t') # specify tab-delimited file
 
 
@@ -587,7 +587,7 @@ Now let's read in the data and change the column names to lowercase in the same 
 ```{r}
 
 # read turtle_data.txt in to R using readr
-turtles.df <- read_delim('data/turtle_data.txt',
+turtles.df <- read_delim('data/raw/turtle_data.txt',
                          delim = '\t') %>% 
   
    # set column names to lowercase
@@ -618,7 +618,7 @@ We can also do this more efficiently in the *dplyr* pipe when we read in the dat
 ```{r}
 
 # read turtle_data.txt in to R using readr
-turtles.df <- read_delim('data/turtle_data.txt',
+turtles.df <- read_delim('data/raw/turtle_data.txt',
                          delim = '\t') %>% 
   
    # set column names to lowercase
@@ -769,7 +769,7 @@ turtles.df <- read_delim('data/turtle_data.txt',
 ```{r class.source = 'fold-hide'}
 
 # read turtle_data.txt in to R using readr
-turtles.df <- read_delim('data/turtle_data.txt',
+turtles.df <- read_delim('data/raw/turtle_data.txt',
                          delim = '\t') %>% 
   
    # set column names to lowercase
@@ -879,11 +879,12 @@ You might notice a problem with the way the data are entered here. We will fix t
 ## Practice Problems
 
 ### 1 Export data
-Save the altered turtles data as a comma separated file to the data folder in your working directory using the 'readr' package and name it 'turtles_tidy'
+Save the altered turtles data as a comma separated file to the *data/processed* folder in your working directory using the 'readr' package and name it 'turtles_tidy'
+
 ```{r echo=FALSE}
 
 write_csv(turtles.df,
-          'data/turtles_tidy.csv')
+          'data/processed/turtles_tidy.csv')
 
 ```
 
@@ -891,14 +892,14 @@ write_csv(turtles.df,
 Download the [brown bear damage data](data/bear_2008_2016.csv) and save it in the data folder. 
 
 ### 2 Import and rename data
-* Import the brown bear dataset using the appropriate function from the 'readr' package and save it as bear_data.    
+* Import the brown bear dataset from the *data/raw* folder using the appropriate function from the 'readr' package and save it as bear_data.    
 * In the same code chunk set the column names to lowercase and    
 * change dist_to_town to m_to_town and dist_to_forest to m_to_forest (m for meters)    
 * Finally, use one of the functions we've covered to view/print your data to check that it worked.
 
 ```{r echo=FALSE}
 
-bear_data <- read_csv('data/bear_2008_2016.csv') %>% 
+bear_data <- read_csv('data/raw/bear_2008_2016.csv') %>% 
   
   # set column names to lowercase
   set_names(
@@ -965,6 +966,11 @@ bear_sheep_data %>%
 
 
 ```
+
+### Submission
+Please email me a copy of your R script for this assignment by start of lab on Friday February 2nd with your first and last name followed by assignment 1 as the file name (e.g. 'marissa_dyck_assignment2.R')
+
+> You should always be following best coding practices (see Intro to R module 1) but especially for assingment submissions. Please make sure each problem has its own header so that I can easily navigate to your answers and that your code is well organized with spaces as described in the best coding practices section and comments as needed. 
 
 [--go to next module--](mod_4_data_manipulation.html)
 

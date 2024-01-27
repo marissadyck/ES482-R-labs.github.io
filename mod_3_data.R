@@ -16,7 +16,7 @@ getwd()          # note: the results from running this command on my machine wil
 #  Import/Export data files into R with base R----------------------
 
 # read.table to import text file (if no delim specified, it will try to guess!)
-data.txt.df <- read.table("data/data.txt")  
+data.txt.df <- read.table("data/raw/data.txt")  
 
 
 
@@ -27,7 +27,7 @@ data.txt.df
 
 
 # read.csv to import textfile with columns separated by commas
-data.df <- read.csv("data/data.csv")
+data.df <- read.csv("data/raw/data.csv")
 
 #print data
 data.df
@@ -77,7 +77,7 @@ summary(data.df$Import)
 
 # however if we did this for data.df we would just be making a copy, instead we can export a subset of the data we just ran in
 write.csv(data.df[, c("Country","Product")], # this tells R to save all rows for the 'Country' and 'Product' columns
-          file = "data_export.csv")   
+          file = "data/processed/data_export.csv")   
 
 
 # Working with data in R ------------------------
@@ -148,12 +148,12 @@ sd(data.df$Import)
 
 # Install packages 
 
-# install.packages("tidyr")
+# install.packages("tidyverse")
 
 
 # Load packages to library 
 
-library(tidyr)
+library(tidyverse)
 
 
   # Package datasets ----------------------
@@ -166,7 +166,7 @@ ggplot2::diamonds   # note the use of the package name followed by two colons- t
 
   # Read in tidy data ----------------------
 
-tidy_data.txt <- read_delim('data/data.txt')
+tidy_data.txt <- read_delim('data/raw/data.txt')
 
 # print data
 tidy_data.txt
@@ -177,7 +177,7 @@ tidy_data.txt
 class(tidy_data.txt)
 
 
-tidy_data.csv <- read_csv('data/data.csv')
+tidy_data.csv <- read_csv('data/raw/data.csv')
 
 # print the first few rows of data
 head(tidy_data.csv)
@@ -211,7 +211,7 @@ x %>%
 # Data exploration with tidyverse ----------------------
 
 # read turtle_data.txt in to R using readr
-turtles.df <- read_delim('data/turtle_data.txt',
+turtles.df <- read_delim('data/raw/turtle_data.txt',
                          delim = '\t') # specify tab-delimited file
 
 
@@ -235,7 +235,7 @@ rm(turtles.df)
 
 
 # read turtle_data.txt in to R using readr
-turtles.df <- read_delim('data/turtle_data.txt',
+turtles.df <- read_delim('data/raw/turtle_data.txt',
                          delim = '\t') %>% 
   
    # set column names to lowercase
@@ -255,7 +255,7 @@ names(turtles.df)  <- c("tag", "sex","c_length", "h_width", "weight")
 head(turtles.df)
 
 # read turtle_data.txt in to R using readr
-turtles.df <- read_delim('data/turtle_data.txt',
+turtles.df <- read_delim('data/raw/turtle_data.txt',
                          delim = '\t') %>% 
   
    # set column names to lowercase
@@ -338,7 +338,7 @@ turtles.df <-  turtles.df %>%
 str(turtles.df) 
 
 # read turtle_data.txt in to R using readr
-turtles.df <- read_delim('data/turtle_data.txt',
+turtles.df <- read_delim('data/raw/turtle_data.txt',
                          delim = '\t') %>% 
   
    # set column names to lowercase

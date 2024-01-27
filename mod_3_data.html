@@ -11,7 +11,7 @@
 
 <meta name="author" content="Module 3: Working with data" />
 
-<meta name="date" content="2024-01-19" />
+<meta name="date" content="2024-01-26" />
 
 <title>Intro to R</title>
 
@@ -347,7 +347,7 @@ div.tocify {
       <a href="mod_4_data_manipulation.html">Module 4: Data manipulation</a>
     </li>
     <li>
-      <a href="mod_5_purrr.html">Module 5: The wonders of Purrr (coming soon)</a>
+      <a href="mod_5_purrr.html">Module 5: The wonders of Purrr</a>
     </li>
   </ul>
 </li>
@@ -368,19 +368,19 @@ div.tocify {
       <a href="mod_3_ggplot_adv.html">Module 3: Advanced ggplot (coming soon)</a>
     </li>
     <li>
-      <a href="mod_4_beyond_ggplot.html">Module 4: Beyond ggplot (more coming)</a>
+      <a href="mod_4_beyond_ggplot.html">Module 4: Beyond ggplot</a>
     </li>
   </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Camera Data
+    Working with Camera Data
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="mod_1_cam_data.html">Module 1: Camera data organization and exploration</a>
+      <a href="mod_1_cam_data.html">Module 1: Camera data organization and exploration (coming soon)</a>
     </li>
   </ul>
 </li>
@@ -392,19 +392,19 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="mod_1_models.html">Module 1: Basiscs of data exploration and modeling</a>
+      <a href="mod_1_lm.html">Module 1: Linear regression (coming soon)</a>
     </li>
     <li>
-      <a href="mod_2_glm.html">Module 2: General and generalized linear models (GLMs)</a>
+      <a href="mod_2_glm.html">Module 2: Generalized linear models (GLMs)</a>
     </li>
     <li>
-      <a href="mod_3_glmm.html">Module 3: Generalized mixed effects models (GLMMs)</a>
+      <a href="mod_3_glmm.html">Module 3: General mixed effects models (GLMMs) (coming soon)</a>
     </li>
     <li>
-      <a href="mod_4_occ.html">Module 4: Occupancy models</a>
+      <a href="mod_4_occ.html">Module 4: Occupancy models (coming soon)</a>
     </li>
     <li>
-      <a href="mod_5_sem.html">Module 5: Structural equation models (SEMs)</a>
+      <a href="mod_5_sem.html">Module 5: Structural equation models (SEMs) (coming soon)</a>
     </li>
   </ul>
 </li>
@@ -422,13 +422,13 @@ div.tocify {
       <a href="assign_2.html">Assignment 2</a>
     </li>
     <li>
-      <a href="assign_3.html">Assignment 3</a>
+      <a href="assign_3.html">Assignment 3 (coming soon)</a>
     </li>
     <li>
-      <a href="assign_4.html">Assignment 4</a>
+      <a href="assign_4.html">Assignment 4 (coming soon)</a>
     </li>
     <li>
-      <a href="assign_5.html">Assignment 5</a>
+      <a href="assign_5.html">Assignment 5 (coming soon)</a>
     </li>
   </ul>
 </li>
@@ -466,7 +466,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Intro to R</h1>
 <h4 class="author">Module 3: Working with data</h4>
-<h4 class="date">19 January 2024</h4>
+<h4 class="date">26 January 2024</h4>
 
 </div>
 
@@ -559,9 +559,9 @@ working directory!</p>
 <li><p>Download the following data files and store them in your ‘data’
 folder in the R Crash Course working directory</p>
 <ul>
-<li><a href="data/data.txt">Whitespace delimited data file</a><br />
+<li><a href="data/raw/data.txt">Whitespace delimited data file</a><br />
 </li>
-<li><a href="data/data.csv">Comma delimited data file</a></li>
+<li><a href="data/raw/data.csv">Comma delimited data file</a></li>
 </ul></li>
 </ol>
 <p>Once you have saved these files to your working directory, open one
@@ -869,23 +869,23 @@ panel&gt;&gt;install&gt;&gt;type the package you want</p></li>
 
 # Install packages 
 
-# install.packages(&quot;tidyr&quot;)</code></pre>
+# install.packages(&quot;tidyverse&quot;)</code></pre>
 <p>*Notice that the package name is enclosed with quotations (” “). If
 you do not use the quotations the package will not be installed.</p>
 </div>
 <div id="loading-packages-to-library" class="section level3">
 <h3>Loading packages to library</h3>
-<p>Each time you open a new R scession you need to load the
+<p>Each time you open a new R session you need to load the
 <strong>packages</strong> you want to use into your
 <strong>library</strong>. To do this use the <code>library()</code>
 <strong>function</strong></p>
 <pre class="r"><code># Load packages to library 
 
-library(tidyr)</code></pre>
+library(tidyverse)</code></pre>
 </div>
 <div id="built-in-datasets" class="section level3">
 <h3>Built-in datasets</h3>
-<p>Many <strong>packages</strong> come with built-in datasets as well.
+<p>Many <strong>packages</strong> come with built-in data sets as well.
 For, instance, ggplot2 comes with the “diamonds” data:</p>
 <pre class="r"><code>  # Package datasets ----------------------
 
@@ -956,7 +956,7 @@ R</strong> but since we will primarily be using the
 
   # Read in tidy data ----------------------
 
-tidy_data.txt &lt;- read_delim(&#39;data/data.txt&#39;)
+tidy_data.txt &lt;- read_delim(&#39;data/raw/data.txt&#39;)
 
 # print data
 tidy_data.txt</code></pre>
@@ -995,7 +995,7 @@ class(tidy_data.txt)</code></pre>
 <p>The <strong>function</strong> to read in .csv files as tidy data is
 <code>read_csv()</code> in the <em>readr</em>
 <strong>package</strong></p>
-<pre class="r"><code>tidy_data.csv &lt;- read_csv(&#39;data/data.csv&#39;)
+<pre class="r"><code>tidy_data.csv &lt;- read_csv(&#39;data/raw/data.csv&#39;)
 
 # print the first few rows of data
 head(tidy_data.csv)</code></pre>
@@ -1114,7 +1114,7 @@ turtles.df</span></p>
 <pre class="r fold-hide"><code># Data exploration with tidyverse ----------------------
 
 # read turtle_data.txt in to R using readr
-turtles.df &lt;- read_delim(&#39;data/turtle_data.txt&#39;,
+turtles.df &lt;- read_delim(&#39;data/raw/turtle_data.txt&#39;,
                          delim = &#39;\t&#39;) # specify tab-delimited file</code></pre>
 <div id="check-data" class="section level3">
 <h3>Check data</h3>
@@ -1200,7 +1200,7 @@ names in the same code chunk that we read in the data. Let’s check this,
 <p>Now let’s read in the data and change the column names to lowercase
 in the same code chunk.</p>
 <pre class="r"><code># read turtle_data.txt in to R using readr
-turtles.df &lt;- read_delim(&#39;data/turtle_data.txt&#39;,
+turtles.df &lt;- read_delim(&#39;data/raw/turtle_data.txt&#39;,
                          delim = &#39;\t&#39;) %&gt;% 
   
    # set column names to lowercase
@@ -1250,7 +1250,7 @@ head(turtles.df)</code></pre>
 we read in the data using the <code>rename()</code>
 <strong>function</strong>.</p>
 <pre class="r"><code># read turtle_data.txt in to R using readr
-turtles.df &lt;- read_delim(&#39;data/turtle_data.txt&#39;,
+turtles.df &lt;- read_delim(&#39;data/raw/turtle_data.txt&#39;,
                          delim = &#39;\t&#39;) %&gt;% 
   
    # set column names to lowercase
@@ -1486,7 +1486,7 @@ turtles.df &lt;- read_delim(&#39;data/turtle_data.txt&#39;,
          c_length = carapace_length,
          h_width = head_width)</code></pre>
 <pre class="r fold-hide"><code># read turtle_data.txt in to R using readr
-turtles.df &lt;- read_delim(&#39;data/turtle_data.txt&#39;,
+turtles.df &lt;- read_delim(&#39;data/raw/turtle_data.txt&#39;,
                          delim = &#39;\t&#39;) %&gt;% 
   
    # set column names to lowercase
@@ -1659,17 +1659,18 @@ will fix that in the next module.</p>
 <h2>Practice Problems</h2>
 <div id="export-data" class="section level3">
 <h3>1 Export data</h3>
-<p>Save the altered turtles data as a comma separated file to the data
-folder in your working directory using the ‘readr’ package and name it
-‘turtles_tidy’</p>
+<p>Save the altered turtles data as a comma separated file to the
+<em>data/processed</em> folder in your working directory using the
+‘readr’ package and name it ‘turtles_tidy’</p>
 <p>Download the <a href="data/bear_2008_2016.csv">brown bear damage
 data</a> and save it in the data folder.</p>
 </div>
 <div id="import-and-rename-data" class="section level3">
 <h3>2 Import and rename data</h3>
 <ul>
-<li>Import the brown bear dataset using the appropriate function from
-the ‘readr’ package and save it as bear_data.<br />
+<li>Import the brown bear dataset from the <em>data/raw</em> folder
+using the appropriate function from the ‘readr’ package and save it as
+bear_data.<br />
 </li>
 <li>In the same code chunk set the column names to lowercase and<br />
 </li>
@@ -1797,6 +1798,19 @@ things and check the ‘help’ files</em></li>
 ##   mean_alt sd_alt se_alt
 ##      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 ## 1     699.   183.   12.6</code></pre>
+</div>
+<div id="submission" class="section level3">
+<h3>Submission</h3>
+<p>Please email me a copy of your R script for this assignment by start
+of lab on Friday February 2nd with your first and last name followed by
+assignment 1 as the file name (e.g. ‘marissa_dyck_assignment2.R’)</p>
+<blockquote>
+<p>You should always be following best coding practices (see Intro to R
+module 1) but especially for assingment submissions. Please make sure
+each problem has its own header so that I can easily navigate to your
+answers and that your code is well organized with spaces as described in
+the best coding practices section and comments as needed.</p>
+</blockquote>
 <p><a href="mod_4_data_manipulation.html">–go to next module–</a></p>
 </div>
 </div>

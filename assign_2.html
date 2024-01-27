@@ -346,7 +346,7 @@ div.tocify {
       <a href="mod_4_data_manipulation.html">Module 4: Data manipulation</a>
     </li>
     <li>
-      <a href="mod_5_purrr.html">Module 5: The wonders of Purrr (coming soon)</a>
+      <a href="mod_5_purrr.html">Module 5: The wonders of Purrr</a>
     </li>
   </ul>
 </li>
@@ -367,19 +367,19 @@ div.tocify {
       <a href="mod_3_ggplot_adv.html">Module 3: Advanced ggplot (coming soon)</a>
     </li>
     <li>
-      <a href="mod_4_beyond_ggplot.html">Module 4: Beyond ggplot (more coming)</a>
+      <a href="mod_4_beyond_ggplot.html">Module 4: Beyond ggplot</a>
     </li>
   </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Camera Data
+    Working with Camera Data
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="mod_1_cam_data.html">Module 1: Camera data organization and exploration</a>
+      <a href="mod_1_cam_data.html">Module 1: Camera data organization and exploration (coming soon)</a>
     </li>
   </ul>
 </li>
@@ -391,19 +391,19 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="mod_1_models.html">Module 1: Basiscs of data exploration and modeling</a>
+      <a href="mod_1_lm.html">Module 1: Linear regression (coming soon)</a>
     </li>
     <li>
-      <a href="mod_2_glm.html">Module 2: General and generalized linear models (GLMs)</a>
+      <a href="mod_2_glm.html">Module 2: Generalized linear models (GLMs)</a>
     </li>
     <li>
-      <a href="mod_3_glmm.html">Module 3: Generalized mixed effects models (GLMMs)</a>
+      <a href="mod_3_glmm.html">Module 3: General mixed effects models (GLMMs) (coming soon)</a>
     </li>
     <li>
-      <a href="mod_4_occ.html">Module 4: Occupancy models</a>
+      <a href="mod_4_occ.html">Module 4: Occupancy models (coming soon)</a>
     </li>
     <li>
-      <a href="mod_5_sem.html">Module 5: Structural equation models (SEMs)</a>
+      <a href="mod_5_sem.html">Module 5: Structural equation models (SEMs) (coming soon)</a>
     </li>
   </ul>
 </li>
@@ -421,13 +421,13 @@ div.tocify {
       <a href="assign_2.html">Assignment 2</a>
     </li>
     <li>
-      <a href="assign_3.html">Assignment 3</a>
+      <a href="assign_3.html">Assignment 3 (coming soon)</a>
     </li>
     <li>
-      <a href="assign_4.html">Assignment 4</a>
+      <a href="assign_4.html">Assignment 4 (coming soon)</a>
     </li>
     <li>
-      <a href="assign_5.html">Assignment 5</a>
+      <a href="assign_5.html">Assignment 5 (coming soon)</a>
     </li>
   </ul>
 </li>
@@ -470,11 +470,24 @@ div.tocify {
 </div>
 
 
-<div id="export-data" class="section level3">
-<h3>1 Export data</h3>
+<div id="submission" class="section level2">
+<h2>Submission</h2>
+<p>Please email me a copy of your R script for this assignment by start
+of lab on Friday February 2nd with your first and last name followed by
+assignment 1 as the file name (e.g. ‘marissa_dyck_assignment2.R’)</p>
+<blockquote>
+<p>You should always be following best coding practices (see Intro to R
+module 1) but especially for assingment submissions. Please make sure
+each problem has its own header so that I can easily navigate to your
+answers and that your code is well organized with spaces as described in
+the best coding practices section and comments as needed.</p>
+</blockquote>
+</div>
+<div id="export-data" class="section level2">
+<h2>1 Export data</h2>
 <p>Save the altered turtles data as a comma separated file to the
-data/processed folder in your working directory using the ‘readr’
-package and name it ‘turtles_tidy’</p>
+<em>data/processed</em> folder in your working directory using the
+‘readr’ package and name it ‘turtles_tidy’</p>
 <pre><code>## Rows: 21 Columns: 5
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;\t&quot;
@@ -495,8 +508,8 @@ package and name it ‘turtles_tidy’</p>
 <p>Download the <a href="data/bear_2008_2016.csv">brown bear damage
 data</a> and save it in the data folder.</p>
 </div>
-<div id="import-and-rename-data" class="section level3">
-<h3>2 Import and rename data</h3>
+<div id="import-and-rename-data" class="section level2">
+<h2>2 Import and rename data</h2>
 <ul>
 <li>Import the brown bear dataset using the appropriate function from
 the ‘readr’ package and save it as bear_data.<br />
@@ -533,8 +546,8 @@ data to check that it worked.</li>
 ## #   prop_seminatural &lt;dbl&gt;, prop_deciduous &lt;dbl&gt;, prop_coniferous &lt;dbl&gt;,
 ## #   prop_mixedforest &lt;dbl&gt;, prop_grassland &lt;dbl&gt;, prop_for_regen &lt;dbl&gt;</code></pre>
 </div>
-<div id="change-variable-type" class="section level3">
-<h3>3 Change variable type</h3>
+<div id="change-variable-type" class="section level2">
+<h2>3 Change variable type</h2>
 <ul>
 <li>Check the internal structure of the bear dataset<br />
 </li>
@@ -603,8 +616,8 @@ worked. HINT: Use the help file if you aren’t familiar with
 ##  - attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</code></pre>
 <pre><code>## [1] &quot;alte&quot;   &quot;bovine&quot; &quot;ovine&quot;</code></pre>
 </div>
-<div id="subsetting" class="section level3">
-<h3>4 Subsetting</h3>
+<div id="subsetting" class="section level2">
+<h2>4 Subsetting</h2>
 <ul>
 <li>Now that we know there are 3 livestock types (groups), subset the
 data to include only the rows for ‘ovine’</li>
@@ -623,8 +636,8 @@ bear_abund, landcover_code, and altitude</li>
 ## 5      1  2008     9         40            112      516
 ## 6      1  2008     8         56            112      533</code></pre>
 </div>
-<div id="summarise" class="section level3">
-<h3>5 Summarise</h3>
+<div id="summarise" class="section level2">
+<h2>5 Summarise</h2>
 <ul>
 <li>Using the bear_sheep_data, calculate the mean, sd and SE (the
 formula for SE is sd / sqrt(n)) for altitude. <em>This last part might

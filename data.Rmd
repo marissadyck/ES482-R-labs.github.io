@@ -9,27 +9,27 @@ date: "2024"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-[Example Whitespace delimited data](data/data.txt) 
+[Example Whitespace delimited data](data/raw/data.txt) 
 
-[Example Comma delimited data](data/data.csv) 
+[Example Comma delimited data](data/raw/data.csv) 
 
-[Example missing data](data/data_missing.txt)
+[Example missing data](data/raw/data_missing.txt)
 
-[Turtle Data](data/turtle_data.txt)
+[Turtle Data](data/raw/turtle_data.txt)
 
-[Bear data](data/bear_2008_2016.csv)
+[Bear data](data/raw/bear_2008_2016.csv)
 
-[Bear glm example raw data](data/pagube_2008_2016_spatial.csv)
+[Bear glm example raw data](data/raw/pagube_2008_2016_spatial.csv)
 
-[Bear glm example cow data](data/cows.csv)
+[Bear glm example cow data](data/raw/cows.csv)
 
-[Bobcat necropsy data](data/Bobcat_necropsy_data.csv)
+[Bobcat necropsy data](data/raw/Bobcat_necropsy_data.csv)
 
 
 #### Added after 12 January 2024
 
-[Bobcat collection data for Purrr](data/bobcat_collection_data.csv)
+[Bobcat collection data for Purrr](data/raw/bobcat_collection_data.csv)
 
-[Bobcat necropsy data for Purrr](data/bobcat_necropsy_only_data.csv)
+[Bobcat necropsy data for Purrr](data/raw/bobcat_necropsy_only_data.csv)
 
-[Bobcat age data for Purrr](data/bobcat_age_data.csv)
+[Bobcat age data for Purrr](data/raw/bobcat_age_data.csv)
