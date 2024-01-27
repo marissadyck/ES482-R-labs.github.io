@@ -9,7 +9,7 @@ library(tidyverse)
   # import data ----------------------
 
 # read in altered turtles data
-turtles_tidy <- read_csv('data/turtles_tidy.csv')
+turtles_tidy <- read_csv('data/processed/turtles_tidy.csv')
 
 # print data
 turtles_tidy
@@ -139,7 +139,7 @@ levels(turtles_tidy$sex)
 # read in turtles data again and set 'sex' to factor to overwrite the changes we made with the last code chunk, and in the same code chunk we will 'recode' the 'sex' column
 
 # read in altered turtles data
-turtles_tidy <- read_csv('data/turtles_tidy.csv') %>% 
+turtles_tidy <- read_csv('data/processed/turtles_tidy.csv') %>% 
   
   # change sex to a factor
   mutate(sex = as.factor(sex),
@@ -238,7 +238,7 @@ mutate(price = case_when(price < 950 ~ 'low',
 
 # NOTE: you need to specify that this is a tab-delimited file. It is especially important to specify the delimiter for data files with missing data. If you specify the header and what the text is delimited by correctly, it will read missing data as NA. Otherwise it will fail to read data in properly.
 
-missing.df <- read_delim('data/data_missing.txt',
+missing.df <- read_delim('data/raw/data_missing.txt',
                          delim = "\t")  %>% 
   
   # set names to lowercase
@@ -324,7 +324,7 @@ missing.df %>%
 
   # Replace values with NA ----------------------
 
-bobcats <- read_csv('data/Bobcat_necropsy_data.csv') %>% 
+bobcats <- read_csv('data/raw/Bobcat_necropsy_data.csv') %>% 
   
   # set names to lowercase
   

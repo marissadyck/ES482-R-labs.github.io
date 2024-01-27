@@ -11,7 +11,6 @@
 
 <meta name="author" content="Module 4: Data manipulation" />
 
-<meta name="date" content="2024-01-26" />
 
 <title>Intro to R</title>
 
@@ -368,19 +367,19 @@ div.tocify {
       <a href="mod_3_ggplot_adv.html">Module 3: Advanced ggplot (coming soon)</a>
     </li>
     <li>
-      <a href="mod_4_beyond_ggplot.html">Module 4: Beyond ggplot (more coming)</a>
+      <a href="mod_4_beyond_ggplot.html">Module 4: Beyond ggplot</a>
     </li>
   </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Camera Data
+    Working with Camera Data
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="mod_1_cam_data.html">Module 1: Camera data organization and exploration</a>
+      <a href="mod_1_cam_data.html">Module 1: Camera data organization and exploration (coming soon)</a>
     </li>
   </ul>
 </li>
@@ -392,19 +391,19 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="mod_1_models.html">Module 1: Basiscs of data exploration and modeling</a>
+      <a href="mod_1_lm.html">Module 1: Linear regression (coming soon)</a>
     </li>
     <li>
-      <a href="mod_2_glm.html">Module 2: General and generalized linear models (GLMs)</a>
+      <a href="mod_2_glm.html">Module 2: Generalized linear models (GLMs)</a>
     </li>
     <li>
-      <a href="mod_3_glmm.html">Module 3: Generalized mixed effects models (GLMMs)</a>
+      <a href="mod_3_glmm.html">Module 3: General mixed effects models (GLMMs) (coming soon)</a>
     </li>
     <li>
-      <a href="mod_4_occ.html">Module 4: Occupancy models</a>
+      <a href="mod_4_occ.html">Module 4: Occupancy models (coming soon)</a>
     </li>
     <li>
-      <a href="mod_5_sem.html">Module 5: Structural equation models (SEMs)</a>
+      <a href="mod_5_sem.html">Module 5: Structural equation models (SEMs) (coming soon)</a>
     </li>
   </ul>
 </li>
@@ -422,13 +421,13 @@ div.tocify {
       <a href="assign_2.html">Assignment 2</a>
     </li>
     <li>
-      <a href="assign_3.html">Assignment 3</a>
+      <a href="assign_3.html">Assignment 3 (coming soon)</a>
     </li>
     <li>
-      <a href="assign_4.html">Assignment 4</a>
+      <a href="assign_4.html">Assignment 4 (coming soon)</a>
     </li>
     <li>
-      <a href="assign_5.html">Assignment 5</a>
+      <a href="assign_5.html">Assignment 5 (coming soon)</a>
     </li>
   </ul>
 </li>
@@ -466,7 +465,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Intro to R</h1>
 <h4 class="author">Module 4: Data manipulation</h4>
-<h4 class="date">26 January 2024</h4>
+<h4 class="date">6 &amp; 9 February 2024</h4>
 
 </div>
 
@@ -609,7 +608,7 @@ diamonds %&gt;%
 </div>
 <div id="ordering-data-columns" class="section level3">
 <h3>Ordering data (columns)</h3>
-<p>We can also reorder the columns in our dataset using
+<p>We can also reorder the columns in our data set using
 <code>relocate()</code>. In the turtles_tidy data if we want ‘weight’ to
 come before ‘c_length’ we can reorder the columns as follows</p>
 <pre class="r"><code># ordering data
@@ -1216,7 +1215,7 @@ ways to check for NAs</p>
 
 # NOTE: you need to specify that this is a tab-delimited file. It is especially important to specify the delimiter for data files with missing data. If you specify the header and what the text is delimited by correctly, it will read missing data as NA. Otherwise it will fail to read data in properly.
 
-missing.df &lt;- read_delim(&#39;data/data_missing.txt&#39;,
+missing.df &lt;- read_delim(&#39;data/raw/data_missing.txt&#39;,
                          delim = &quot;\t&quot;)  %&gt;% 
   
   # set names to lowercase
@@ -1562,7 +1561,7 @@ following steps</span></p>
 </ul>
 <pre class="r fold-hide"><code>  # Replace values with NA ----------------------
 
-bobcats &lt;- read_csv(&#39;data/Bobcat_necropsy_data.csv&#39;) %&gt;% 
+bobcats &lt;- read_csv(&#39;data/raw/Bobcat_necropsy_data.csv&#39;) %&gt;% 
   
   # set names to lowercase
   
