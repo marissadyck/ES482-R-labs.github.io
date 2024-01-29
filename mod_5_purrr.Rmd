@@ -1,7 +1,7 @@
 ---
 title: "Intro to R"
 author: "Module 5: The wonders of Purrr"
-date: "26 January 2024"
+date: "16 February 2024"
 output: 
   html_document:
     code_folding: show

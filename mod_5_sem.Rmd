@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 #      University of Victoria, Victoria BC Canada             
 
 #  Statistical Modeling
-# Module 3: Structural equation models (SEMs)
+# Module 5: Structural equation models (SEMs)
 
 
 ```
@@ -34,13 +34,26 @@ knitr::opts_chunk$set(
 
 ### Scripts
 
-1. Click [here](mod_3_sem.R) to download the script! Save the script to the 'scripts'' folder in your project directory you set up in the previous module.
+1. Click [here](mod_5_sem.R) to download the script! Save the script to the 'scripts'' folder in your project directory you set up in the previous module.
 
 2. Load your script in RStudio. To do this, open RStudio and click the **files** window and select the scripts folder and then this script.
 
 ### Cheat sheets
 
 There are no cheat sheets specific to this module but don't forget the ones you've already printed for previous modules!
+
+### R documentation
+
+Click [here](images/piecewiseSEM.pdf) to download the R documentation for the piecewsieSEM package
+
+### YouTube
+
+Below our several YouTube videos that provide a good introduction to SEMs
+
+[Intro to Structural Equation Modeling - Johnny Lin](https://www.youtube.com/watch?v=sKVFkVoYfbs)   
+
+[Structural Equation Models in Ecology - Jon Lefcheck](https://www.youtube.com/watch?v=VT-gw_VVP1E)    
+
 
 <center>
 ![](images/construction_dog.jpeg){width=40%}

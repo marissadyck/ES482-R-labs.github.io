@@ -395,7 +395,7 @@ div.tocify {
       <a href="mod_1_lm.html">Module 1: Linear regression (coming soon)</a>
     </li>
     <li>
-      <a href="mod_2_glm.html">Module 2: Generalized linear models (GLMs) (coming soon)</a>
+      <a href="mod_2_glm.html">Module 2: Generalized linear models (GLMs)</a>
     </li>
     <li>
       <a href="mod_3_glmm.html">Module 3: General mixed effects models (GLMMs) (coming soon)</a>
@@ -505,7 +505,9 @@ Brown_bear_predation_RO</a></p>
 conflict data set in Romania we worked with earlier.</p>
 <p><span style="color: blue;"> Read in the cows data from the
 data/processed folder. <span style="color: blue;"></p>
-<pre class="r fold-hide"><code># Read in data for this module
+<pre class="r fold-hide"><code># Data ----------------------
+
+# Read in data for this module
 
 cows &lt;- read.csv(&#39;data/processed/cows.csv&#39;)
 
@@ -705,7 +707,7 @@ as <em>cows_cor</em> <span style="color: blue;"></p>
 sure it worked <span style="color: blue;"></p>
 <pre class="r fold-hide"><code># Autocorrelation test --------------------
 
-# first let&#39;s make a subset of the data that only includes explanatory variables we plan to use in models we will assign this to the enviornment as cows_cor
+# first let&#39;s make a subset of the data that only includes explanatory variables we plan to use in models we will assign this to the environment as cows_cor
 
 cows_cor &lt;- 
   cows %&gt;% 
@@ -786,7 +788,9 @@ really important to look at your data again, and again, and again….</p>
 <div id="model-syntax" class="section level3">
 <h3>Model syntax</h3>
 <p>The syntax for a GLM in the <em>lme4</em> package is as follows</p>
-<pre class="r"><code>glm(response variable ~ explanatory variable 1 + explanatory variable 2,    
+<pre class="r"><code># GLM syntax ----------------------
+
+glm(response variable ~ explanatory variable 1 + explanatory variable 2,    
     data = your data,   
     family = chosen distribution)</code></pre>
 <p>Notice the code to run a GLM is relatively simple, yet data analysis
@@ -806,7 +810,10 @@ response variable which we already determine fits with a
 autocorrelation between our explanatory variables so we should ensure
 none of the variables that were highly correlated are in the same
 model.</p>
-<pre class="r"><code>cows_global &lt;- glm(damage ~ bear_abund + 
+<pre class="r"><code># GLM ----------------------
+
+# run a global GLM which includes all variables not highly correlated
+cows_global &lt;- glm(damage ~ bear_abund + 
                      dist_to_forest + 
                      dist_to_town +
                      openhab_10k +
@@ -814,9 +821,6 @@ model.</p>
                      shdi_10k,
                    data = cows, 
                    family = binomial)</code></pre>
-<p>Printing the summary of our model gives us a lot of useful
-information but it can be overwhelming at first if you don’t know what
-you are looking at so let’s walk through it.</p>
 </div>
 <div id="test-assumptions" class="section level3">
 <h3>Test Assumptions</h3>
@@ -829,7 +833,11 @@ wouldn’t need to test this assumption but as an example we can set
 <em>year</em> as a factor and run Levene’s test on a model that predicts
 <em>damage</em> as a function of <em>year</em> and interpret the
 result.</p>
-<pre class="r"><code>cows &lt;- cows %&gt;% 
+<pre class="r"><code># Test assumptions ----------------------
+
+# Homogeneity of variance
+
+cows &lt;- cows %&gt;% 
   
   # change year to a grouped variable (factor)
   mutate(year = as.factor(year))
@@ -854,7 +862,9 @@ to use the negative binomial distribution. We can do this with some
 manual calculations using information from the model summary. We want to
 calculate a chi square approximation of residual deviance which equals
 (residual deviance / degrees of freedom)</p>
-<pre class="r"><code># test for over dispersion
+<pre class="r"><code># Dispersion
+
+# test for over dispersion
 summary(cows_global)</code></pre>
 <pre><code>## 
 ## Call:
@@ -895,7 +905,12 @@ summary(cows_global)</code></pre>
 </div>
 <div id="interpreting-model-output" class="section level2">
 <h2>Interpreting model output</h2>
-<pre class="r"><code>summary(cows_global)</code></pre>
+<p>Printing the summary of our model gives us a lot of useful
+information but it can be overwhelming at first if you don’t know what
+you are looking at so let’s walk through it.</p>
+<pre class="r"><code># Results ----------------------
+
+summary(cows_global)</code></pre>
 <pre><code>## 
 ## Call:
 ## glm(formula = damage ~ bear_abund + dist_to_forest + dist_to_town + 
@@ -976,7 +991,9 @@ same scale. This allows us to calculate <strong>effect sizes</strong>
 and determine which variables have greatest influence.</p>
 <p>To scale our data we can nest the <code>scale ()</code>
 <strong>function</strong> inside our model.</p>
-<pre class="r"><code># scale variables inside the glm model to get effect sizes when looking at coefficients
+<pre class="r"><code># re-run scaled model
+
+# scale variables inside the glm model to get effect sizes when looking at coefficients
 cows_global &lt;- glm(damage ~ scale(bear_abund) + 
                      scale(dist_to_forest) + 
                      scale(dist_to_town) +
@@ -1073,7 +1090,9 @@ original data. The other variables are held constant at the mean to
 allow for accurate graphing and depiction of the relationship between
 the variable of interest and the response (predicted probability of our
 response)</p>
-<pre class="r"><code># first create a new data frame that includes all variables in the model (spelled EXACTLY the same) and where one variable (the one we want to graph) has a range from the min to max value in our data and the other variables are held constant at the mean value from the data.
+<pre class="r"><code># Newdata ----------------------
+
+# first create a new data frame that includes all variables in the model (spelled EXACTLY the same) and where one variable (the one we want to graph) has a range from the min to max value in our data and the other variables are held constant at the mean value from the data.
 
 # let&#39;s start with bear abundance
 new_data_bear &lt;- expand.grid(bear_abund = seq(min(cows$bear_abund), 
@@ -1632,7 +1651,9 @@ an error then.</p>
 <p>Now that we have predicted probabilities from our model for one of
 our variables we can graph these predictions to aid in interpreting and
 conveying our results.</p>
-<pre class="r"><code># create graph with predicted prob x bear abundance
+<pre class="r"><code># Graphs ----------------------
+
+# create graph with predicted prob x bear abundance
 ggplot(data = new_data_bear_pred, aes(x = bear_abund, y = fit)) +
   
   # add line for predicted prob
@@ -1716,7 +1737,9 @@ present the results of this model.</p>
 (e.g., the one we just ran which includes all variables that are not
 highly correlated) and a null model (used to ensure data are actually
 describing more variation than if no data were included)</p>
-<pre class="r"><code># models for model selection
+<pre class="r"><code># Model selection ----------------------
+
+# models for model selection
 
 # we already ran cows_global but here is code again
 cows_global &lt;- glm(damage ~ scale(bear_abund) + 
