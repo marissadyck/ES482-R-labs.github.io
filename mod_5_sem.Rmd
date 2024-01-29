@@ -27,6 +27,9 @@ knitr::opts_chunk$set(
 #  Statistical Modeling
 # Module 5: Structural equation models (SEMs)
 
+# Libraries --------------------
+
+library(piecewiseSEM)
 
 ```
 
@@ -53,6 +56,27 @@ Below our several YouTube videos that provide a good introduction to SEMs
 [Intro to Structural Equation Modeling - Johnny Lin](https://www.youtube.com/watch?v=sKVFkVoYfbs)   
 
 [Structural Equation Models in Ecology - Jon Lefcheck](https://www.youtube.com/watch?v=VT-gw_VVP1E)    
+
+*A lot of the material and code presented in this module is taken from Lefcheck's seminar on SEM.*
+
+## What is SEM?
+
+Structural equation modeling is a statistical approach that allows us to test multiple (network) hypotheses regarding the relationships between multiple variables in our data simultaneously. The name itself tells us a lot about how these models work
+
+### Structural
+
+Implies that there is an underlying structure (cause and effect) and we have a hypothesis regarding what that underlying structure is.
+
+### Equation
+
+These hypotheses can then be translated to a series of mathematical equations ( individual general linear regressions) that are grouped within a single causal network. These equations are particularly useful to assess direct AND indirect effects within a system.
+
+### Modeling
+
+We can then fit these equations to data to support or refute our hypothesized structure.
+
+> With SEMs our analysis is heavily reliant on the hypothesized underlying structure (our proposed causes and effects) so it is crucial when applying SEM that you have a strong understanding of your system. 
+
 
 
 <center>

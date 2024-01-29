@@ -367,19 +367,19 @@ div.tocify {
       <a href="mod_3_ggplot_adv.html">Module 3: Advanced ggplot (coming soon)</a>
     </li>
     <li>
-      <a href="mod_4_beyond_ggplot.html">Module 4: Beyond ggplot (more coming)</a>
+      <a href="mod_4_beyond_ggplot.html">Module 4: Beyond ggplot</a>
     </li>
   </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Camera Data
+    Working with Camera Data
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="mod_1_cam_data.html">Module 1: Camera data organization and exploration</a>
+      <a href="mod_1_cam_data.html">Module 1: Camera data organization and exploration (coming soon)</a>
     </li>
   </ul>
 </li>
@@ -391,19 +391,19 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="mod_1_models.html">Module 1: Basiscs of data exploration and modeling</a>
+      <a href="mod_1_lm.html">Module 1: Linear regression (coming soon)</a>
     </li>
     <li>
-      <a href="mod_2_glm.html">Module 2: General and generalized linear models (GLMs)</a>
+      <a href="mod_2_glm.html">Module 2: Generalized linear models (GLMs)</a>
     </li>
     <li>
-      <a href="mod_3_glmm.html">Module 3: Generalized mixed effects models (GLMMs)</a>
+      <a href="mod_3_glmm.html">Module 3: General mixed effects models (GLMMs) (coming soon)</a>
     </li>
     <li>
-      <a href="mod_4_occ.html">Module 4: Occupancy models</a>
+      <a href="mod_4_occ.html">Module 4: Occupancy models (coming soon)</a>
     </li>
     <li>
-      <a href="mod_5_sem.html">Module 5: Structural equation models (SEMs)</a>
+      <a href="mod_5_sem.html">Module 5: Structural equation models (SEMs) (coming soon)</a>
     </li>
   </ul>
 </li>
@@ -421,13 +421,13 @@ div.tocify {
       <a href="assign_2.html">Assignment 2</a>
     </li>
     <li>
-      <a href="assign_3.html">Assignment 3</a>
+      <a href="assign_3.html">Assignment 3 (coming soon)</a>
     </li>
     <li>
-      <a href="assign_4.html">Assignment 4</a>
+      <a href="assign_4.html">Assignment 4 (coming soon)</a>
     </li>
     <li>
-      <a href="assign_5.html">Assignment 5</a>
+      <a href="assign_5.html">Assignment 5 (coming soon)</a>
     </li>
   </ul>
 </li>
@@ -488,6 +488,22 @@ the best coding practices section and comments as needed.</p>
 <p>Create a vector called ‘myvec’ using any of the methods you learned
 with numbers 1 to 10. <em>Note there are multiple ways to do
 this</em>.</p>
+<pre class="r fold-hide"><code># (1 pt)
+
+# answer 1 (the most parsimonious)
+myvec &lt;- 1:10
+
+# answer 2
+myvec &lt;- c(1, 10)
+
+# answer 3 (time consuming)
+myvec &lt;- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+# answer 4 (unecessarily complicated for this exercise but works)
+myvec &lt;- seq(1, 10, by = 1)
+
+myvec</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 </div>
 <div id="create-a-matrix-with-rbind" class="section level2">
 <h2>2 Create a matrix with <code>rbind()</code></h2>
@@ -497,6 +513,15 @@ three rows/vectors together:</p>
 <pre><code>c(1,4) 
 c(2,5) 
 c(3,6)</code></pre>
+<pre class="r fold-hide"><code># (1 pt)
+
+mymat &lt;- rbind(
+  c(1,4),
+  c(2,5),
+  c(3,6)
+)
+
+mymat</code></pre>
 <pre><code>##      [,1] [,2]
 ## [1,]    1    4
 ## [2,]    2    5
@@ -508,11 +533,35 @@ c(3,6)</code></pre>
 ‘mydf’. <em>Hint see the R functions to explore data section</em>. Then
 extract all rows for column 5 by name, do the same thing using the
 element position e.g. <code>[]</code></p>
+<pre class="r fold-hide"><code># code to create mydf
+my.data &lt;- data.frame(
+  Obs.Id = 1:100,
+  Treatment = rep(c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;,&quot;E&quot;),
+                  each = 20),
+  Block = rep(1:20,
+              times = 5),
+  Germination = rpois(100,
+                      lambda = rep(c(1,5,4,7,1),
+                                   each = 20)),   # random poisson variable
+  AvgHeight = rnorm(100,
+                    mean = rep(c(10,30,31,25,35,7),
+                               each = 20))
+)
+
+mydf = my.data[21:30, ]  
+
+# answer for problem 1
+
+# (3 pts)
+
+names(mydf)</code></pre>
 <pre><code>## [1] &quot;Obs.Id&quot;      &quot;Treatment&quot;   &quot;Block&quot;       &quot;Germination&quot; &quot;AvgHeight&quot;</code></pre>
-<pre><code>##  [1] 30.60342 31.59516 29.36262 30.17308 29.23013 31.25661 29.57206 28.90175
-##  [9] 28.72807 30.88740</code></pre>
-<pre><code>##  [1] 30.60342 31.59516 29.36262 30.17308 29.23013 31.25661 29.57206 28.90175
-##  [9] 28.72807 30.88740</code></pre>
+<pre class="r fold-hide"><code>mydf$AvgHeight</code></pre>
+<pre><code>##  [1] 30.97511 30.33584 30.28112 29.00601 28.67642 29.89063 30.41488 30.25876
+##  [9] 30.08120 28.46604</code></pre>
+<pre class="r fold-hide"><code>mydf[ , 5]</code></pre>
+<pre><code>##  [1] 30.97511 30.33584 30.28112 29.00601 28.67642 29.89063 30.41488 30.25876
+##  [9] 30.08120 28.46604</code></pre>
 </div>
 <div id="create-a-matrix" class="section level2">
 <h2>4 Create a matrix</h2>
@@ -525,17 +574,22 @@ help files.</em></p>
 <p>Note your values for some columns may be slighly different since the
 code to create mydf uses random number generators.</p>
 </blockquote>
+<pre class="r fold-hide"><code># (1 pt)
+
+mymat2 &lt;- as.matrix(mydf[ , 3:5])
+
+mymat2</code></pre>
 <pre><code>##    Block Germination AvgHeight
-## 21     1           7  29.32599
-## 22     2           9  29.28974
-## 23     3           8  30.24487
-## 24     4           6  30.28996
-## 25     5           6  29.41751
-## 26     6           9  30.58505
-## 27     7           5  29.56381
-## 28     8           3  30.21980
-## 29     9           3  30.54180
-## 30    10           1  31.11320</code></pre>
+## 21     1           3  30.97511
+## 22     2           5  30.33584
+## 23     3           7  30.28112
+## 24     4           6  29.00601
+## 25     5           3  28.67642
+## 26     6           5  29.89063
+## 27     7           2  30.41488
+## 28     8           2  30.25876
+## 29     9           6  30.08120
+## 30    10           5  28.46604</code></pre>
 </div>
 <div id="create-a-list" class="section level2">
 <h2>5 Create a list</h2>
@@ -544,6 +598,24 @@ code to create mydf uses random number generators.</p>
 - a matrix: matrix(1:6, nrow = 3, ncol = 2),<br />
 - and a data frame: data.frame(x =c (1, 2, 3), y = c(TRUE, FALSE, TRUE),
 z = c(“a”, “a”, “b”)).</p>
+<pre class="r fold-hide"><code>#create an empty list
+mylist &lt;- list()
+
+# add a vector of 1 to 3 to the list
+mylist[[1]] &lt;- 1:3
+
+# add a matrix to the list
+mylist[[2]] &lt;- matrix(1:6,
+                      nrow = 3,
+                      ncol = 2)
+
+# add a data frame to the list
+mylist[[3]] &lt;- data.frame(x = c(1, 2,3 ),
+                          y = c(TRUE, FALSE, TRUE),
+                          z = c(&quot;a&quot;, &quot;a&quot;, &quot;b&quot;))
+
+# print the list
+mylist</code></pre>
 <pre><code>## [[1]]
 ## [1] 1 2 3
 ## 
@@ -563,6 +635,13 @@ z = c(“a”, “a”, “b”)).</p>
 <h2>6 Extracting objects from lists</h2>
 <p>Extract the second and third observation from the 1st column of the
 data frame in ‘mylist’ (the list created above).</p>
+<pre class="r fold-hide"><code># multiple ways to do this
+
+# answer 1 - reference the element in the list [[3]] then the rows and columns you want from that element [2:3, 1]
+mylist[[3]][2:3, 1]</code></pre>
+<pre><code>## [1] 2 3</code></pre>
+<pre class="r fold-hide"><code># answer 2 call mylist then reference the position of the data frame in the list [[3]], then the column in the data frame [[1]], and finally the observations within that columns c(2, 3)
+mylist[[3]][[1]][c(2, 3)]</code></pre>
 <pre><code>## [1] 2 3</code></pre>
 </div>
 
