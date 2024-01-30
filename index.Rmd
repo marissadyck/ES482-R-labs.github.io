@@ -65,7 +65,7 @@ Also, it can be very helpful to print out R 'cheat sheets' and bring that with y
 
 [Base R cheatsheet](https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf)           
 [R reference card](https://cran.r-project.org/doc/contrib/Short-refcard.pdf)  
-[Various R cheatsheets](https://posit.co/resources/cheatsheets/?type=posit-cheatsheets&_page=2/) (I recommend the following 3: 'Data tidying with tidyr', 'Data transformation with dpylr', and 'Data visualization with ggplot2' cheat sheets for this course)
+[Various R cheatsheets](https://posit.co/resources/cheatsheets/?type=posit-cheatsheets&_page=2/) (I recommend the following 3: 'Data tidying with tidyr', 'Data transformation with dpylr', 'Apply functions with purrr', and 'Data visualization with ggplot2' cheat sheets for this course)
 
 ### Download data
 
