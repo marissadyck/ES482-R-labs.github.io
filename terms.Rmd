@@ -57,6 +57,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## K - O
 
+**Latent variable** - variables in a structural equation model for which we have not measured    
+
 **Library** - the directory where the packages are stored. You must load packages to your library every new session.
 
 **List** - are more general than matrices. List objects are just a bunch of arbitrary R data objects (called list elements) grouped together into a single object! The elements of a list don't need to be the same length or the same type. 
@@ -71,12 +73,16 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **Object** - Variables that can take many types and are saved to the environment using the assignment operator.
 
+**Observed variable** - Variables in a structural equation model for which we have data on.   
+
 **Odds ratio** - A measure of association between a variable and an expected outcome, this represents the odds that an outcome will occur given a particular exposure compared to the odds of the outcome occurring in the absence of that exposure.
 
 
 ## P - Z
 
 **Packages** - Packages are collections of compiled code, functions, and sometimes data that you can access by installing them and then storing them to your library. You can look up packages in the third panel of the lower right window.
+
+**Path diagram** - Graphical tool used to depict relationships between variables (structured equations) for a structural equation model.   
 
 **Plots** - This panel is where you can view plots you have created and export them (although there are better ways). By default this is the second panel in the bottom right window.
 

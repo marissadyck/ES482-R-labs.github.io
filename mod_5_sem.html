@@ -494,12 +494,14 @@ the ones you’ve already printed for previous modules!</p>
 <p>Click <a href="images/piecewiseSEM.pdf">here</a> to download the R
 documentation for the piecewsieSEM package</p>
 </div>
-<div id="youtube" class="section level3">
-<h3>YouTube</h3>
+<div id="video-resources" class="section level3">
+<h3>Video resources</h3>
 <p>Below our several YouTube videos that provide a good introduction to
 SEMs</p>
 <p><a href="https://www.youtube.com/watch?v=sKVFkVoYfbs">Intro to
 Structural Equation Modeling - Johnny Lin</a></p>
+<p><em><a href="https://rpubs.com/dsalcido/pathanalysis">This
+website</a> pairs with the above video.</em></p>
 <p><a href="https://www.youtube.com/watch?v=VT-gw_VVP1E">Structural
 Equation Models in Ecology - Jon Lefcheck</a></p>
 <p><em>A lot of the material and code presented in this module is taken
@@ -534,6 +536,245 @@ underlying structure (our proposed causes and effects) so it is crucial
 when applying SEM that you have a strong understanding of your
 system.</p>
 </blockquote>
+<p>And a model is not set in stone, adjustments can be made to the
+hypothesized structure as new information becomes available and from the
+results of the analysis in an iterative fashion.</p>
+</div>
+<div id="path-diagrams" class="section level3">
+<h3>Path diagrams</h3>
+<p><strong>Path diagrams</strong> are a graphical tool used with SEMs to
+depict the relationships between variables (structured equations). There
+is a somewhat standardized way of presenting a path diagram shown in the
+example below as well as common terminology to be familiar with.</p>
+<p><img src="images/path_analysis.png" /></p>
+<p>In the diagram above there are <strong>exogenous</strong> and
+<strong>endogenous</strong> variables represented by the rectangles.</p>
+<ul>
+<li><p><strong>Exogenous variables</strong> are independent variables
+that explain one or more <strong>endogenous</strong> variables, meaning
+they only have arrows pointing away from them and not towards them
+(solely explanatory variables) and when translated to a formula they
+will never be on the left side of the ‘~’.</p></li>
+<li><p><strong>Endogenous variables</strong> are dependent (response)
+variables that are explained by other variables in the model. Thus
+arrows point towards them (and can also point away) representing causal
+paths.</p></li>
+</ul>
+<p>Both <strong>exogenous</strong> and <strong>endogenous</strong>
+variables can be either <strong>observed</strong> or
+<strong>latent</strong> variables. <strong>Observed</strong> variables
+are most common and are variables for which we can measure and have data
+for. <strong>Latent</strong> variables are unmeasured variables which
+can also be modeled with SEMs but we will not be covering that in this
+module. <strong>Observed</strong> and <strong>latent</strong> variables
+are often represented with different shapes in a <strong>path
+diagram</strong>.</p>
+<ul>
+<li>Arrows represent relationships among variables, the variable the
+arrow is pointing to is the dependent (response) variable and the
+variable the arrow is pointing away from is the independent
+(explanatory) variable.</li>
+</ul>
+<p>We can break down the above diagram into individual structured
+equations in a format you are likely more familiar with using the
+equation for a linear regression.</p>
+<p><img src="images/linear_regression_formula.png"
+style="width:60.0%" /></p>
+<p>The <em>simplified</em> individual equations for the diagram above
+would be as follows</p>
+<ul>
+<li>y1 ~ x1<br />
+</li>
+<li>y2 ~ x1 + y1</li>
+</ul>
+<p>In these simplified formulas we have not written out the slope terms,
+but they are estimated from the model, or error terms. But as with all
+statistical analysis there is some amount of error associated with
+estimating one variable from another and this can be represented
+graphically in a <strong>path diagram</strong> as shown below.</p>
+<p><img src="images/PathModel6.png" /></p>
+<p>There may also be variables in your <strong>path diagram</strong>
+that co-vary, but you don’t expect to have a causal relationship. These
+are depicted often depicted in diagrams with curved arrows and can be
+modeled using the syntax below</p>
+<p>y1 covariance with y2<br />
+- y1 ~~ y2</p>
+</div>
+</div>
+<div id="sem-in-r" class="section level2">
+<h2>SEM in R</h2>
+<div id="piecewisesem-package" class="section level3">
+<h3>PiecewiseSEM package</h3>
+<p>There are multiple packages available in R for SEM analysis, the one
+we will focus on is the <em>PiecewiseSEM</em> package developed my Jon
+Lefcheck. This adaptation of SEM is informed by graph theory and varies
+from older approaches to SEM in that instead of estimating a single
+global matrix which includes all the variables at once it estimates each
+equation individually which increases the flexibility of the analysis.
+Each equation can have different assumptions, different error
+distributions, fitting functions, etc. This makes PiecewiseSEM useful
+for messy data we are often working with in ecology.</p>
+<p>Another common SEM package is the <em>lavaan</em> package, which has
+less flexibility but is maybe more widely known as it was developed
+earlier. Click <a
+href="https://lavaan.ugent.be/tutorial/sem.html">here</a> a short SEM
+example with the <em>lavaan</em> package.</p>
+<p>First we need to install and load the <em>PiecewiseSEM</em>
+package.</p>
+<pre class="r"><code># Libraries ----------------------
+
+# install package
+install.packages(&quot;piecewiseSEM&quot;)
+
+# load library
+library(piecewiseSEM)</code></pre>
+</div>
+<div id="data" class="section level3">
+<h3>Data</h3>
+<p>For this example we will be working with the <em>keeley</em> data set
+which is loaded with the <em>piecewiseSEM</em> package. This is from <a
+href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1890/1051-0761%282006%29016%5B0503%3AASEMAO%5D2.0.CO%3B2">Grace
+and Keeley 2006</a> paper published in <em>Ecological
+Applications</em></p>
+<p>Let’s load the keeley data and take a look at it</p>
+<pre class="r"><code># Data ----------------------
+
+# Load Keeley data set
+data(keeley)
+
+# Examine Keeley data
+head(keeley)</code></pre>
+<pre><code>##   distance elev  abiotic age   hetero firesev     cover rich
+## 1 53.40900 1225 60.67103  40 0.757065    3.50 1.0387974   51
+## 2 37.03745   60 40.94291  25 0.491340    4.05 0.4775924   31
+## 3 53.69565  200 50.98805  15 0.844485    2.60 0.9489357   71
+## 4 53.69565  200 61.15633  15 0.690847    2.90 1.1949002   64
+## 5 51.95985  970 46.66807  23 0.545628    4.30 1.2981890   68
+## 6 51.95985  970 39.82357  24 0.652895    4.00 1.1734866   34</code></pre>
+<p>This data set contains 90 observations of 8 plant community metrics
+and is used frequently as an example with SEM data. For more information
+on the keeley data you can reference the help file</p>
+<pre class="r"><code># learn more about keeley data
+?piecewiseSEM::keeley</code></pre>
+</div>
+<div id="fit-sem-to-data" class="section level3">
+<h3>Fit SEM to data</h3>
+<p><em>The following code and images are taken from Lefcheck’s seminar
+in the statistical methods series, which is linked above</em></p>
+<p>There are multiple ways to fit a structural equation model to your
+data in R but both require that you break down the components of your
+network into individual component regressions.</p>
+<p>Let’s say this is your hypothesized network structure</p>
+<p><img src="images/sem_fire_network.png" /></p>
+<p>For each of the <strong>endogenous variables</strong> (dependent
+variables) you must write a regression equation.</p>
+<pre class="r"><code># SEM model ----------------------
+
+# option 1 to fit SEM model to data
+# Break down component regressions
+
+abiotic_model &lt;- lm(abiotic ~ distance, data = keeley)
+hetero_model &lt;- lm(hetero ~ distance, data = keeley)
+richness_model &lt;- lm(rich ~ abiotic + hetero, data = keeley)
+
+# Use the `psem` function to create the SEM
+keeley_sem_1a &lt;- psem(abiotic_model, hetero_model, richness_model)
+
+
+# option 2
+# nest the component regressions inside the &#39;psem&#39; function
+
+keeley_sem_1b &lt;- psem(
+  lm(abiotic ~ distance, data = keeley),
+  lm(hetero ~ distance, data = keeley),
+  lm(rich ~ abiotic + hetero, data = keeley)
+)</code></pre>
+</div>
+<div id="interpreting-model-output" class="section level3">
+<h3>Interpreting model output</h3>
+<p>As with other regression models, we can use the
+<code>summary()</code> <strong>function</strong> to examine our SEM</p>
+<pre class="r"><code>summary(keeley_sem_1b)</code></pre>
+<pre><code>## 
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |===================================                                   |  50%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+<pre><code>## 
+## Structural Equation Model of keeley_sem_1b 
+## 
+## Call:
+##   abiotic ~ distance
+##   hetero ~ distance
+##   rich ~ abiotic + hetero
+## 
+##     AIC
+##  1175.290
+## 
+## ---
+## Tests of directed separation:
+## 
+##           Independ.Claim Test.Type DF Crit.Value P.Value    
+##    rich ~ distance + ...      coef 86     4.0933  0.0001 ***
+##   hetero ~ abiotic + ...      coef 87     1.3296  0.1871    
+## 
+## --
+## Global goodness-of-fit:
+## 
+## Chi-Squared = 17.831 with P-value = 0 and on 2 degrees of freedom
+## Fisher&#39;s C = 21.862 with P-value = 0 and on 4 degrees of freedom
+## 
+## ---
+## Coefficients:
+## 
+##   Response Predictor Estimate Std.Error DF Crit.Value P.Value Std.Estimate    
+##    abiotic  distance   0.3998    0.0823 88     4.8562   0e+00       0.4597 ***
+##     hetero  distance   0.0045    0.0013 88     3.4593   8e-04       0.3460 ***
+##       rich   abiotic   0.8136    0.1746 87     4.6586   0e+00       0.4136 ***
+##       rich    hetero  45.0702   11.6797 87     3.8589   2e-04       0.3426 ***
+## 
+##   Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05
+## 
+## ---
+## Individual R-squared:
+## 
+##   Response method R.squared
+##    abiotic   none      0.21
+##     hetero   none      0.12
+##       rich   none      0.37</code></pre>
+<pre class="r"><code># can run the code below to check that both ways of fitting an SEM to your data have the same result
+# summary(keeley_sem_1a)</code></pre>
+<p>Also similar to other model summaries the first bit of information
+that it printed with the <code>summary()</code>
+<strong>function</strong> is the ‘Call:’ which provides the equations
+for each component of your SEM.</p>
+<p><img src="images/keeley_sem_summary_call.png" /></p>
+<p>This is followed by an AIC score which can be used to compare
+models.</p>
+<p>Then we get into some information that may be new to you, a printout
+of the test of directed separation. This is a function built in to the
+<em>piecewiseSEM</em> package that assesses independence claims (missing
+pathways) in your network. Basically for any variables without a path
+coefficient (arrow between them in your <strong>path diagram</strong>)
+this function will evaluate the importance and provide a p-value
+associated with that path coefficient. This can be used to evaluate your
+model in case there were causal pathways between variables you did not
+predict.</p>
+<p><img src="images/keeley_sem_summary_tds.png" /></p>
+<p>If there are many independence claims that are significant and are
+not included in your SEM structure it is likely your model will have a
+poor fit.</p>
+<p>Goodness of fit is presented in the next section. Both the
+chi-squared and Fisher’s C test are testing a null hypothesis that the
+actual data structure does not differ significantly from the proposed
+model structure and therefore we want to fail to reject the null
+hypothesis (e.g., p-value &gt; 0.05). A higher p-value for the goodness
+of fit means that the model structure is not significantly different
+than implied by the data.</p>
+<p><img src="images/keeley_sem_summary_gof.png" /></p>
+<p>In this example the p-value is 0, indicating poor model fit.</p>
 <center>
 <img src="images/construction_dog.jpeg" style="width:40.0%" />
 </center>
