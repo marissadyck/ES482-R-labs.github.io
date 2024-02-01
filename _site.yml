@@ -27,10 +27,6 @@ navbar:
           href: mod_3_ggplot_adv.html
         - text: "Module 4: Beyond ggplot"
           href: mod_4_beyond_ggplot.html
-    - text: "Working with Camera Data"
-      menu:
-        - text: "Module 1: Camera data organization and exploration (coming soon)"
-          href: mod_1_cam_data.html
     - text: "Statistical Modeling"
       menu:
         - text: "Module 1: Linear regression (coming soon)"

@@ -2,7 +2,12 @@
 title: "Data Visualization"
 author: "Module 4: Beyond ggplot"
 date: "2024"
-output: html_document
+output: 
+  html_document:
+    code_folding: show
+    theme: journal
+    toc: yes
+    toc_float: yes
 ---
 
 ```{r setup, include=FALSE}

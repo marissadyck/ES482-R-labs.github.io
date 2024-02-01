@@ -1,7 +1,7 @@
 ---
 title: "Assignment 3"
 author: "Data manipulation"
-date: "Due 16 February 2024"
+date: "Due 23 February 2024"
 output: 
   html_document:
     code_folding: show
@@ -24,6 +24,11 @@ knitr::opts_chunk$set(echo = TRUE,
 
 library(tidyverse)
 ```
+
+## Submission
+Please email me a copy of your R script for this assignment by start of class on **Friday February 23rd** with your first and last name followed by assignment 3 as the file name (e.g. 'marissa_dyck_assignment3.R')
+
+> You should always be following best coding practices (see Intro to R module 1) but especially for assingment submissions. Please make sure each problem has its own header so that I can easily navigate to your answers and that your code is well organized with spaces as described in the best coding practices section and comments as needed. 
 
 ## 1 Remove NAs
 Using the turtles_tidy data, remove all rows with NAs and create a new dataset from this called "turtles_no_na" 

@@ -69,7 +69,6 @@ Please let me know if there are other links you think should be included on this
  [a nice simple Markdown syntax guide](https://confluence.atlassian.com/bitbucketserver/markdown-syntax-guide-776639995.html)  
 
 
- 
 ## Time Series Analysis
  [A regression approach to time series analysis](http://node101.psych.cornell.edu/Darlington/series/series0.htm)  
  
