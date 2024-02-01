@@ -69,7 +69,7 @@ Download the [brown bear damage data](data/bear_2008_2016.csv) and save it in th
 
 ```{r echo=FALSE}
 
-bear_data <- read_csv('data/bear_2008_2016.csv') %>% 
+bear_data <- read_csv('data/raw/bear_2008_2016.csv') %>% 
   
   # set column names to lowercase
   set_names(
@@ -125,7 +125,7 @@ head(bear_sheep_data)
 ```
 
 ## 5 Summarise 
-* Using the bear_sheep_data, calculate the mean, sd and SE (the formula for SE is sd / sqrt(n)) for altitude. *This last part might be tricky at first but give it a try and remember you can always google things and check the 'help' files; and if that fails 'phone a friend or me'*
+* Using the bear_sheep_data and the `summarise()` **function**, calculate the mean, sd and SE (the formula for SE is sd / sqrt(n)) for altitude. *This last part might be tricky at first but give it a try and remember you can always google things and check the 'help' files; and if that fails 'phone a friend or me'*
 
 ```{r echo=FALSE}
 
