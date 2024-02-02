@@ -889,7 +889,7 @@ write_csv(turtles.df,
 ```
 
 
-Download the [brown bear damage data](data/bear_2008_2016.csv) and save it in the data folder. 
+Download the [brown bear damage data (bear_2008_2016.csv)](data/raw/bear_2008_2016.csv) and save it in the data folder. 
 
 ### 2 Import and rename data
 * Import the brown bear dataset from the *data/raw* folder using the appropriate function from the 'readr' package and save it as bear_data.    
