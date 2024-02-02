@@ -98,6 +98,8 @@ turtles_tidy %>%
 
 # check structure of turtles_tidy
 str(turtles_tidy)
+
+
   # Data modification ----------------------
 
   # Replace ---------------------

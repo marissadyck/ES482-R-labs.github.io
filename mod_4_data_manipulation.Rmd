@@ -203,7 +203,8 @@ First, we can use the `mutate()` and `replace()` **functions**. Recall that `mut
 
 
 ```{r}
-  # Data modification ----------------------
+ 
+ # Data modification ----------------------
 
   # Replace ---------------------
 
