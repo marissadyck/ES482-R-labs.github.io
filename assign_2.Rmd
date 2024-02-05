@@ -32,7 +32,7 @@ Please email me a copy of your R script for this assignment by start of class on
 
 ## 1 Export data
 Save the altered turtles data as a comma separated file to the *data/processed* folder in your working directory using the 'readr' package and name it 'turtles_tidy'
-```{r echo=FALSE, message=FALSE}
+```{r message=FALSE, class.source = 'fold-hide'}
 
 # code for altering turtle data
 turtles.df <- read_delim('data/raw/turtle_data.txt',
@@ -67,7 +67,7 @@ Download the [brown bear damage data (bear_2008_2016.csv)](data/raw/bear_2008_20
 * change dist_to_town to m_to_town and dist_to_forest to m_to_forest (m for meters)    
 * Finally, use one of the functions we've covered to view/print your data to check that it worked.
 
-```{r echo=FALSE}
+```{r class.source = 'fold-hide'}
 
 bear_data <- read_csv('data/raw/bear_2008_2016.csv') %>% 
   
@@ -89,7 +89,7 @@ head(bear_data)
 * Change 'targetspp' from **character** to **factor** using *dplyr* make sure to overwrite the previous bear data so the changes are saved    
 * Use the 'levels()' **function** to check if this worked. HINT: Use the help file if you aren't familiar with 'levels()'
 
-```{r echo=FALSE}
+```{r class.source = 'fold-hide'}
 
 str(bear_data)
 
@@ -104,7 +104,7 @@ levels(bear_data$targetspp)
 * Now that we know there are 3 livestock types (groups), subset the data to include only the rows for 'ovine' 
 * In the same code chunk select the columns damage, year, month, bear_abund, landcover_code, and altitude
 * Save this to your **environment** as 'bear_sheep_data'
-```{r echo=FALSE}
+```{r class.source = 'fold-hide'}
 
 bear_sheep_data <- bear_data %>% 
   
@@ -127,12 +127,18 @@ head(bear_sheep_data)
 ## 5 Summarise 
 * Using the bear_sheep_data and the `summarise()` **function**, calculate the mean, sd and SE (the formula for SE is sd / sqrt(n)) for altitude. *This last part might be tricky at first but give it a try and remember you can always google things and check the 'help' files; and if that fails 'phone a friend or me'*
 
-```{r echo=FALSE}
+```{r class.source = 'fold-hide'}
 
 bear_sheep_data %>% 
   summarise(mean_alt = mean(altitude),
             sd_alt = sd(altitude),
             se_alt = sd_alt/sqrt(length(altitude))) # you could also look up the length for altitude in the console and type the number here directly but this is more flexible and readable
 
+# or another possible answer
+
+bear_sheep_data %>% 
+  summarise(mean_alt = mean(altitude),
+            sd_alt = sd(altitude),
+            se_alt = sd_alt/sqrt(n()))
 
 ```
