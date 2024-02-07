@@ -6,17 +6,20 @@
 
 library(tidyverse)
 
-  # import data ----------------------
+  # import data FILL IN YOUR CODE HERE ----------------------
 
 # read in altered turtles data
-turtles_tidy <- read_csv('data/processed/turtles_tidy.csv')
+
 
 # print data
-turtles_tidy
+
+
+# check internal structure
+
 
 # Sorting/ordering data --------------------
 
-#  Sorting  
+#  Sorting using arrange
 
 # To sort a data frame by one vector (variable), you can use arrange()
 turtles_tidy %>% 
@@ -26,17 +29,25 @@ turtles_tidy %>%
 turtles_tidy %>% 
   arrange(desc(c_length))
 
-# Sorting by 2 columns
+# Sorting by 2 columns - use a comma to separate columns
 turtles_tidy %>% 
-  arrange(sex,weight)
+  arrange(sex, weight)
 
+# Practice FILL IN YOUR CODE HERE ----------------------
 
 # practice- arrange diamonds data by highest price to lowest price
 diamonds %>% 
   
   # arrange by price (descending)
   arrange(desc(price))
-# ordering data
+
+
+# order columns alphabetically with select
+turtles_tidy %>% 
+  select(order(colnames(.)))   
+
+
+# ordering columns with relocate
 
 # example with turtles_tidy data
 turtles_tidy %>% 
@@ -55,6 +66,7 @@ turtles_tidy %>%
 # if we don't specify a .before or .after argument it will move the selected column to the front of the data
 turtles_tidy %>% 
   relocate(weight)
+
 # ordering data
 
 # reordering multiple columns by name
@@ -89,6 +101,7 @@ diamonds %>%
   # move price to front
   relocate(price,
            .before = carat)
+
 # practice with turtles_tidy data on factors
 
 turtles_tidy %>% 
@@ -96,11 +109,24 @@ turtles_tidy %>%
   # move factors to front
   relocate(where(is.factor))
 
+
 # check structure of turtles_tidy
 str(turtles_tidy)
 
 
-  # Data modification ----------------------
+# Data manipulation --------------------
+
+# FILL IN YOUR CODE HERE --------------------
+
+# first read in data for this section
+
+# read in altered turtles data and change 'sex' to a factor
+
+
+# check internal structure
+
+
+ 
 
   # Replace ---------------------
 
@@ -114,25 +140,17 @@ turtles_tidy <-  turtles_tidy %>%
 turtles_tidy
 
 levels(turtles_tidy$sex)
-# base r
 
-# change 'sex' back to a factor then try data manipulation we can do this all in one pipe!
-turtles_tidy <- turtles_tidy %>% 
-  
-  # sex to character
-  mutate(sex = as.character(sex),
-         
-         # change fem to female with replace
-         replace(sex,
-                 sex == 'fem',
-                 'female'),
-         
-         # sex to factor
-         sex = as.factor(sex))
+# FILL IN YOUR CODE HERE --------------------
 
-head(turtles_tidy)
+# change 'sex' back to a character then try the data manipulation again, and change 'sex' back to a factor to see if anything is different. We can do this all in one pipe!
 
-levels(turtles_tidy$sex)
+
+# print the data
+
+
+# check the levels of the 'sex' variable
+
 
 
 
@@ -153,6 +171,7 @@ str(turtles_tidy)
 
 levels(turtles_tidy$sex)
 
+
   # If else ----------------------
 
 # first learn morn about the diamonds data set
@@ -163,6 +182,7 @@ diamonds %>%
   mutate(color = if_else(color == 'J', # if color is J 
                          'worst', # TRUE = worst
                          'not_worst')) # FALSE = not_worst
+
 
 
 # create new column with two categories based on worst color diamonds (J)
@@ -251,13 +271,14 @@ missing.df <- read_delim('data/raw/data_missing.txt',
 # Missing data are read as an NA
 missing.df
 
-# Can summarize your data and tell you how many NA's per col
+# You can summarize your data and tell you how many NA's per col
 summary(missing.df)
 
 # ?is.na   (Boolean test!)
 is.na(missing.df)
 
 complete.cases(missing.df)   # Boolean: for each row, tests if there are no NA values
+
 
   # Remove NAs ----------------------
 
@@ -275,14 +296,14 @@ missing.df %>%
 # specifying columns
 
 # first check which columns have NA values
-is.na(missing.df) # import and export
+is.na(missing.df) # import and export are the only columns with NAs
 
 # replace NA in import with zeros using mutate() and replace_na()
 missing.df %>% 
   
   # replace NA with 0
   mutate(import = replace_na(import, 0),
-         export = replace_na(export, 0))
+         export = replace_na(export, 0)) # provide the variable/column name and then what you want the NAs replaced with (e.g. 0)
 
 # or using tidyverse trickery (less code repetition)
 missing.df %>% 
@@ -294,11 +315,12 @@ missing.df %>%
 
 # for entire data set
 
-# replace NA in missing.df with zeros using mutate() and replace()
+# replace NA in missing.df with zeros using replace()
 missing.df %>% 
   
   # replace NW w/ 0
   replace(is.na(.), 0)
+
 # Replace all missing values in the data frame with the mean for the column
 
 # check what the mean is for import and export columns
@@ -326,19 +348,16 @@ missing.df %>%
 
   # Replace values with NA ----------------------
 
-bobcats <- read_csv('data/raw/Bobcat_necropsy_data.csv') %>% 
-  
-  # set names to lowercase
-  
-  set_names(
-    names(.) %>% 
-      tolower()) %>% 
-  
-  # select specific columns
-  select(necropsy, necropsydate, age, sex)
+ # FILL IN YOUR CODE HERE ----------------------
+
+# read in bobcat_necropsy data
+# set the column names to lowercase
+# select the necropsy, necropsydate, age, and sex columns
+
   
 
-summary(bobcats)
+# print data summary
+
 
 bobcats %>% 
   
@@ -461,7 +480,7 @@ turtles_tidy %>%
 
   # Mismatched keys----------------------
 
-# rename tag in the turtles_env dataset 
+# rename tag in the turtles_env data set 
 turtles_env <- turtles_env %>% 
   rename(tag_number = tag)
 
@@ -472,6 +491,9 @@ names(turtles_env)
 turtles_tidy %>% 
   left_join(turtles_env,
             join_by('tag' == 'tag_number'))
+
+
+# For problem 4 on assignment 3
 # Load the example data 
 
 soil <- carData::Soils    # load example data

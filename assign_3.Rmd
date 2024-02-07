@@ -31,7 +31,9 @@ Please email me a copy of your R script for this assignment by start of class on
 > You should always be following best coding practices (see Intro to R module 1) but especially for assingment submissions. Please make sure each problem has its own header so that I can easily navigate to your answers and that your code is well organized with spaces as described in the best coding practices section and comments as needed. 
 
 ## 1 Remove NAs
-Using the turtles_tidy data, remove all rows with NAs and create a new dataset from this called "turtles_no_na" 
+- Read in the turtles_tidy data   
+- In the same code chunk remove all rows with NAs
+- Assign this new data to the environment as "turtles_no_na" 
 
 ```{r echo=FALSE, message=FALSE}
 
@@ -53,7 +55,7 @@ turtles_no_na
 ```
 
 ## 2 Make a new variable
-Using the turtles_no_na data, make a new variable called "size_class" based on the "weight" variable using case_when whereby
+Using the turtles_no_na data, make a new variable called "size_class" based on the "weight" variable using `case_when()` whereby
 
 * weights less than 3 are juvenile
 
@@ -61,7 +63,7 @@ Using the turtles_no_na data, make a new variable called "size_class" based on t
 
 * weights between 3 and 6 are subadult
 
-(There are multiple ways to do this but they will yield the same answer)
+(There are multiple ways to do this which is why there are multiple printouts, but they will yield the same answer)
 ```{r echo=FALSE}
 
 turtles_tidy <- turtles_tidy %>% 
@@ -86,10 +88,12 @@ turtles_tidy$size_class
 
 
 ## 3 Replace values with NA
-In the turtles_tidy data replace ALL variable values for tags 104 and 105 with NAs
+In the **turtles_tidy data** (*not the turtles_no_na data*) replace ALL variable values for tags 104 and 105 with NAs
+
+*Hint you will need to create a vector for the tag numbers you want to replace and use `mutate()`*
 ```{r echo=FALSE}
 # list of tags we do not trust the data for
-bad.tags <- c(104,105)
+bad.tags <- c(104, 105)
 
 turtles_tidy %>% 
   mutate(
@@ -119,16 +123,16 @@ turtles_tidy %>%
 ```
 
 ## 4 Pivot data
-Use the below code to read in the Soils data in the carData package
+Use the below code to read in the Soils data from the *carData* package
 ```{r}
 # Load the example data 
 
 soil <- carData::Soils    # load example data
 ```
 
-* look at the first few lines of data in "soil"
+* print the first few lines of data in "soil"
 
-* Pivot the data so that columns Ca - Na are contained in one column called nutrients (again there are two possible solutions (really more than that but two I expect peopl to use))
+* Pivot the data so that columns Ca - Na are contained in one column called nutrients (again there are two possible solutions (really more than that but two I expect people to use))
 ```{r echo=FALSE}
 
 #See what variables it contains...
@@ -152,3 +156,89 @@ soil_nut <- pivot_longer(soil,
 soil_nut
 
 ```
+
+## 5 Join Data
+
+If you haven't already download the 3 bobcat data files added to the course after 12 January 2024 and save them to the data/raw folder
+
+[Bobcat collection data for Purrr (bobcat_collection_data.csv)](data/raw/bobcat_collection_data.csv)
+
+[Bobcat necropsy data for Purrr (bobcat_necropsy_only_data.csv)](data/raw/bobcat_necropsy_only_data.csv)
+
+[Bobcat age data for Purrr (bobcat_age_data.csv)](data/raw/bobcat_age_data.csv)
+
+
+- Read in the data files using the tidyverse **function** 
+- In the same code chunk, set the column names to lowercase for all 3 data sets AND rename the 'Bobcat_ID#' column to bobcat_id   (*NOTE: this requires a lot of code repition which is annoying and does not follow best coding practice, we will learn a much better way to do this when we cover Purrr*)    
+- Use the csv file names as the object names when you assign them to the environment  - Make a list with the three data sets and check their internal structure *(there are multiple ways to do this)*   
+- Join the bobcat_necropsy_only_data to the bobcat_collection_data AND then in the same code chunk join the bobcat_age_data.  *You will need to use the bobcat_id column as the key when joining*   
+- Print the summary of your data to check that it worked   
+```{r echo=FALSE, message=FALSE}
+
+# read in data files
+bobcat_collection_data <- read_csv('data/raw/bobcat_collection_data.csv') %>% 
+  
+  # set names to lowercase
+  set_names(
+        names(.) %>% 
+          tolower()) %>%
+  
+  # change bobcats id# to better name
+      rename(.,
+             'bobcat_id' = 'bobcat_id#')
+
+bobcat_necropsy_only_data <- read_csv('data/raw/bobcat_necropsy_only_data.csv') %>% 
+  
+  # set names to lowercase
+  set_names(
+        names(.) %>% 
+          tolower()) %>%
+  
+    # change bobcats id# to better name
+      rename(.,
+             'bobcat_id' = 'bobcat_id#')
+
+bobcat_age_data <- read_csv('data/raw/bobcat_age_data.csv') %>% 
+  
+  # set names to lowercase
+  set_names(
+        names(.) %>% 
+          tolower()) %>%
+  
+    # change bobcats id# to better name
+      rename(.,
+             'bobcat_id' = 'bobcat_id#')
+
+# make a list and check internal structure 
+
+# option 1 - nested code
+str(list(bobcat_collection_data,
+    bobcat_necropsy_only_data,
+    bobcat_age_data))
+
+# option 2 - with dplyr
+list(bobcat_collection_data,
+    bobcat_necropsy_only_data,
+    bobcat_age_data) %>% 
+  
+  str(.)
+
+
+# join data
+
+bobcat_data_joined <- bobcat_collection_data %>% 
+  
+  # join necropsy data
+  left_join(bobcat_necropsy_only_data,
+            by = 'bobcat_id') %>% 
+  
+  # join age data
+  left_join(bobcat_age_data,
+            by = 'bobcat_id')
+
+
+# print summary
+summary(bobcat_data_joined)
+
+```
+
