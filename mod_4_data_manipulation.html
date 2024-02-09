@@ -526,6 +526,27 @@ str(turtles_tidy)</code></pre>
 ##  - attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</code></pre>
 <p>If you didn’t save the turtles_tidy data, below is the code to alter
 and save the data.</p>
+<pre class="r"><code># code for altering turtle data
+turtles.df &lt;- read_delim(&#39;data/raw/turtle_data.txt&#39;,
+                         delim = &#39;\t&#39;) %&gt;% 
+  
+   # set column names to lowercase
+  set_names(
+    names(.) %&gt;%  
+      tolower()) %&gt;% 
+  
+  # rename columns to shorter names
+  rename(tag = tag_number,
+         c_length = carapace_length,
+         h_width = head_width) %&gt;% 
+  
+  # change sex to factor variable
+  mutate(sex = as.factor(sex))
+
+
+# save to data/processed folder as &#39;turtles_tidy.csv&#39;
+write_csv(turtles.df,
+          &#39;data/processed/turtles_tidy.csv&#39;)</code></pre>
 </div>
 <div id="sortingordering-data" class="section level2">
 <h2>Sorting/ordering data</h2>

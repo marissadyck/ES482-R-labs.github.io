@@ -62,7 +62,7 @@ str(turtles_tidy)
 ```
 
 If you didn't save the turtles_tidy data, below is the code to alter and save the data.
-```{r eval=FALSE, echo=FALSE}
+```{r eval=FALSE}
 
 # code for altering turtle data
 turtles.df <- read_delim('data/raw/turtle_data.txt',
