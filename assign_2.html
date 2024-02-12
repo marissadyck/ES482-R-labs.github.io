@@ -409,7 +409,7 @@ div.tocify {
       <a href="assign_2.html">Assignment 2</a>
     </li>
     <li>
-      <a href="assign_3.html">Assignment 3 (coming soon)</a>
+      <a href="assign_3.html">Assignment 3</a>
     </li>
     <li>
       <a href="assign_4.html">Assignment 4 (coming soon)</a>
@@ -477,33 +477,6 @@ the best coding practices section and comments as needed.</p>
 <p>Save the altered turtles data as a comma separated file to the
 <em>data/processed</em> folder in your working directory using the
 ‘readr’ package and name it ‘turtles_tidy’</p>
-<pre class="r fold-hide"><code># code for altering turtle data
-turtles.df &lt;- read_delim(&#39;data/raw/turtle_data.txt&#39;,
-                         delim = &#39;\t&#39;) %&gt;% 
-  
-   # set column names to lowercase
-  set_names(
-    names(.) %&gt;%  
-      tolower()) %&gt;% 
-  
-  # rename columns to shorter names
-  rename(tag = tag_number,
-         c_length = carapace_length,
-         h_width = head_width) %&gt;% 
-  
-  # change sex to factor
-  mutate(sex = as.factor(sex))
-
-head(turtles.df)</code></pre>
-<pre><code>## # A tibble: 6 × 5
-##     tag sex    c_length h_width weight
-##   &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
-## 1    10 male       41      7.15   7.6 
-## 2    11 female     46.4    8.18  11   
-## 3     2 &lt;NA&gt;       24.3    4.42   1.65
-## 4    15 &lt;NA&gt;       28.7    4.89   2.18
-## 5    16 &lt;NA&gt;       32      5.37   3   
-## 6     3 female     42.8    7.32   8.6</code></pre>
 <pre class="r fold-hide"><code>write_csv(turtles.df,
           &#39;data/processed/turtles_tidy.csv&#39;)</code></pre>
 <p>Download the <a href="data/raw/bear_2008_2016.csv">brown bear damage

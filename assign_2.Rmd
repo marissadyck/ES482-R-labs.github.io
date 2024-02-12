@@ -32,8 +32,7 @@ Please email me a copy of your R script for this assignment by start of class on
 
 ## 1 Export data
 Save the altered turtles data as a comma separated file to the *data/processed* folder in your working directory using the 'readr' package and name it 'turtles_tidy'
-```{r message=FALSE, class.source = 'fold-hide'}
-
+```{r echo=FALSE, message=FALSE}
 # code for altering turtle data
 turtles.df <- read_delim('data/raw/turtle_data.txt',
                          delim = '\t') %>% 
@@ -50,8 +49,9 @@ turtles.df <- read_delim('data/raw/turtle_data.txt',
   
   # change sex to factor
   mutate(sex = as.factor(sex))
+```
 
-head(turtles.df)
+```{r class.source = 'fold-hide'}
 
 write_csv(turtles.df,
           'data/processed/turtles_tidy.csv')

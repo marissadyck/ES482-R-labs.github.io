@@ -35,11 +35,9 @@ turtles_tidy %>%
 
 # Practice FILL IN YOUR CODE HERE ----------------------
 
-# practice- arrange diamonds data by highest price to lowest price
-diamonds %>% 
-  
-  # arrange by price (descending)
-  arrange(desc(price))
+
+
+
 
 
 # order columns alphabetically with select
@@ -194,7 +192,7 @@ diamonds %>%
 
   # Case when ----------------------
 
-# create new column with two categories based on worst color diamonds (J)
+# create new column with two categories based on worst clairty diamonds (J)
 diamonds %>% 
   mutate(clarity = case_when(clarity == 'l1' ~ 8,
                              clarity == 'SI2' ~ 7,

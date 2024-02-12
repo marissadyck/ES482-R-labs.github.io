@@ -118,10 +118,7 @@ turtles_tidy %>%
 # Practice FILL IN YOUR CODE HERE ----------------------
 
 # practice- arrange diamonds data by highest price to lowest price
-diamonds %>% 
-  
-  # arrange by price (descending)
-  arrange(desc(price))
+
 
 ```
 
@@ -600,7 +597,7 @@ missing.df %>%
 ### Changing values to NA
 What about the reverse? When we have values in our data that are meant to be NAs. This happens frequently, we type 'none', 'n/a', '-', etc. instead of NA and R reads those in as **characters** instead of missing data. We've already learned a few ways to do this with `mutate()`. Let's review with a new data set.
 
-Download the [bobcat data](data/Bobcat_necropsy_data.csv) and save it to the data folder in your **project directory**.
+Download the [bobcat necropsy data (Bobcat_necropsy_data.csv)](data/Bobcat_necropsy_data.csv) and save it to the data folder in your **project directory**.
 
 <span style="color: blue;">In the same code chunk complete the following steps</span>
 
