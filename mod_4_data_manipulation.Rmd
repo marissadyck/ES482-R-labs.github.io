@@ -526,6 +526,37 @@ missing.df %>%
 
 ```
 
+
+You may also want to remove only rows that contain NAs for a specified column. Let's say it doesn't matter if an observation is missing data for variables X and Y but if there is an NA for variable Z then we can't use that observation. We can do this using the `drop_na()` **function**.
+
+```{r}
+
+# print missing.df data to compare with data after we remove NAs
+missing.df
+
+# use drop_na to remove only rows missing data for 'import'
+missing.df %>% 
+  
+  # remove NAs
+  drop_na(import)
+
+```
+
+We can also do this for multiple columns. 
+
+Below we use drop_na to remove only rows missing data for 'import' and 'export' (this is effectively the same as using na.omit for this data set because those are the only columns with NAs but it shows you how to drop rows for multiple variables)
+
+```{r}
+# drop NAs for import and export columns
+missing.df %>% 
+  
+  # remove NAs
+  drop_na(c(import,
+            export))
+```
+
+
+
 ### Replacing NAs
 Because R will automatically fill any missing data with NAs, sometimes we want to replace NA values with another value. For example if blank cells actually = 0. We can use `replace()`with is.na, or a special variation of the `replace()` **function**, `replace_na()` to do this.
 
