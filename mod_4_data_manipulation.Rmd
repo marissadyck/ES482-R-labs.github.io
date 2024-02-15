@@ -213,7 +213,6 @@ diamonds %>%
 
 With the turtles_tidy data let's try to move all the **factors** to the front
 ```{r}
-# practice with turtles_tidy data on factors
 
 turtles_tidy %>% 
   
@@ -222,7 +221,7 @@ turtles_tidy %>%
 
 ```
 
-Notice this didn't change are data... It should have moved 'sex' to the front because we set it as a **factor** last time. Let's check the data structure again to be sure.
+Notice this didn't change our data... It should have moved 'sex' to the front because we set it as a **factor** last time. Let's check the data structure again to be sure.
 
 ```{r class.source = 'fold-hide'}
 
@@ -880,8 +879,8 @@ turtles_no_na
 ```
 
 ### 2 Make a new variable
-## 2 Make a new variable
-Using the turtles_no_na data, make a new variable called "size_class" based on the "weight" variable using `case_when()` whereby
+
+Using the turtles_no_na data, overwrite the data and make a new variable called "size_class" based on the "weight" variable using `case_when()` whereby
 
 * weights less than 4 are juvenile
 
@@ -893,13 +892,13 @@ Using the turtles_no_na data, make a new variable called "size_class" based on t
 ```{r echo=FALSE}
 
 turtles_no_na <- turtles_no_na %>% 
-  mutate(size.class = case_when(
+  mutate(size_class = case_when(
     weight < 4 ~ "juvenile",
     weight > 7 ~ "adult",
     TRUE  ~ "subadult"
   ))
 
-turtles_no_na$size.class
+turtles_no_na$size_class
 
 # alternatively
 turtles_no_na <- turtles_no_na %>% 
@@ -909,7 +908,7 @@ turtles_no_na <- turtles_no_na %>%
     weight >= 4 & weight <= 7 ~ 'subadult'
   ))
 
-turtles_tidy$size_class
+turtles_no_na$size_class
 ```
 
 
@@ -921,7 +920,7 @@ In the **turtles_tidy data** (*not the turtles_no_na data*) replace ALL variable
 # list of tags we do not trust the data for
 bad.tags <- c(104,105)
 
-turtles_tidy %>% 
+turtles_tidy <- turtles_tidy %>% 
   mutate(
     sex = replace(sex,
                   tag %in% bad.tags,
@@ -934,8 +933,9 @@ turtles_tidy %>%
                       NA),
     weight = replace(weight,
                      tag %in% bad.tags,
-                     NA)
-  )
+                     NA))
+
+turtles_tidy
 
 # or... use some more tidyverse helper functions and tricks!
 
@@ -995,9 +995,9 @@ If you haven't already download the 3 bobcat data files added to the course afte
 
 
 - Read in the data files using the tidyverse **function** 
-- In the same code chunk, set the column names to lowercase for all 3 data sets AND rename the 'Bobcat_ID#' column to bobcat_id   (*NOTE: this requires a lot of code repition which is annoying and does not follow best coding practice, we will learn a much better way to do this when we cover Purrr*)    
+- In the same code chunk, set the column names to lowercase for all 3 data sets AND rename the 'Bobcat_ID#' column to bobcat_id   (*NOTE: this requires a lot of code repition which is annoying and does not follow best coding practices, we will learn a much better way to do this when we cover Purrr*)    
 - Use the csv file names as the object names when you assign them to the environment  - Make a list with the three data sets and check their internal structure *(there are multiple ways to do this)*   
-- Join the bobcat_necropsy_only_data to the bobcat_collection_data AND then in the same code chunk join the bobcat_age_data.  *You will need to use the bobcat_id column as the key when joining*   
+- Join the bobcat_necropsy_only_data **to** the bobcat_collection_data AND then in the same code chunk join the bobcat_age_data as well. Make sure to retain all observations from the bobcat_collection_data. *You will need to use the bobcat_id column as the key when joining*      
 - Print the summary of your data to check that it worked   
 ```{r echo=FALSE, message=FALSE}
 

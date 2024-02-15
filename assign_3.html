@@ -524,33 +524,33 @@ printouts, but they will yield the same answer)</p>
 data</em>) replace ALL variable values for tags 104 and 105 with NAs</p>
 <p><em>Hint you will need to create a vector for the tag numbers you
 want to replace and use <code>mutate()</code></em></p>
-<pre><code>## # A tibble: 21 × 7
-##      tag sex    c_length h_width weight size.class size_class
-##    &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     
-##  1    10 male       41      7.15   7.6  adult      adult     
-##  2    11 female     46.4    8.18  11    adult      adult     
-##  3     2 &lt;NA&gt;       24.3    4.42   1.65 juvenile   juvenile  
-##  4    15 &lt;NA&gt;       28.7    4.89   2.18 juvenile   juvenile  
-##  5    16 &lt;NA&gt;       32      5.37   3    subadult   subadult  
-##  6     3 female     42.8    7.32   8.6  adult      adult     
-##  7     4 male       40      6.6    6.5  adult      adult     
-##  8     5 female     45      8.05  10.9  adult      adult     
-##  9    12 female     44      7.55   8.9  adult      adult     
-## 10    13 &lt;NA&gt;       28      4.85   1.97 juvenile   juvenile  
+<pre><code>## # A tibble: 21 × 5
+##      tag sex    c_length h_width weight
+##    &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+##  1    10 male       41      7.15   7.6 
+##  2    11 female     46.4    8.18  11   
+##  3     2 &lt;NA&gt;       24.3    4.42   1.65
+##  4    15 &lt;NA&gt;       28.7    4.89   2.18
+##  5    16 &lt;NA&gt;       32      5.37   3   
+##  6     3 female     42.8    7.32   8.6 
+##  7     4 male       40      6.6    6.5 
+##  8     5 female     45      8.05  10.9 
+##  9    12 female     44      7.55   8.9 
+## 10    13 &lt;NA&gt;       28      4.85   1.97
 ## # ℹ 11 more rows</code></pre>
-<pre><code>## # A tibble: 21 × 7
-##      tag sex    c_length h_width weight size.class size_class
-##    &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     
-##  1    10 male       41      7.15   7.6  adult      adult     
-##  2    11 female     46.4    8.18  11    adult      adult     
-##  3     2 &lt;NA&gt;       24.3    4.42   1.65 juvenile   juvenile  
-##  4    15 &lt;NA&gt;       28.7    4.89   2.18 juvenile   juvenile  
-##  5    16 &lt;NA&gt;       32      5.37   3    subadult   subadult  
-##  6     3 female     42.8    7.32   8.6  adult      adult     
-##  7     4 male       40      6.6    6.5  adult      adult     
-##  8     5 female     45      8.05  10.9  adult      adult     
-##  9    12 female     44      7.55   8.9  adult      adult     
-## 10    13 &lt;NA&gt;       28      4.85   1.97 juvenile   juvenile  
+<pre><code>## # A tibble: 21 × 5
+##      tag sex    c_length h_width weight
+##    &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+##  1    10 male       41      7.15   7.6 
+##  2    11 female     46.4    8.18  11   
+##  3     2 &lt;NA&gt;       24.3    4.42   1.65
+##  4    15 &lt;NA&gt;       28.7    4.89   2.18
+##  5    16 &lt;NA&gt;       32      5.37   3   
+##  6     3 female     42.8    7.32   8.6 
+##  7     4 male       40      6.6    6.5 
+##  8     5 female     45      8.05  10.9 
+##  9    12 female     44      7.55   8.9 
+## 10    13 &lt;NA&gt;       28      4.85   1.97
 ## # ℹ 11 more rows</code></pre>
 </div>
 <div id="pivot-data" class="section level2">
@@ -613,23 +613,24 @@ for Purrr (bobcat_necropsy_only_data.csv)</a></p>
 <p><a href="data/raw/bobcat_age_data.csv">Bobcat age data for Purrr
 (bobcat_age_data.csv)</a></p>
 <ul>
-<li>Read in the data files using the tidyverse
-<strong>function</strong></li>
-<li>In the same code chunk, set the column names to lowercase for all 3
-data sets AND rename the ‘Bobcat_ID#’ column to bobcat_id (<em>NOTE:
+<li><p>Read in the data files using the tidyverse
+<strong>function</strong></p></li>
+<li><p>In the same code chunk, set the column names to lowercase for all
+3 data sets AND rename the ‘Bobcat_ID#’ column to bobcat_id (<em>NOTE:
 this requires a lot of code repition which is annoying and does not
 follow best coding practice, we will learn a much better way to do this
-when we cover Purrr</em>)<br />
-</li>
-<li>Use the csv file names as the object names when you assign them to
-the environment - Make a list with the three data sets and check their
-internal structure <em>(there are multiple ways to do this)</em><br />
-</li>
-<li>Join the bobcat_necropsy_only_data to the bobcat_collection_data AND
-then in the same code chunk join the bobcat_age_data. <em>You will need
-to use the bobcat_id column as the key when joining</em><br />
-</li>
-<li>Print the summary of your data to check that it worked</li>
+when we cover Purrr</em>)</p></li>
+<li><p>Use the csv file names as the object names when you assign them
+to the environment - Make a list with the three data sets and check
+their internal structure <em>(there are multiple ways to do
+this)</em><br />
+</p></li>
+<li><p>Join the bobcat_necropsy_only_data <strong>to</strong> the
+bobcat_collection_data AND then in the same code chunk join the
+bobcat_age_data as well. Make sure to retain all observations from the
+bobcat_collection_data. <em>You will need to use the bobcat_id column as
+the key when joining</em></p></li>
+<li><p>Print the summary of your data to check that it worked</p></li>
 </ul>
 <pre><code>## List of 3
 ##  $ : spc_tbl_ [121 × 7] (S3: spec_tbl_df/tbl_df/tbl/data.frame)

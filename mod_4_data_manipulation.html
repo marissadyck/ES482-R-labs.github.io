@@ -832,9 +832,7 @@ diamonds %&gt;%
 ## # ℹ 53,930 more rows</code></pre>
 <p>With the turtles_tidy data let’s try to move all the
 <strong>factors</strong> to the front</p>
-<pre class="r"><code># practice with turtles_tidy data on factors
-
-turtles_tidy %&gt;% 
+<pre class="r"><code>turtles_tidy %&gt;% 
   
   # move factors to front
   relocate(where(is.factor))</code></pre>
@@ -852,7 +850,7 @@ turtles_tidy %&gt;%
 ##  9    12 female     44      7.55   8.9 
 ## 10    13 &lt;NA&gt;       28      4.85   1.97
 ## # ℹ 11 more rows</code></pre>
-<p>Notice this didn’t change are data… It should have moved ‘sex’ to the
+<p>Notice this didn’t change our data… It should have moved ‘sex’ to the
 front because we set it as a <strong>factor</strong> last time. Let’s
 check the data structure again to be sure.</p>
 <pre class="r fold-hide"><code># check structure of turtles_tidy
@@ -2180,13 +2178,9 @@ turtles_tidy %&gt;%
 </div>
 <div id="make-a-new-variable" class="section level3">
 <h3>2 Make a new variable</h3>
-</div>
-</div>
-<div id="make-a-new-variable-1" class="section level2">
-<h2>2 Make a new variable</h2>
-<p>Using the turtles_no_na data, make a new variable called “size_class”
-based on the “weight” variable using <code>case_when()</code>
-whereby</p>
+<p>Using the turtles_no_na data, overwrite the data and make a new
+variable called “size_class” based on the “weight” variable using
+<code>case_when()</code> whereby</p>
 <ul>
 <li><p>weights less than 4 are juvenile</p></li>
 <li><p>weights greater than 7 are adult</p></li>
@@ -2197,40 +2191,43 @@ printouts, but they will yield the same answer)</p>
 <pre><code>##  [1] &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;    &quot;subadult&quot; &quot;adult&quot;    &quot;adult&quot;   
 ##  [7] &quot;subadult&quot; &quot;juvenile&quot; &quot;subadult&quot; &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;   
 ## [13] &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;</code></pre>
-<pre><code>## NULL</code></pre>
+<pre><code>##  [1] &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;    &quot;subadult&quot; &quot;adult&quot;    &quot;adult&quot;   
+##  [7] &quot;subadult&quot; &quot;juvenile&quot; &quot;subadult&quot; &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;   
+## [13] &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;</code></pre>
+</div>
 <div id="replace-values-with-na" class="section level3">
 <h3>3 Replace values with NA</h3>
 <p>In the <strong>turtles_tidy data</strong> (<em>not the turtles_no_na
 data</em>) replace ALL variable values for tags 104 and 105 with NAs</p>
 <p><em>Hint you will need to create a vector for the tag numbers you
 want to replace and use <code>mutate()</code></em></p>
-<pre><code>## # A tibble: 21 × 7
-##      tag sex    c_length h_width weight size.class size_class
-##    &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     
-##  1    10 male       41      7.15   7.6  adult      adult     
-##  2    11 female     46.4    8.18  11    adult      adult     
-##  3     2 &lt;NA&gt;       24.3    4.42   1.65 juvenile   juvenile  
-##  4    15 &lt;NA&gt;       28.7    4.89   2.18 juvenile   juvenile  
-##  5    16 &lt;NA&gt;       32      5.37   3    subadult   subadult  
-##  6     3 female     42.8    7.32   8.6  adult      adult     
-##  7     4 male       40      6.6    6.5  adult      adult     
-##  8     5 female     45      8.05  10.9  adult      adult     
-##  9    12 female     44      7.55   8.9  adult      adult     
-## 10    13 &lt;NA&gt;       28      4.85   1.97 juvenile   juvenile  
+<pre><code>## # A tibble: 21 × 5
+##      tag sex    c_length h_width weight
+##    &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+##  1    10 male       41      7.15   7.6 
+##  2    11 female     46.4    8.18  11   
+##  3     2 &lt;NA&gt;       24.3    4.42   1.65
+##  4    15 &lt;NA&gt;       28.7    4.89   2.18
+##  5    16 &lt;NA&gt;       32      5.37   3   
+##  6     3 female     42.8    7.32   8.6 
+##  7     4 male       40      6.6    6.5 
+##  8     5 female     45      8.05  10.9 
+##  9    12 female     44      7.55   8.9 
+## 10    13 &lt;NA&gt;       28      4.85   1.97
 ## # ℹ 11 more rows</code></pre>
-<pre><code>## # A tibble: 21 × 7
-##      tag sex    c_length h_width weight size.class size_class
-##    &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     
-##  1    10 male       41      7.15   7.6  adult      adult     
-##  2    11 female     46.4    8.18  11    adult      adult     
-##  3     2 &lt;NA&gt;       24.3    4.42   1.65 juvenile   juvenile  
-##  4    15 &lt;NA&gt;       28.7    4.89   2.18 juvenile   juvenile  
-##  5    16 &lt;NA&gt;       32      5.37   3    subadult   subadult  
-##  6     3 female     42.8    7.32   8.6  adult      adult     
-##  7     4 male       40      6.6    6.5  adult      adult     
-##  8     5 female     45      8.05  10.9  adult      adult     
-##  9    12 female     44      7.55   8.9  adult      adult     
-## 10    13 &lt;NA&gt;       28      4.85   1.97 juvenile   juvenile  
+<pre><code>## # A tibble: 21 × 5
+##      tag sex    c_length h_width weight
+##    &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+##  1    10 male       41      7.15   7.6 
+##  2    11 female     46.4    8.18  11   
+##  3     2 &lt;NA&gt;       24.3    4.42   1.65
+##  4    15 &lt;NA&gt;       28.7    4.89   2.18
+##  5    16 &lt;NA&gt;       32      5.37   3   
+##  6     3 female     42.8    7.32   8.6 
+##  7     4 male       40      6.6    6.5 
+##  8     5 female     45      8.05  10.9 
+##  9    12 female     44      7.55   8.9 
+## 10    13 &lt;NA&gt;       28      4.85   1.97
 ## # ℹ 11 more rows</code></pre>
 </div>
 <div id="pivot-data-1" class="section level3">
@@ -2298,16 +2295,18 @@ for Purrr (bobcat_necropsy_only_data.csv)</a></p>
 <li>In the same code chunk, set the column names to lowercase for all 3
 data sets AND rename the ‘Bobcat_ID#’ column to bobcat_id (<em>NOTE:
 this requires a lot of code repition which is annoying and does not
-follow best coding practice, we will learn a much better way to do this
+follow best coding practices, we will learn a much better way to do this
 when we cover Purrr</em>)<br />
 </li>
 <li>Use the csv file names as the object names when you assign them to
 the environment - Make a list with the three data sets and check their
 internal structure <em>(there are multiple ways to do this)</em><br />
 </li>
-<li>Join the bobcat_necropsy_only_data to the bobcat_collection_data AND
-then in the same code chunk join the bobcat_age_data. <em>You will need
-to use the bobcat_id column as the key when joining</em><br />
+<li>Join the bobcat_necropsy_only_data <strong>to</strong> the
+bobcat_collection_data AND then in the same code chunk join the
+bobcat_age_data as well. Make sure to retain all observations from the
+bobcat_collection_data. <em>You will need to use the bobcat_id column as
+the key when joining</em><br />
 </li>
 <li>Print the summary of your data to check that it worked</li>
 </ul>
