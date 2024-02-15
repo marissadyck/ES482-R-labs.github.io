@@ -880,21 +880,22 @@ turtles_no_na
 ```
 
 ### 2 Make a new variable
+## 2 Make a new variable
 Using the turtles_no_na data, make a new variable called "size_class" based on the "weight" variable using `case_when()` whereby
 
-* weights less than 3 are juvenile
+* weights less than 4 are juvenile
 
-* weights greater than 6 are adult
+* weights greater than 7 are adult
 
-* weights between 3 and 6 are subadult
+* weights between 4 and 7 are subadult
 
 (There are multiple ways to do this which is why there are multiple printouts, but they will yield the same answer)
 ```{r echo=FALSE}
 
 turtles_tidy <- turtles_tidy %>% 
   mutate(size.class = case_when(
-    weight < 3 ~ "juvenile",
-    weight > 6 ~ "adult",
+    weight < 4 ~ "juvenile",
+    weight > 7 ~ "adult",
     TRUE  ~ "subadult"
   ))
 
@@ -903,9 +904,9 @@ turtles_tidy$size.class
 # alternatively
 turtles_tidy <- turtles_tidy %>% 
   mutate(size_class = case_when(
-    weight < 3 ~ "juvenile",
-    weight > 6 ~ "adult",
-    weight >= 3 & weight <= 6 ~ 'subadult'
+    weight < 4 ~ "juvenile",
+    weight > 7 ~ "adult",
+    weight >= 4 & weight <= 7 ~ 'subadult'
   ))
 
 turtles_tidy$size_class

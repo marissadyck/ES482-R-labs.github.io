@@ -2180,25 +2180,28 @@ turtles_tidy %&gt;%
 </div>
 <div id="make-a-new-variable" class="section level3">
 <h3>2 Make a new variable</h3>
+</div>
+</div>
+<div id="make-a-new-variable-1" class="section level2">
+<h2>2 Make a new variable</h2>
 <p>Using the turtles_no_na data, make a new variable called “size_class”
 based on the “weight” variable using <code>case_when()</code>
 whereby</p>
 <ul>
-<li><p>weights less than 3 are juvenile</p></li>
-<li><p>weights greater than 6 are adult</p></li>
-<li><p>weights between 3 and 6 are subadult</p></li>
+<li><p>weights less than 4 are juvenile</p></li>
+<li><p>weights greater than 7 are adult</p></li>
+<li><p>weights between 4 and 7 are subadult</p></li>
 </ul>
 <p>(There are multiple ways to do this which is why there are multiple
 printouts, but they will yield the same answer)</p>
-<pre><code>##  [1] &quot;adult&quot;    &quot;adult&quot;    &quot;juvenile&quot; &quot;juvenile&quot; &quot;subadult&quot; &quot;adult&quot;   
-##  [7] &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;    &quot;juvenile&quot; &quot;adult&quot;    &quot;juvenile&quot;
-## [13] &quot;subadult&quot; &quot;subadult&quot; &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;   
+<pre><code>##  [1] &quot;adult&quot;    &quot;adult&quot;    &quot;juvenile&quot; &quot;juvenile&quot; &quot;juvenile&quot; &quot;adult&quot;   
+##  [7] &quot;subadult&quot; &quot;adult&quot;    &quot;adult&quot;    &quot;juvenile&quot; &quot;subadult&quot; &quot;juvenile&quot;
+## [13] &quot;juvenile&quot; &quot;subadult&quot; &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;   
 ## [19] &quot;adult&quot;    &quot;juvenile&quot; &quot;adult&quot;</code></pre>
-<pre><code>##  [1] &quot;adult&quot;    &quot;adult&quot;    &quot;juvenile&quot; &quot;juvenile&quot; &quot;subadult&quot; &quot;adult&quot;   
-##  [7] &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;    &quot;juvenile&quot; &quot;adult&quot;    &quot;juvenile&quot;
-## [13] &quot;subadult&quot; &quot;subadult&quot; &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;   
+<pre><code>##  [1] &quot;adult&quot;    &quot;adult&quot;    &quot;juvenile&quot; &quot;juvenile&quot; &quot;juvenile&quot; &quot;adult&quot;   
+##  [7] &quot;subadult&quot; &quot;adult&quot;    &quot;adult&quot;    &quot;juvenile&quot; &quot;subadult&quot; &quot;juvenile&quot;
+## [13] &quot;juvenile&quot; &quot;subadult&quot; &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;   
 ## [19] &quot;adult&quot;    &quot;juvenile&quot; &quot;adult&quot;</code></pre>
-</div>
 <div id="replace-values-with-na" class="section level3">
 <h3>3 Replace values with NA</h3>
 <p>In the <strong>turtles_tidy data</strong> (<em>not the turtles_no_na
