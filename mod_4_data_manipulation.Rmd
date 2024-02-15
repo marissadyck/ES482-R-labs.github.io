@@ -892,7 +892,7 @@ Using the turtles_no_na data, make a new variable called "size_class" based on t
 (There are multiple ways to do this which is why there are multiple printouts, but they will yield the same answer)
 ```{r echo=FALSE}
 
-turtles_tidy <- turtles_tidy %>% 
+turtles_no_na <- turtles_no_na %>% 
   mutate(size.class = case_when(
     weight < 4 ~ "juvenile",
     weight > 7 ~ "adult",
@@ -902,7 +902,7 @@ turtles_tidy <- turtles_tidy %>%
 turtles_tidy$size.class
 
 # alternatively
-turtles_tidy <- turtles_tidy %>% 
+turtles_no_na <- turtles_no_na %>% 
   mutate(size_class = case_when(
     weight < 4 ~ "juvenile",
     weight > 7 ~ "adult",
