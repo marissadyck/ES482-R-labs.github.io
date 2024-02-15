@@ -73,7 +73,7 @@ turtles_no_na <- turtles_no_na %>%
     TRUE  ~ "subadult"
   ))
 
-turtles_tidy$size.class
+turtles_no_na$size.class
 
 # alternatively
 turtles_no_na <- turtles_no_na %>% 
