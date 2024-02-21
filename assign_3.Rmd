@@ -110,16 +110,19 @@ turtles_tidy <- turtles_tidy %>%
                      tag %in% bad.tags,
                      NA))
 
-turtles_tidy
+tail(turtles_tidy)
 
 # or... use some more tidyverse helper functions and tricks!
 
-turtles_tidy %>% 
+
+turtles_tidy <-turtles_tidy %>% 
   mutate(across(
     c("sex","c_length","h_width", "weight"),
     ~replace(.x,
              tag %in% bad.tags,
              NA)))
+
+tail(turtles_tidy)
 
 ```
 

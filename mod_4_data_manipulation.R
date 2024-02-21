@@ -39,7 +39,6 @@ turtles_tidy %>%
 
 
 
-
 # order columns alphabetically with select
 turtles_tidy %>% 
   select(order(colnames(.)))   
@@ -284,11 +283,20 @@ complete.cases(missing.df)   # Boolean: for each row, tests if there are no NA v
 na.omit(missing.df) # note this removes the entire row, so only do this if you don't want to use any data from an observation with NAs
 
 # we can also use this with %>% to remove rows with NA
-missing.df %>% 
+ missing.df %>% 
   
   # remove rows with NA
   na.omit()
 
+ # drop NA
+ 
+ # use drop_na to remove only rows missing data for 'import'
+ missing.df.2 <- missing.df %>% 
+   
+   # remove NAs
+   drop_na(c(import,
+             export)) 
+ 
   # Replace NAs ----------------------
 
 # specifying columns
@@ -364,7 +372,7 @@ bobcats %>%
 
 
 # replace 'na' in age using replace function
-bobcats %>% 
+bobcats.2 <- bobcats %>% 
   mutate(age = replace(age,
                        age == 'na',
                        NA))
@@ -392,7 +400,8 @@ bobcats %>%
 relig_income
 
 relig_income %>%
-  pivot_longer(!religion, names_to = "income", values_to = "count")
+  pivot_longer(!religion, names_to = "income", 
+               values_to = "count")
 
   # Joining data----------------------
 
@@ -432,7 +441,7 @@ turtles_full
 
   # Right join ----------------------
 
-turtles_tidy %>% 
+turtles_full2 <- turtles_tidy %>% 
   
   # right join
   right_join(turtles_env,
@@ -463,7 +472,7 @@ head(turtles_env.sub)
 
 # now join with turtles_tidy
 
-turtles_tidy %>% 
+turtles_inner <- turtles_tidy %>% 
   
   inner_join(turtles_env.sub,
              by = 'tag')
@@ -485,6 +494,9 @@ turtles_env <- turtles_env %>%
 names(turtles_env)
 
 # now join with mismatched names
+turtles_tidy %>% 
+  left_join(turtles_env,
+            by = 'tag')
 
 turtles_tidy %>% 
   left_join(turtles_env,
