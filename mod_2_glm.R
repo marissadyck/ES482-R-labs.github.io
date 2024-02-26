@@ -265,7 +265,7 @@ ggplot(data = new_data_bear_pred, aes(x = bear_abund, y = fit)) +
 
 # models for model selection
 
-# we already ran cows_global but here is code again
+# we already ran cows_global but here is the code again
 cows_global <- glm(damage ~ scale(bear_abund) + 
                      scale(dist_to_forest) + 
                      scale(dist_to_town) +
@@ -311,6 +311,7 @@ cows_4 <- glm(damage ~ scale(bear_abund) +
               family = binomial)
 
 
+# compare models with model.sel
 model.sel(cows_global,
           cows_null,
           cows_1,

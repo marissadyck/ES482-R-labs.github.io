@@ -36,6 +36,7 @@ library(rphylopic)
 library(MuMIn)
 library(car)
 library(AER)
+
 ```
 
 ## Materials
@@ -63,6 +64,7 @@ For this module we will work with the cows data from the brown bear conflict dat
 <span style="color: blue;"> Read in the cows data from the data/processed folder. <span style="color: blue;">
 
 ```{r class.source = 'fold-hide'}
+
 # Data ----------------------
 
 # Read in data for this module
@@ -371,6 +373,7 @@ To solve this issue we can **scale** the numeric variables in our data so that a
 To scale our data we can nest the `scale ()` **function** inside our model.
 
 ```{r}
+
 # re-run scaled model
 
 # scale variables inside the glm model to get effect sizes when looking at coefficients
@@ -392,6 +395,7 @@ When you look at the model summary output you'll notice the direction of effect 
 
 If we calculate odds ratios for the scaled coefficients we can now compare the magnitude of effect for different variables even though the original units of measurement were different.
 ```{r}
+
 # calculate odds ratio for scaled coefficients
 exp(coefficients(cows_global))
 
@@ -404,6 +408,7 @@ Now the interpretation is a bit less intuitive because we have to consider the p
 Recall, that when we choose a distribution to use with our GLM we also select a link function which maps the nonlinear relationship so that the linear model can be fit. This transformation is applied to the expected values so we have to use the proper inverse function to get predicted probabilities based on our model. Since we used a **binomial distribution** which uses the logit link function or log odds transformation, to get probabilities from our model we need to apply the *inverse logit* function. The **function** for this in R is `plogis()`.
 
 ```{r}
+
 # inverse logit of coefficients to get probabilities 
 plogis(coefficients(cows_global))
 
@@ -413,6 +418,7 @@ The `predict()` **function** is a more efficient way to get predicted probabilit
 
 First we need to create a new data frame to add the predicted probabilities to. For each graph we want to generate we have to select one explanatory variable to plot (x-axis) which we will create set of values for that range from the minimum to the maximum value in our original data. The other variables are held constant at the mean to allow for accurate graphing and depiction of the relationship between the variable of interest and the response (predicted probability of our response)
 ```{r}
+
 # Newdata ----------------------
 
 # first create a new data frame that includes all variables in the model (spelled EXACTLY the same) and where one variable (the one we want to graph) has a range from the min to max value in our data and the other variables are held constant at the mean value from the data.
@@ -434,6 +440,7 @@ If you examine the new data frame we created you will see that bear abundance is
 
 Now we can add predicted probabilities to this new data frame using the `predict()` **function**. To do this we need to assign an object to the environment that provides a column (pred) in our new data frame (new_data_bear) where we can fill the predicted probabilities
 ```{r}
+
 # use predict function to get predicted probabilities of cow damage based on our model
 new_data_bear$pred <- predict(cows_global,
                               type = 'response',
@@ -503,6 +510,7 @@ This is also why it's important to keep your code clean, code in steps, and chec
 Now that we have predicted probabilities from our model for one of our variables we can graph these predictions to aid in interpreting and conveying our results.
 
 ```{r}
+
 # Graphs ----------------------
 
 # create graph with predicted prob x bear abundance
@@ -590,6 +598,7 @@ More than likely we will not be running one single model for our data but rather
 Let's run several models for the cows data including a global model (e.g., the one we just ran which includes all variables that are not highly correlated) and a null model (used to ensure data are actually describing more variation than if no data were included)
 
 ```{r}
+
 # Model selection ----------------------
 
 # models for model selection
@@ -645,6 +654,7 @@ cows_4 <- glm(damage ~ scale(bear_abund) +
 Now that we have run a few models to compare we can use the `model.sel()` **function** in the *MuMIn* package to generate a model selection table
 
 ```{r}
+# compare models with model.sel
 model.sel(cows_global,
           cows_null,
           cows_1,

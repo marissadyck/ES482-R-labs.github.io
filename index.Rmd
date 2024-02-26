@@ -95,7 +95,7 @@ Please return and complete this post course survey at the end of the semester
 Before you leave today please take a few moments to complete the [post-course survey](https://qfreeaccountssjc1.az1.qualtrics.com/jfe/form/SV_8wdzQHkevQRmpkG). 
 
 ```{r echo=FALSE}
-rmd2rscript <- function(infile="mod_4_data_manipulation.Rmd"){    # function for converting markdown to scripts
+rmd2rscript <- function(infile="mod_2_glm.Rmd"){    # function for converting markdown to scripts
   outfile1 <- gsub(".Rmd",".R",infile)
   outfile2 <- gsub(".Rmd",".txt",infile)
   close( file( outfile1, open="w" ) )   # clear output file
