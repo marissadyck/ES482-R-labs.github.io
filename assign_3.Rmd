@@ -1,7 +1,7 @@
 ---
 title: "Assignment 3"
 author: "Data manipulation"
-date: "Due 23 February 2024"
+date: "Due 26 February 2024"
 output: 
   html_document:
     code_folding: show
@@ -35,7 +35,7 @@ Please email me a copy of your R script for this assignment by start of class on
 - In the same code chunk remove all rows with NAs
 - Assign this new data to the environment as "turtles_no_na" 
 
-```{r echo=FALSE, message=FALSE}
+```{r class.source = 'fold-hide', message=FALSE}
 
 # code to read in turtles data from earlier
 turtles_tidy <- read_csv('data/processed/turtles_tidy.csv') %>% 
@@ -64,13 +64,13 @@ Using the turtles_no_na data, make a new variable called "size_class" based on t
 * weights between 4 and 7 are subadult
 
 (There are multiple ways to do this which is why there are multiple printouts, but they will yield the same answer)
-```{r echo=FALSE}
+```{r class.source = 'fold-hide'}
 
 turtles_no_na <- turtles_no_na %>% 
   mutate(size_class = case_when(
-    weight < 4 ~ "juvenile",
-    weight > 7 ~ "adult",
-    TRUE  ~ "subadult"
+    weight < 4 ~ 'juvenile',
+    weight > 7 ~ 'adult',
+    TRUE  ~ 'subadult'
   ))
 
 turtles_no_na$size_class
@@ -78,8 +78,8 @@ turtles_no_na$size_class
 # alternatively
 turtles_no_na <- turtles_no_na %>% 
   mutate(size_class = case_when(
-    weight < 4 ~ "juvenile",
-    weight > 7 ~ "adult",
+    weight < 4 ~ 'juvenile',
+    weight > 7 ~ 'adult',
     weight >= 4 & weight <= 7 ~ 'subadult'
   ))
 
@@ -91,23 +91,23 @@ turtles_no_na$size_class
 In the **turtles_tidy data** (*not the turtles_no_na data*) replace ALL variable values (except the tag column) for tags 104 and 105 with NAs
 
 *Hint you will need to create a vector for the tag numbers you want to replace and use `mutate()`*
-```{r echo=FALSE}
+```{r class.source = 'fold-hide'}
 # list of tags we do not trust the data for
-bad.tags <- c(104, 105)
+bad_tags <- c(104, 105)
 
 turtles_tidy <- turtles_tidy %>% 
   mutate(
     sex = replace(sex,
-                  tag %in% bad.tags,
+                  tag %in% bad_tags,
                   NA),
     c_length = replace(c_length,
-                       tag %in% bad.tags,
+                       tag %in% bad_tags,
                        NA),
     h_width = replace(h_width,
-                      tag %in% bad.tags,
+                      tag %in% bad_tags,
                       NA),
     weight = replace(weight,
-                     tag %in% bad.tags,
+                     tag %in% bad_tags,
                      NA))
 
 tail(turtles_tidy)
@@ -119,7 +119,7 @@ turtles_tidy <-turtles_tidy %>%
   mutate(across(
     c("sex","c_length","h_width", "weight"),
     ~replace(.x,
-             tag %in% bad.tags,
+             tag %in% bad_tags,
              NA)))
 
 tail(turtles_tidy)
@@ -137,27 +137,27 @@ soil <- carData::Soils    # load example data
 * print the first few lines of data in "soil"
 
 * Pivot the data so that columns Ca - Na are contained in one column called nutrients (again there are two possible solutions (really more than that but two I expect people to use))
-```{r echo=FALSE}
+```{r class.source = 'fold-hide'}
 
 #See what variables it contains...
 head(soil)  
 
 # Use 'tidyverse' to reshape the data 
 
-soil_nut <- pivot_longer(soil, 
-                         cols = c("Ca","Mg","K", "Na"), 
-                         names_to = "nutrient",
-                         values_to = "value" )
+soil_nutrient <- pivot_longer(soil, 
+                         cols = c(Ca,Mg,K, Na), 
+                         names_to = 'nutrient',
+                         values_to = 'value')
 
-soil_nut
+soil_nutrient
 
 # alternatively
-soil_nut <- pivot_longer(soil, 
+soil_nutrient <- pivot_longer(soil, 
                          cols = Ca:Na, 
-                         names_to = "nutrient",
-                         values_to = "value" )
+                         names_to = 'nutrient',
+                         values_to = 'value')
 
-soil_nut
+soil_nutrient
 
 ```
 
@@ -180,7 +180,7 @@ If you haven't already download the 3 bobcat data files added to the course afte
 - Join the bobcat_necropsy_only_data **to** the bobcat_collection_data AND then in the same code chunk join the bobcat_age_data as well. Make sure to retain all observations from the bobcat_collection_data. *You will need to use the bobcat_id column as the key when joining*   
 
 - Print the summary of your data to check that it worked   
-```{r echo=FALSE, message=FALSE}
+```{r class.source = 'fold-hide', message=FALSE}
 
 # read in data files
 bobcat_collection_data <- read_csv('data/raw/bobcat_collection_data.csv') %>% 

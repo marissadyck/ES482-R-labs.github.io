@@ -453,7 +453,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Assignment 3</h1>
 <h4 class="author">Data manipulation</h4>
-<h4 class="date">Due 23 February 2024</h4>
+<h4 class="date">Due 26 February 2024</h4>
 
 </div>
 
@@ -480,6 +480,21 @@ the best coding practices section and comments as needed.</p>
 <li>In the same code chunk remove all rows with NAs</li>
 <li>Assign this new data to the environment as “turtles_no_na”</li>
 </ul>
+<pre class="r fold-hide"><code># code to read in turtles data from earlier
+turtles_tidy &lt;- read_csv(&#39;data/processed/turtles_tidy.csv&#39;) %&gt;% 
+  
+  # change sex to a factor
+  mutate(sex = as.factor(sex),
+         sex = recode(sex, 
+                       fem = &#39;female&#39;))
+
+# answer to Q1
+turtles_no_na &lt;- turtles_tidy %&gt;% 
+  
+  # remove rows with NA
+  na.omit()
+
+turtles_no_na</code></pre>
 <pre><code>## # A tibble: 15 × 5
 ##      tag sex    c_length h_width weight
 ##    &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
@@ -511,9 +526,26 @@ whereby</p>
 </ul>
 <p>(There are multiple ways to do this which is why there are multiple
 printouts, but they will yield the same answer)</p>
+<pre class="r fold-hide"><code>turtles_no_na &lt;- turtles_no_na %&gt;% 
+  mutate(size_class = case_when(
+    weight &lt; 4 ~ &#39;juvenile&#39;,
+    weight &gt; 7 ~ &#39;adult&#39;,
+    TRUE  ~ &#39;subadult&#39;
+  ))
+
+turtles_no_na$size_class</code></pre>
 <pre><code>##  [1] &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;    &quot;subadult&quot; &quot;adult&quot;    &quot;adult&quot;   
 ##  [7] &quot;subadult&quot; &quot;juvenile&quot; &quot;subadult&quot; &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;   
 ## [13] &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;</code></pre>
+<pre class="r fold-hide"><code># alternatively
+turtles_no_na &lt;- turtles_no_na %&gt;% 
+  mutate(size_class = case_when(
+    weight &lt; 4 ~ &#39;juvenile&#39;,
+    weight &gt; 7 ~ &#39;adult&#39;,
+    weight &gt;= 4 &amp; weight &lt;= 7 ~ &#39;subadult&#39;
+  ))
+
+turtles_no_na$size_class</code></pre>
 <pre><code>##  [1] &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;    &quot;subadult&quot; &quot;adult&quot;    &quot;adult&quot;   
 ##  [7] &quot;subadult&quot; &quot;juvenile&quot; &quot;subadult&quot; &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;   
 ## [13] &quot;adult&quot;    &quot;adult&quot;    &quot;adult&quot;</code></pre>
@@ -525,6 +557,25 @@ data</em>) replace ALL variable values (except the tag column) for tags
 104 and 105 with NAs</p>
 <p><em>Hint you will need to create a vector for the tag numbers you
 want to replace and use <code>mutate()</code></em></p>
+<pre class="r fold-hide"><code># list of tags we do not trust the data for
+bad_tags &lt;- c(104, 105)
+
+turtles_tidy &lt;- turtles_tidy %&gt;% 
+  mutate(
+    sex = replace(sex,
+                  tag %in% bad_tags,
+                  NA),
+    c_length = replace(c_length,
+                       tag %in% bad_tags,
+                       NA),
+    h_width = replace(h_width,
+                      tag %in% bad_tags,
+                      NA),
+    weight = replace(weight,
+                     tag %in% bad_tags,
+                     NA))
+
+tail(turtles_tidy)</code></pre>
 <pre><code>## # A tibble: 6 × 5
 ##     tag sex    c_length h_width weight
 ##   &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
@@ -534,6 +585,17 @@ want to replace and use <code>mutate()</code></em></p>
 ## 4     7 female     48      8.67  13.5 
 ## 5     1 &lt;NA&gt;       29.2    5.1    2.38
 ## 6   104 &lt;NA&gt;       NA     NA     NA</code></pre>
+<pre class="r fold-hide"><code># or... use some more tidyverse helper functions and tricks!
+
+
+turtles_tidy &lt;-turtles_tidy %&gt;% 
+  mutate(across(
+    c(&quot;sex&quot;,&quot;c_length&quot;,&quot;h_width&quot;, &quot;weight&quot;),
+    ~replace(.x,
+             tag %in% bad_tags,
+             NA)))
+
+tail(turtles_tidy)</code></pre>
 <pre><code>## # A tibble: 6 × 5
 ##     tag sex    c_length h_width weight
 ##   &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
@@ -557,6 +619,8 @@ soil &lt;- carData::Soils    # load example data</code></pre>
 column called nutrients (again there are two possible solutions (really
 more than that but two I expect people to use))</p></li>
 </ul>
+<pre class="r fold-hide"><code>#See what variables it contains...
+head(soil)  </code></pre>
 <pre><code>##   Group Contour Depth Gp Block   pH     N Dens   P    Ca   Mg    K   Na Conduc
 ## 1     1     Top  0-10 T0     1 5.40 0.188 0.92 215 16.35 7.65 0.72 1.14   1.09
 ## 2     1     Top  0-10 T0     2 5.65 0.165 1.04 208 12.25 5.15 0.71 0.94   1.35
@@ -564,6 +628,14 @@ more than that but two I expect people to use))</p></li>
 ## 4     1     Top  0-10 T0     4 5.14 0.169 1.10 248 11.92 7.88 1.09 1.01   1.64
 ## 5     2     Top 10-30 T1     1 5.14 0.164 1.12 174 14.17 8.12 0.70 2.17   1.85
 ## 6     2     Top 10-30 T1     2 5.10 0.094 1.22 129  8.55 6.92 0.81 2.67   3.18</code></pre>
+<pre class="r fold-hide"><code># Use &#39;tidyverse&#39; to reshape the data 
+
+soil_nutrient &lt;- pivot_longer(soil, 
+                         cols = c(Ca,Mg,K, Na), 
+                         names_to = &#39;nutrient&#39;,
+                         values_to = &#39;value&#39;)
+
+soil_nutrient</code></pre>
 <pre><code>## # A tibble: 192 × 12
 ##    Group Contour Depth Gp    Block    pH     N  Dens     P Conduc nutrient value
 ##    &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
@@ -578,6 +650,13 @@ more than that but two I expect people to use))</p></li>
 ##  9 1     Top     0-10  T0    3      5.14 0.26   0.95   300   1.41 Ca       13.0 
 ## 10 1     Top     0-10  T0    3      5.14 0.26   0.95   300   1.41 Mg        5.68
 ## # ℹ 182 more rows</code></pre>
+<pre class="r fold-hide"><code># alternatively
+soil_nutrient &lt;- pivot_longer(soil, 
+                         cols = Ca:Na, 
+                         names_to = &#39;nutrient&#39;,
+                         values_to = &#39;value&#39;)
+
+soil_nutrient</code></pre>
 <pre><code>## # A tibble: 192 × 12
 ##    Group Contour Depth Gp    Block    pH     N  Dens     P Conduc nutrient value
 ##    &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
@@ -623,6 +702,77 @@ bobcat_collection_data. <em>You will need to use the bobcat_id column as
 the key when joining</em></p></li>
 <li><p>Print the summary of your data to check that it worked</p></li>
 </ul>
+<pre class="r fold-hide"><code># read in data files
+bobcat_collection_data &lt;- read_csv(&#39;data/raw/bobcat_collection_data.csv&#39;) %&gt;% 
+  
+  # set names to lowercase
+     set_names(
+        names(.) %&gt;% 
+          tolower()) %&gt;% 
+  
+  # change bobcats id# to better name
+      rename(.,
+             &#39;bobcat_id&#39; = &#39;bobcat_id#&#39;)
+
+bobcat_necropsy_only_data &lt;- read_csv(&#39;data/raw/bobcat_necropsy_only_data.csv&#39;) %&gt;% 
+  
+  # set names to lowercase
+  set_names(
+        names(.) %&gt;% 
+          tolower()) %&gt;%
+  
+    # change bobcats id# to better name
+      rename(.,
+             &#39;bobcat_id&#39; = &#39;bobcat_id#&#39;)
+
+bobcat_age_data &lt;- read_csv(&#39;data/raw/bobcat_age_data.csv&#39;) %&gt;% 
+  
+  # set names to lowercase
+  set_names(
+        names(.) %&gt;% 
+          tolower()) %&gt;%
+  
+    # change bobcats id# to better name
+      rename(.,
+             &#39;bobcat_id&#39; = &#39;bobcat_id#&#39;)
+
+# or simpler code
+
+# read in data files
+bobcat_collection_data &lt;- read_csv(&#39;data/raw/bobcat_collection_data.csv&#39;) %&gt;% 
+  
+  # set names to lowercase
+     rename_all(tolower) %&gt;%  
+  
+  # change bobcats id# to better name
+      rename(.,
+             &#39;bobcat_id&#39; = &#39;bobcat_id#&#39;)
+
+bobcat_necropsy_only_data &lt;- read_csv(&#39;data/raw/bobcat_necropsy_only_data.csv&#39;) %&gt;% 
+  
+  # set names to lowercase
+  rename_all(tolower) %&gt;% 
+  
+    # change bobcats id# to better name
+      rename(.,
+             &#39;bobcat_id&#39; = &#39;bobcat_id#&#39;)
+
+bobcat_age_data &lt;- read_csv(&#39;data/raw/bobcat_age_data.csv&#39;) %&gt;% 
+  
+  # set names to lowercase
+ rename_all(tolower) %&gt;%
+  
+    # change bobcats id# to better name
+      rename(.,
+             &#39;bobcat_id&#39; = &#39;bobcat_id#&#39;)
+
+ 
+# make a list and check internal structure 
+
+# option 1 - nested code
+str(list(bobcat_collection_data,
+    bobcat_necropsy_only_data,
+    bobcat_age_data))</code></pre>
 <pre><code>## List of 3
 ##  $ : spc_tbl_ [121 × 7] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##   ..$ bobcat_id     : chr [1:121] &quot;5/18/01&quot; &quot;5/18/02&quot; &quot;58-18-03&quot; &quot;64-19-04&quot; ...
@@ -685,6 +835,12 @@ the key when joining</em></p></li>
 ##   .. ..   Age = col_character()
 ##   .. .. )
 ##   ..- attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</code></pre>
+<pre class="r fold-hide"><code># option 2 - with dplyr
+list(bobcat_collection_data,
+    bobcat_necropsy_only_data,
+    bobcat_age_data) %&gt;% 
+  
+  str(.)</code></pre>
 <pre><code>## List of 3
 ##  $ : spc_tbl_ [121 × 7] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##   ..$ bobcat_id     : chr [1:121] &quot;5/18/01&quot; &quot;5/18/02&quot; &quot;58-18-03&quot; &quot;64-19-04&quot; ...
@@ -747,6 +903,21 @@ the key when joining</em></p></li>
 ##   .. ..   Age = col_character()
 ##   .. .. )
 ##   ..- attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</code></pre>
+<pre class="r fold-hide"><code># join data
+
+bobcat_data_joined &lt;- bobcat_collection_data %&gt;% 
+  
+  # join necropsy data
+  left_join(bobcat_necropsy_only_data,
+            by = &#39;bobcat_id&#39;) %&gt;% 
+  
+  # join age data
+  left_join(bobcat_age_data,
+            by = &#39;bobcat_id&#39;)
+
+
+# print summary
+summary(bobcat_data_joined)</code></pre>
 <pre><code>##   bobcat_id            county            township         collectiondate    
 ##  Length:121         Length:121         Length:121         Length:121        
 ##  Class :character   Class :character   Class :character   Class :character  
