@@ -186,9 +186,9 @@ If you haven't already download the 3 bobcat data files added to the course afte
 bobcat_collection_data <- read_csv('data/raw/bobcat_collection_data.csv') %>% 
   
   # set names to lowercase
-  set_names(
+     set_names(
         names(.) %>% 
-          tolower()) %>%
+          tolower()) %>% 
   
   # change bobcats id# to better name
       rename(.,
@@ -216,6 +216,37 @@ bobcat_age_data <- read_csv('data/raw/bobcat_age_data.csv') %>%
       rename(.,
              'bobcat_id' = 'bobcat_id#')
 
+# or simpler code
+
+# read in data files
+bobcat_collection_data <- read_csv('data/raw/bobcat_collection_data.csv') %>% 
+  
+  # set names to lowercase
+     rename_all(tolower) %>%  
+  
+  # change bobcats id# to better name
+      rename(.,
+             'bobcat_id' = 'bobcat_id#')
+
+bobcat_necropsy_only_data <- read_csv('data/raw/bobcat_necropsy_only_data.csv') %>% 
+  
+  # set names to lowercase
+  rename_all(tolower) %>% 
+  
+    # change bobcats id# to better name
+      rename(.,
+             'bobcat_id' = 'bobcat_id#')
+
+bobcat_age_data <- read_csv('data/raw/bobcat_age_data.csv') %>% 
+  
+  # set names to lowercase
+ rename_all(tolower) %>%
+  
+    # change bobcats id# to better name
+      rename(.,
+             'bobcat_id' = 'bobcat_id#')
+
+ 
 # make a list and check internal structure 
 
 # option 1 - nested code
