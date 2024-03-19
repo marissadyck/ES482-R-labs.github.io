@@ -481,17 +481,14 @@ the best coding practices section and comments as needed.</p>
 <li>Assign this new data to the environment as “turtles_no_na”</li>
 </ul>
 <pre class="r fold-hide"><code># code to read in turtles data from earlier
-turtles_tidy &lt;- read_csv(&#39;data/processed/turtles_tidy.csv&#39;) %&gt;% 
+turtles_no_na &lt;- read_csv(&#39;data/processed/turtles_tidy.csv&#39;) %&gt;% 
   
   # change sex to a factor
   mutate(sex = as.factor(sex),
          sex = recode(sex, 
-                       fem = &#39;female&#39;))
-
-# answer to Q1
-turtles_no_na &lt;- turtles_tidy %&gt;% 
+                       fem = &#39;female&#39;)) %&gt;% 
   
-  # remove rows with NA
+  # remove rows with NAs
   na.omit()
 
 turtles_no_na</code></pre>

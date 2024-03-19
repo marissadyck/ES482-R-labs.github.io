@@ -78,7 +78,7 @@ chart.Correlation(cows_cor,
 # GLM ----------------------
 
 # run a global GLM which includes all variables not highly correlated
-cows_global <- glm(damage ~ bear_abund + 
+cows_global <- glm(damage ~ bear_abund +
                      dist_to_forest + 
                      dist_to_town +
                      openhab_10k +
@@ -87,6 +87,7 @@ cows_global <- glm(damage ~ bear_abund +
                    data = cows, 
                    family = binomial)
 
+summary(cows_global)
 
 # Test assumptions ----------------------
 

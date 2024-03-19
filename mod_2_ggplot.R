@@ -12,8 +12,8 @@ library(ggpubr)
 library(RColorBrewer)
 library(stringr)
 
-ggplot(data, aes(x = x_variable, y = y_variable)) +
-  geom_chooseGeom
+# ggplot(data, aes(x = x_variable, y = y_variable)) +
+#   geom_chooseGeom
 
 
 # Box-whisker plots  -----------------------
@@ -26,6 +26,19 @@ ggplot(iris, aes(x = Species, y = Sepal.Length)) +
 ggplot(iris, aes(x = Species, y = Sepal.Length)) +    
   geom_violin() 
 
+
+# YOUR CODE HERE ----------------------------------------------------------
+
+# ?geom_violin()
+
+# violin plot with quantiles
+
+
+
+
+###
+
+
   # Bar plots ----------------------
 
 ggplot(iris, aes(x = Species)) + # we don't specify a y variable if we want sample size
@@ -34,19 +47,35 @@ ggplot(iris, aes(x = Species)) + # we don't specify a y variable if we want samp
 
 ggplot(iris, aes(x = Species)) + # we don't specify a y variable if we want sample size
   geom_bar(width = 0.5)
-# first we need to calculate some summary statistics since these data aren't available in the current dataset
 
-bar_heights <- iris %>% 
-  
-  # create groups for each species
-  group_by(Species) %>%
-  
-  # calculate the mean sepal length for each species
-  summarize(meanSL = mean(Sepal.Length))
+
+
+# YOUR CODE HERE ----------------------------------------------------------
+
+
+# first we need to calculate some summary statistics since these data aren't available in the current dataset, create a data frame object called bar_heights from the iris data. Calculate the mean Sepal length per species and assin this to data as meanSL. Then use code to plot the data
+
+
+
+
+
+
 
 # create plot of mean sepal length for each species
+
 ggplot(bar_heights, aes(Species, meanSL)) +
+  
+  # add bars
   geom_col(width = 0.5)
+
+
+# adapt code to pipe directly into ggplot
+
+
+
+
+
+
 
 
   # Bar plots with error bars ----------------------
@@ -83,6 +112,7 @@ ggplot(bar_heights, aes(x = Species, y = meanSL)) +
 ggsave('iris_plot_1.tiff',
        plot_1,
        path = 'figures')
+
   # Combining plots ----------------------
 
 # Explore different geoms with iris data
@@ -816,23 +846,4 @@ ggplot(sumTC, aes(x = dose, y = mean, fill = supp)) + geom_col(color = 'black', 
   scale_x_discrete(expand = c(0, 0)) +cale_y_continuous(expand = c(0, 0),
                      limits = c(0, 35))
 
-# read in bear data
-
-bears <- read.csv('data/bear_2008_2016.csv') %>% 
-  
-   # set column names to lowercase
-  set_names(
-    names(.) %>%  # the period here is a placeholder for the data it tells R to use the element before the last pipe (e.g., turtles.df)
-      tolower()) %>% 
-  
-     # select only damage points
-  filter(damage == 1) %>% 
-  
-  # select specified columns
-  select(damage, year, targetspp, bear_abund:dist_to_town)
-
-str(bears)
-  
-  
-# filter data to only damage points
 

@@ -38,17 +38,14 @@ Please email me a copy of your R script for this assignment by start of class on
 ```{r class.source = 'fold-hide', message=FALSE}
 
 # code to read in turtles data from earlier
-turtles_tidy <- read_csv('data/processed/turtles_tidy.csv') %>% 
+turtles_no_na <- read_csv('data/processed/turtles_tidy.csv') %>% 
   
   # change sex to a factor
   mutate(sex = as.factor(sex),
          sex = recode(sex, 
-                       fem = 'female'))
-
-# answer to Q1
-turtles_no_na <- turtles_tidy %>% 
+                       fem = 'female')) %>% 
   
-  # remove rows with NA
+  # remove rows with NAs
   na.omit()
 
 turtles_no_na

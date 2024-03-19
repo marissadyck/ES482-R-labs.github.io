@@ -54,7 +54,7 @@ A good ggplot cheat sheet can be found here: [ggplot cheat sheet](https://raw.gi
 Let's get started plotting!
 
 ## ggplot syntax
-A typical workflow begins with initiating plotting with the ` ggplot()` function and specifying the data frame you want to use to create your visualizations. We then often define the "x" argument (defining coordinates on an x axis) and (if applicable) a "y" argument (defining coordinates on a y axis). In ggplot these are known as **aesthetic mappings**! That is because it is a way of conveying information in the dataset graphically! Other ways of conveying information graphically include point size, color, and symbol- all of which are also referred to as aesthetic mappings (syntax: `mapping=aes()`).
+A typical workflow begins with initiating plotting with the ` ggplot()` function and specifying the data frame you want to use to create your visualizations. We then often define the "x" argument (defining coordinates on an x axis) and (if applicable) a "y" argument (defining coordinates on a y axis). In ggplot these are known as **aesthetic mappings**. That is because it is a way of conveying information in the dataset graphically! Other ways of conveying information graphically include point size, color, and symbol- all of which are also referred to as aesthetic mappings (syntax: `mapping=aes()`).
 
 You can then add **geometric objects** (like points) to your plot, often using functions beginning with `geom_`, to represent your data in the form of a boxplot (`geom_boxplot()`), scatterplot (`geom_point()`), or a variety of other types of plots. The `aes()` function can be called within these "geoms" to specify which variables to display and how these data should be displayed (which data should be used to represent the bar height, or the x coordinate, or the point size, etc.). `aes()` can also be used within the initial call to `ggplot()`.
 
@@ -87,7 +87,7 @@ ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) + # define the data 
 
 ```
 
-> Remember R will read things in the order shown in the **R documentation** for a given **function**.
+> Remember R will read things in the order shown in the **R documentation** for a given **function** if you don't specify which arguments you have provided, this can shorten your code but can also make it confusing for others/cause errors if not anotated properly.
 
 <span style="color: blue;">Check the **R documentation** for `ggplot()`</span> to see how we could shorten the code above
 
@@ -170,9 +170,11 @@ Below is code to simply display the number of rows for each species in the *iris
 
 ggplot(iris, aes(x = Species)) + # we don't specify a y variable if we want sample size
   geom_bar()
+
 ```
 
 Notice we didn't specify a 'y' variable above, if no 'y' variable is specified `geom_bar()` will automatically map counts of each x variable to the y-axis. This is useful for checking sample size.
+
 
 This graph is kind of ugly since all the species have the same sample size, but we can make it look a little nicer by changing the width of the bars
 
@@ -186,7 +188,9 @@ ggplot(iris, aes(x = Species)) + # we don't specify a y variable if we want samp
 This is okay for now. We will go over many more options to make plots look nicer.
 
 If we want to display variables from our data on both the x and y axis we can use `geom_col()`.
-```{r}
+
+<span style="color: blue;"> Create a new data frame from the iris data called bar_heights and calculate the mean sepal length of each iris species, assign this the name meanSL in the data </span>.
+```{r, echo=FALSE}
 # first we need to calculate some summary statistics since these data aren't available in the current dataset
 
 bar_heights <- iris %>% 
@@ -197,10 +201,36 @@ bar_heights <- iris %>%
   # calculate the mean sepal length for each species
   summarize(meanSL = mean(Sepal.Length))
 
+```
+
+```{r}
+
 # create plot of mean sepal length for each species
 ggplot(bar_heights, aes(Species, meanSL)) +
+  
+  # add bars
   geom_col(width = 0.5)
+```
 
+We can also pipe the data directly into ggplot to avoid assigning an unnecessary object to the environment. 
+<span style="color: blue;">Try adapting the code above to do this on your own </span>.
+```{r, class.source = 'fold-hide'}
+# do some data manipulation to get data frame with mean sepal length per species
+iris %>% 
+  
+  # group by species to calculate a mean for each
+  group_by(Species) %>% 
+  
+  # use summarize to calculate a mean of Sepal length and assign it to a column called mean_sepal_L
+  summarize(meanSL = mean(Sepal.Length)) %>% 
+  
+  # ungroup and pipe into ggplot function
+  ungroup() %>% 
+  
+ggplot(., aes(x = Species, y = meanSL)) +
+  
+  # plot bar graph
+  geom_col(width = 0.5)
 ```
 
 #### Error bars
@@ -1350,7 +1380,7 @@ ggplot(sumTC, aes(x = dose, y = mean, fill = supp)) +
 Ta-da!
 
 Hopefully now you can see how useful **ggplot** can be. And also how helpful it is to following the *best coding practices* keeping your code well spaced, indented, and annotated. If not check out the code below, this is code for the same plot but not following best coding practices and I've made a mistake, can you find it?
-```{r eval = FALSE}
+```{r eval=FALSE}
 
 # example of messy code
 ggplot(sumTC, aes(x = dose, y = mean, fill = supp)) + geom_col(color = 'black', position = position_dodge()) +
@@ -1366,7 +1396,7 @@ ggplot(sumTC, aes(x = dose, y = mean, fill = supp)) + geom_col(color = 'black', 
 ```
 
 
- ## Practice problems
+## Practice problems
 
 These practice problems will incorporate some data manipulation from yesterday as well as data visualization from today. *
 
@@ -1471,11 +1501,11 @@ Please read in the data according to the following guidelines
 4. Keep only the following columns (damage, year, targetspp, bear_abund, landcover_code, altitude, human_population, disto_to_forest, and dist_to_town)
 
 *You may have to do some other data manipulation later on for each graph
-```{r class.source = 'fold-hide'}
+```{r echo=FALSE}
 
 # read in bear data
 
-bears <- read.csv('data/bear_2008_2016.csv') %>% 
+bears <- read.csv('data/raw/bear_2008_2016.csv') %>% 
   
    # set column names to lowercase
   set_names(
@@ -1560,7 +1590,7 @@ bear_damage_bargraph <-  ggplot(bears_summary, aes( x = year)) +
                                     hjust = 0))
 ```
 
-###  Combine multiple graphs
+###  5 Combine multiple graphs
 For this problem you'll need to make a change to the data
 
 * Create a new column the combines values from the landcover code    
@@ -1693,7 +1723,7 @@ plot_combined <-  ggarrange(plot_5.1, plot_5.2,
           common.legend = TRUE)
 ```
 
-## 'Answers' (graphs)
+## 'Answer Key'
 
 ### 1 Boxplot
 ```{r, echo = FALSE}
@@ -1708,6 +1738,15 @@ plant_boxplot
 trees_scatterplot
 
 ```
+
+### 3 Read/format data
+
+```{r}
+
+str(bears)
+
+```
+
 
 ### 4 Bar graph
 ```{r, echo = FALSE}

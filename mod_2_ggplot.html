@@ -492,7 +492,7 @@ cheat sheet</a></p>
 use to create your visualizations. We then often define the “x” argument
 (defining coordinates on an x axis) and (if applicable) a “y” argument
 (defining coordinates on a y axis). In ggplot these are known as
-<strong>aesthetic mappings</strong>! That is because it is a way of
+<strong>aesthetic mappings</strong>. That is because it is a way of
 conveying information in the dataset graphically! Other ways of
 conveying information graphically include point size, color, and symbol-
 all of which are also referred to as aesthetic mappings (syntax:
@@ -535,7 +535,10 @@ ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) + # define the data 
 <p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <blockquote>
 <p>Remember R will read things in the order shown in the <strong>R
-documentation</strong> for a given <strong>function</strong>.</p>
+documentation</strong> for a given <strong>function</strong> if you
+don’t specify which arguments you have provided, this can shorten your
+code but can also make it confusing for others/cause errors if not
+anotated properly.</p>
 </blockquote>
 <p><span style="color: blue;">Check the <strong>R documentation</strong>
 for <code>ggplot()</code></span> to see how we could shorten the code
@@ -607,7 +610,10 @@ ggplot(iris, aes(x = Species)) + # we don&#39;t specify a y variable if we want 
 look nicer.</p>
 <p>If we want to display variables from our data on both the x and y
 axis we can use <code>geom_col()</code>.</p>
-<pre class="r"><code># first we need to calculate some summary statistics since these data aren&#39;t available in the current dataset
+<p><span style="color: blue;"> Create a new data frame from the iris
+data called bar_heights and calculate the mean sepal length of each iris
+species, assign this the name meanSL in the data </span>.</p>
+<pre class="r fold-hide"><code># first we need to calculate some summary statistics since these data aren&#39;t available in the current dataset
 
 bar_heights &lt;- iris %&gt;% 
   
@@ -615,12 +621,33 @@ bar_heights &lt;- iris %&gt;%
   group_by(Species) %&gt;%
   
   # calculate the mean sepal length for each species
-  summarize(meanSL = mean(Sepal.Length))
-
-# create plot of mean sepal length for each species
+  summarize(meanSL = mean(Sepal.Length))</code></pre>
+<pre class="r"><code># create plot of mean sepal length for each species
 ggplot(bar_heights, aes(Species, meanSL)) +
+  
+  # add bars
   geom_col(width = 0.5)</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>We can also pipe the data directly into ggplot to avoid assigning an
+unnecessary object to the environment. <span style="color: blue;">Try
+adapting the code above to do this on your own </span>.</p>
+<pre class="r fold-hide"><code># do some data manipulation to get data frame with mean sepal length per species
+iris %&gt;% 
+  
+  # group by species to calculate a mean for each
+  group_by(Species) %&gt;% 
+  
+  # use summarize to calculate a mean of Sepal length and assign it to a column called mean_sepal_L
+  summarize(meanSL = mean(Sepal.Length)) %&gt;% 
+  
+  # ungroup and pipe into ggplot function
+  ungroup() %&gt;% 
+  
+ggplot(., aes(x = Species, y = meanSL)) +
+  
+  # plot bar graph
+  geom_col(width = 0.5)</code></pre>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <div id="error-bars" class="section level4">
 <h4>Error bars</h4>
 <p>But what if we want to have some error bars? We can add another
@@ -650,7 +677,7 @@ ggplot(bar_heights, aes(x = Species, y = meanSL)) +
   geom_errorbar(aes(ymin = meanSL - 2*sdSL, # ymin specifies the lower limit of the error bar
                     ymax = meanSL + 2*sdSL), # ymax specifies the upper limit of the error bar
                 width = 0.2) </code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 </div>
 </div>
 </div>
@@ -669,7 +696,7 @@ simple plot using the <em>iris</em> data and save it to your
 <strong>environment</strong> you have to print/view it in order to see
 the object. <span style="color: blue;">In your <strong>console</strong>
 type ‘plot_1’ and hit enter</span>.</p>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>Now the plot window will open and your plot is visible.</p>
 <blockquote>
 <p>Don’t forget this step! It is easy to do and leave you stuck
@@ -748,7 +775,7 @@ view them all at once</p>
           plot3,
           plot4,
           labels = &quot;auto&quot;)</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p>We can also use this function to combine plots and export them as one
 image. For example:</p>
 <pre class="r"><code>figure_1 &lt;- ggarrange(plot1, plot2, plot3, plot4,
@@ -757,7 +784,7 @@ image. For example:</p>
                       nrow = 2)
 
 figure_1</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <pre class="r"><code># save to hard drive
 # ggsave(&#39;figure_1.tiff&#39;, 
 #        figure_1,
@@ -771,7 +798,7 @@ width and the other plots are split by nesting the
                     labels = c(&#39;A&#39;, &#39;B&#39;, &#39;C&#39;)),
           nrow = 2,
           labels = &#39;D&#39;)</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>Not the most elegant but it works.</p>
 <p>There’s tons you can do with <code>ggarrange()</code> and you can
 check out the tutorial below if you are interested in learning more.</p>
@@ -805,20 +832,20 @@ ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width)) +
   
   # add points by name
   geom_point(col = &#39;blue&#39;)</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <pre class="r"><code># single color for all points by hex code
 ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width)) +
   
   # add colored points by hex code
   geom_point(col = &#39;#33A5FF&#39;)</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-20-2.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-22-2.png" width="672" /></p>
 <p>What about this?</p>
 <pre class="r"><code># single color for all points by name
 ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width)) +
   
   # add colored points by name
   geom_point(aes(col = &#39;blue&#39;))</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <p>What happened here? The dots aren’t blue…. but we have a legend that
 says colour with ‘blue’ listed.</p>
 <p>This is because we added the color argument INSIDE the
@@ -834,7 +861,7 @@ ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width)) +
   
   # add points colored by height
   geom_point(aes(col = Species))</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <p>In the first two examples we chose specific colors for our points.
 You can identify colors by their name. There are tons of colors for
 ggplot and you may. find it useful to save a list such as below for
@@ -869,13 +896,13 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
   
   # add points
   geom_point(shape = 2)</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <pre class="r"><code># change shape based on variable in data
 ggplot(iris, aes(Sepal.Length, Petal.Length)) +
   
     # shape represents species
   geom_point(aes(shape = Species))</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-23-2.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-25-2.png" width="672" /></p>
 </div>
 <div id="fill" class="section level3">
 <h3>Fill</h3>
@@ -898,14 +925,14 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
   # add points
   geom_point(shape = 2,
              col = &#39;blue&#39;)</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <pre class="r"><code># fill
 ggplot(iris, aes(Sepal.Length, Petal.Length)) +
   
   # add points
   geom_point(shape = 2,
              fill = &#39;blue&#39;) # notice this didn&#39;t work because points can&#39;t be filled in </code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-24-2.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-26-2.png" width="672" /></p>
 <pre class="r"><code># let&#39;s try with bar graphs instead
 
 # color
@@ -913,19 +940,19 @@ ggplot(bar_heights, aes(Species, meanSL)) +
   
   # add bars
   geom_col(col = &#39;blue&#39;) # notice just the border is blue</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-24-3.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-26-3.png" width="672" /></p>
 <pre class="r"><code># fill
 ggplot(bar_heights, aes(Species, meanSL)) +
   
   # add bars
   geom_col(fill = &#39;blue&#39;) # now the whole bar is blue</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-24-4.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-26-4.png" width="672" /></p>
 <pre class="r"><code># change fill based on variable in data
 ggplot(bar_heights, aes(Species, meanSL)) +
   
   # add bars
   geom_col(aes(fill = Species)) # bar color varies by species</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-24-5.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-26-5.png" width="672" /></p>
 <p>You’ll notice there’s a lot of repetition in the code to change
 various <strong>aesthetics</strong>, this is one of the nice things
 about <em>ggplot</em> it makes it easy to use and remember syntax
@@ -941,11 +968,11 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
   
   # size represents species
   geom_point(aes(size = Species)) </code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <pre class="r"><code># size is same across the board
 ggplot(iris, aes(Sepal.Length, Petal.Length)) +    
   geom_point(size = 2) </code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-25-2.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-27-2.png" width="672" /></p>
 </div>
 </div>
 <div id="scales" class="section level2">
@@ -975,7 +1002,7 @@ ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width)) +
   scale_color_manual(name = &#39;Iris Species&#39;, # this changes the legend title
                      values = c(&#39;#BD6BF1&#39;, &#39;#3829A3&#39;, &#39;#9498D8&#39;), # I selected these hex codes using the ColorPick Eyedropper and googline images of each iris species :)
                      labels = c(&#39;I. setosa&#39;, &#39;I. versicolor&#39;, &#39;I. virginica&#39;)) # this changes the labels inside the legend, these must be in the same order as the data and the colors you want for each</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <p>With the code above I was able to set colors of my choice for each of
 the species in the plot and change the title and labels in the
 legend.</p>
@@ -1009,7 +1036,7 @@ ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width)) +
   
   # add points colored by petal length
   geom_point(aes(color = Petal.Length))</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>However, as we saw before, sometimes sticking to the default colors
 in ggplot isn’t the best choice. You might have factors representing
 ordered ranks, like in an experiment with different levels of light
@@ -1034,7 +1061,7 @@ ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width)) +
   # set scales
   scale_color_gradient(low = &#39;yellow&#39;,
                        high = &#39;green&#39;)</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 <p>Not the best color choice but you get the idea.</p>
 <p>Another method is to use an already composed color palette from
 RColorBrewer (a package you’ll need to install). You can check out all
@@ -1045,7 +1072,7 @@ palettes.</p>
 <pre class="r"><code># Playing with colors in ggplot!
 
 display.brewer.all()</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-29-1.png" width="576" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-31-1.png" width="576" /></p>
 <p>I’m going to pick the YlGn (yellow green) palette, because those seem
 like good plant colors. For a continuous variable we need to use
 <code>scale_*_distiller()</code>.</p>
@@ -1059,7 +1086,7 @@ ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width)) +
   
   # set scales
   scale_color_distiller(palette = &#39;YlGn&#39;)</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 <p>If we had discrete data (data binned) we could use
 <code>scale_*_brewer()</code> in the same way.</p>
 </div>
@@ -1087,12 +1114,12 @@ ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width)) +
   
   scale_y_continuous(limits = c(0, 5),
                      breaks = seq(0, 5, by = 1))</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 <p>This wasn’t the best alteration for our graph since our data don’t
 start near zero. <span style="color: blue;">Alter the code above to set
 the x axis to go from 2-5 and y-axis 4-8 with breaks every 1
 number</span>.</p>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
 <blockquote>
 <p>There are lots of <strong>scales</strong> depending on what type of
 variable you are working with and what you want to accomplish. The <a
@@ -1133,7 +1160,7 @@ ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width)) +
   labs(x = &#39;Sepal length (cm)&#39;,
        y = &#39;Sepal width (cm)&#39;,
        color = &#39;Iris species&#39;) # we can change the legend title here using the aesthetic name instead of in scales</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
 </div>
 <div id="titles-subtitles" class="section level3">
 <h3>Titles &amp; subtitles</h3>
@@ -1218,7 +1245,7 @@ ggarrange(plot1,
           common.legend = TRUE,
           legend = &#39;right&#39;,
           labels = &#39;AUTO&#39;)</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 <p>Let’s go over a few things I did above</p>
 <ol style="list-style-type: decimal">
 <li><p>I created two vectors, one for the colors I want in my graphs and
@@ -1330,7 +1357,7 @@ ggarrange(theme1,
           theme4,
           common.legend = TRUE,
           legend = &#39;right&#39;)</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 <p>There are many other themes are available in ggplot, cowplot and
 other related packages</p>
 </div>
@@ -1367,7 +1394,7 @@ gridlines, border, etc.</p>
         panel.background = element_rect(fill = &#39;yellow&#39;),        # change panel background color
         panel.border = element_rect(fill = NA, color = &quot;black&quot;), # make pnael border black
         legend.position = &quot;top&quot;)                                 # move legend to top</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
 <pre class="r"><code># check out the theme documentation for more things you can change, the options are endless!
 # ?theme</code></pre>
 <p>This isn’t a very pretty graph but it demonstrates many of the
@@ -1429,13 +1456,13 @@ sumTC</code></pre>
 <p>Below is the graph we want to make which displays the mean, sd, for
 each dose and delivery method with the mean values printed above each
 bar.
-<img src="mod_2_ggplot_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<img src="mod_2_ggplot_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 <p>Let’s go through step-by-step how to make this graph.</p>
 <p>First we need to call the <code>ggplot()</code>
 <strong>function</strong> and supply the data and x and y variables.</p>
 <pre class="r"><code># specify data and variables
 ggplot(sumTC, aes(x = dose, y = mean))</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 <p>This gives us our empty plot with dose on the x-axis and mean one the
 y-axis</p>
 <p>Now let’s add the data using <code>geom_col()</code>.</p>
@@ -1444,7 +1471,7 @@ ggplot(sumTC, aes(x = dose, y = mean)) +
   
   # add data bars
   geom_col()</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
 <p>But we want our bars colored based on the ‘supp’ variable, and
 outlined in black. Let’s add this in the<code>geom_col()</code>
 argument.</p>
@@ -1454,7 +1481,7 @@ ggplot(sumTC, aes(x = dose, y = mean)) +
   # add data bars
   geom_col(aes(fill = supp),
            color = &#39;black&#39;) # remember since black isn&#39;t a variable in the data this argument goes OUTSIDE the aes()</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
 <p>This isn’t very helpful yet because it’s stacking the two groups on
 top of one another. We can use a handy argument called
 <code>position_dodge()</code> to fix this.</p>
@@ -1465,7 +1492,7 @@ ggplot(sumTC, aes(x = dose, y = mean)) +
   geom_col(aes(fill = supp),
            color = &#39;black&#39;,
            position = position_dodge()) # this puts the groups side-by-side instead of stacked</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 <p>Now lets add error bars to each bar.</p>
 <pre class="r"><code># specify data and variables
 ggplot(sumTC, aes(x = dose, y = mean)) +
@@ -1478,7 +1505,7 @@ ggplot(sumTC, aes(x = dose, y = mean)) +
   # add error bars
   geom_errorbar(aes(ymin = mean - sd, 
                     ymax = mean + sd))</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
 <p>Whoops! What happened here?</p>
 <pre class="r"><code># specify data and variables
 ggplot(sumTC, aes(x = dose, y = mean,)) +
@@ -1493,7 +1520,7 @@ ggplot(sumTC, aes(x = dose, y = mean,)) +
                     ymax = mean + sd),
                 position = position_dodge(0.9),
                 width = 0.2) </code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
 <p>We didn’t use <code>position_dodge()</code> on the error bars so they
 plotted in the center of each dose. But there’s another issue here… this
 one is tricky, because we didn’t specify a <em>fill</em> argument in the
@@ -1514,7 +1541,7 @@ ggplot(sumTC, aes(x = dose, y = mean,)) +
                     fill = supp),
                 position = position_dodge(0.9),
                 width = 0.2) </code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
 <pre class="r"><code># or a simpler way is to specify the fill in the entire plot aesthetics
 
 # specify data and variables
@@ -1529,7 +1556,7 @@ ggplot(sumTC, aes(x = dose, y = mean, fill = supp)) +
                     ymax = mean + sd),
                 position = position_dodge(0.9),
                 width = 0.2) </code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-45-2.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-47-2.png" width="672" /></p>
 <p>Now lets add the values of bar above them and don’t forget
 <code>position_dodge()</code> so they line up properly</p>
 <pre class="r"><code># specify data and variables
@@ -1548,7 +1575,7 @@ ggplot(sumTC, aes(x = dose, y = mean, fill = supp)) +
 # add mean value above bars
   geom_text(aes(label = mean),
             position = position_dodge(width = 0.9))</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
 <p>Those labels aren’t in the best spot. We can specify their
 orientation in relation to the y - axis using the <code>y =</code>
 argument.</p>
@@ -1569,7 +1596,7 @@ ggplot(sumTC, aes(x = dose, y = mean, fill = supp)) +
   geom_text(aes(label = mean,
                  y = mean + (sd + 1)),
             position = position_dodge(width = 0.9))</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
 <p>Much better! Now let’s change the labels so they are a bit more
 informative.</p>
 <pre class="r"><code># specify data and variables
@@ -1595,7 +1622,7 @@ ggplot(sumTC, aes(x = dose, y = mean, fill = supp)) +
        x= &quot;Dose (mg)&quot;, 
        y = &quot;Length (mm)&quot; ,
        fill = &#39;Delivery method&#39;) </code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
 <p>Next let’s adjust the size of some of the text and other
 <strong>theme</strong> elements so it is a bit more readbale and
 pretty.</p>
@@ -1631,7 +1658,7 @@ ggplot(sumTC, aes(x = dose, y = mean, fill = supp)) +
                                   size = 16),
         legend.text = element_text(size = 12),
         legend.title = element_text(size = 14)) </code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 <p>Now let’s change these awful plotting colors.</p>
 <pre class="r"><code># specify data and variables
 ggplot(sumTC, aes(x = dose, y = mean, fill = supp)) +
@@ -1669,7 +1696,7 @@ ggplot(sumTC, aes(x = dose, y = mean, fill = supp)) +
   # manually alter colors
    scale_fill_manual(values = c(&#39;#E69F00&#39;, &#39;#999999&#39;),
                      labels = c(&#39;Orange juice&#39;, &#39;Ascorbic acid&#39;))</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
 <p>Finally, I don’t like the awkward spacing between the graph elements
 and the axis. We can get rid of that using some <strong>scales</strong>
 <strong>functions</strong>.</p>
@@ -1714,7 +1741,7 @@ ggplot(sumTC, aes(x = dose, y = mean, fill = supp)) +
   scale_x_discrete(expand = c(0, 0)) +
   scale_y_continuous(expand = c(0, 0),
                      limits = c(0, 35))</code></pre>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
 <p>Ta-da!</p>
 <p>Hopefully now you can see how useful <strong>ggplot</strong> can be.
 And also how helpful it is to following the <em>best coding
@@ -1733,7 +1760,9 @@ ggplot(sumTC, aes(x = dose, y = mean, fill = supp)) + geom_col(color = &#39;blac
    scale_fill_manual(values = c(&#39;#E69F00&#39;, &#39;#999999&#39;),labels = c(&#39;Orange juice&#39;, &#39;Ascorbic acid&#39;)) +
   scale_x_discrete(expand = c(0, 0)) +cale_y_continuous(expand = c(0, 0),
                      limits = c(0, 35))</code></pre>
-<p>## Practice problems</p>
+</div>
+<div id="practice-problems" class="section level2">
+<h2>Practice problems</h2>
 <p>These practice problems will incorporate some data manipulation from
 yesterday as well as data visualization from today. *</p>
 <div id="boxplot" class="section level3">
@@ -1782,22 +1811,6 @@ and dist_to_town)</p></li>
 </ol>
 <p>*You may have to do some other data manipulation later on for each
 graph</p>
-<pre class="r fold-hide"><code># read in bear data
-
-bears &lt;- read.csv(&#39;data/bear_2008_2016.csv&#39;) %&gt;% 
-  
-   # set column names to lowercase
-  set_names(
-    names(.) %&gt;%  # the period here is a placeholder for the data it tells R to use the element before the last pipe (e.g., turtles.df)
-      tolower()) %&gt;% 
-  
-     # select only damage points
-  filter(damage == 1) %&gt;% 
-  
-  # select specified columns
-  select(damage, year, targetspp, bear_abund:dist_to_town)
-
-str(bears)</code></pre>
 <pre><code>## &#39;data.frame&#39;:    756 obs. of  9 variables:
 ##  $ damage          : int  1 1 1 1 1 1 1 1 1 1 ...
 ##  $ year            : int  2008 2008 2008 2008 2008 2008 2008 2008 2008 2008 ...
@@ -1808,7 +1821,6 @@ str(bears)</code></pre>
 ##  $ human_population: int  10 0 0 0 0 0 609 431 39 367 ...
 ##  $ dist_to_forest  : num  649.3 361.8 79.2 82.5 105.7 ...
 ##  $ dist_to_town    : num  613 843 5953 5950 7190 ...</code></pre>
-<pre class="r fold-hide"><code># filter data to only damage points</code></pre>
 </div>
 <div id="bar-graph" class="section level3">
 <h3>4 Bar graph</h3>
@@ -1828,7 +1840,7 @@ graph</p></li>
 </ol>
 </div>
 <div id="combine-multiple-graphs" class="section level3">
-<h3>Combine multiple graphs</h3>
+<h3>5 Combine multiple graphs</h3>
 <p>For this problem you’ll need to make a change to the data</p>
 <ul>
 <li>Create a new column the combines values from the landcover
@@ -1869,23 +1881,37 @@ labels</em></p></li>
 ##  $ landcover_grouped: chr  &quot;ag&quot; &quot;open&quot; &quot;forest&quot; &quot;forest&quot; ...</code></pre>
 </div>
 </div>
-<div id="answers-graphs" class="section level2">
-<h2>‘Answers’ (graphs)</h2>
+<div id="answer-key" class="section level2">
+<h2>‘Answer Key’</h2>
 <div id="boxplot-1" class="section level3">
 <h3>1 Boxplot</h3>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
 </div>
 <div id="scatterplot-1" class="section level3">
 <h3>2 Scatterplot</h3>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+</div>
+<div id="readformat-data-1" class="section level3">
+<h3>3 Read/format data</h3>
+<pre class="r"><code>str(bears)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    756 obs. of  9 variables:
+##  $ damage          : int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ year            : int  2008 2008 2008 2008 2008 2008 2008 2008 2008 2008 ...
+##  $ targetspp       : chr  &quot;bovine&quot; &quot;bovine&quot; &quot;ovine&quot; &quot;ovine&quot; ...
+##  $ bear_abund      : int  38 38 40 40 36 22 40 56 56 25 ...
+##  $ landcover_code  : int  211 231 324 324 321 321 112 112 112 112 ...
+##  $ altitude        : int  558 608 570 570 1410 1068 516 533 553 635 ...
+##  $ human_population: int  10 0 0 0 0 0 609 431 39 367 ...
+##  $ dist_to_forest  : num  649.3 361.8 79.2 82.5 105.7 ...
+##  $ dist_to_town    : num  613 843 5953 5950 7190 ...</code></pre>
 </div>
 <div id="bar-graph-1" class="section level3">
 <h3>4 Bar graph</h3>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
 </div>
 <div id="combined-plots" class="section level3">
 <h3>5 Combined plots</h3>
-<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+<p><img src="mod_2_ggplot_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
 </div>
 </div>
 
