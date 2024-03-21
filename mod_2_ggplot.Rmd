@@ -388,11 +388,11 @@ We can also alter the arrangement so one plot takes up the whole width and the o
 
 ```{r}
 ggarrange(plot4,
+          nrow = 2,
+          labels = 'D',
           ggarrange(plot1, plot2, plot3,
                     ncol = 3,
-                    labels = c('A', 'B', 'C')),
-          nrow = 2,
-          labels = 'D')
+                    labels = c('A', 'B', 'C')))
 
 ```
 
@@ -454,9 +454,22 @@ Let's look at an example of this using an actual variable in our dataset
  # try representing tree species using color
 ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width)) +
   
-  # add points colored by height
+  # add points colored by species
   geom_point(aes(col = Species))
 ```
+
+What happens if we forget to specify the aesthetics and try to color the points by species, this is a super common mistake I see.
+
+```{r eval=FALSE}
+
+ # try representing tree species using color
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width)) +
+  
+  # add points colored by species
+  geom_point(col = Species)
+```
+
+
 
 In the first two examples we chose specific colors for our points. You can identify colors by their name. There are tons of colors for ggplot and you may. find it useful to save a list such as below for future use. 
 
