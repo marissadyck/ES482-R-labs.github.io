@@ -47,10 +47,8 @@ navbar:
           href: assign_2.html
         - text: "Assignment 3"
           href: assign_3.html
-        - text: "Assignment 4 (coming soon)"
+        - text: "Assignment 4"
           href: assign_4.html
-        - text: "Assignment 5 (coming soon)"
-          href: assign_5.html
     - text: "Data"
       href: data.html
     - text: "Links"
