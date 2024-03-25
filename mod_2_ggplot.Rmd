@@ -1609,7 +1609,7 @@ For this problem you'll need to make a change to the data
 * Create a new column the combines values from the landcover code    
   art_surfaces = 112, 121, 131    
   ag = 211, 221, 222, 242, 243    
-  open = 231, 231   
+  open = 231, 321   
   forest = 311, 312, 313, 324   
 
 Then you will need to make **two** graphs using this new column
