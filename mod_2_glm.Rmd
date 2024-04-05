@@ -773,6 +773,8 @@ A first initial step after you have chosen your model, is usually to plot your m
 
 Let's run the `plot()` function of our top model, which will return 4 plots by default to illustrate this with the cows data.
 
+What we are looking for is in the first plot the residuals vs leverage, that there aren't huge deviations at either tail of the plot which would indicate with a glm that the relationship may not be linear or logistic but quadratic and you would want to include a quadratic term for one or more variable in your model. 
+
 ```{r plot model}
 
 # plot chosen model
@@ -783,7 +785,7 @@ plot(cows_global)
 
 ### Area under the curve
 
-For a **binomial** glm we can assess the Area under Curve or Receiver operating characteristic (ROC) curve is used to evaluate the performance. It measures how wel the model is able to disntinguish between the two classifications of the model. 
+For a **binomial** glm we can assess the Area under Curve or Receiver operating characteristic (ROC) curve is used to evaluate the performance. It measures how wel the model is able to distinguish between the two classifications of the model. 
 
 ```{r auc}
 
@@ -795,6 +797,20 @@ auc(c.roccurve)
 plot.roc(c.roccurve, main="Area Under the Curve for best model")
 ```
 
+
+### R squared
+
+You can also calculate a pseudo R squared value for your model which indicates how much of the variance is explained by the covariates in your model.
+
+To do this we use the null and residual deviance values in the model summary
+```{r r square}
+
+summary(cows_global)
+
+# 1 - (Residual Deviance/Null Deviance)
+
+1 - (1629/1822) # you want a high r square so this is not a very good fitting model
+```
 
 
 > There are no practice problems for this module as you will be working with your own data to run a GLM.

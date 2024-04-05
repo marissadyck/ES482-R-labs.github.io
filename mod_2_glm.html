@@ -1932,6 +1932,11 @@ href="https://stats.stackexchange.com/questions/121490/interpretation-of-plot-gl
 <p>Let’s run the <code>plot()</code> function of our top model, which
 will return 4 plots by default to illustrate this with the cows
 data.</p>
+<p>What we are looking for is in the first plot the residuals vs
+leverage, that there aren’t huge deviations at either tail of the plot
+which would indicate with a glm that the relationship may not be linear
+or logistic but quadratic and you would want to include a quadratic term
+for one or more variable in your model.</p>
 <pre class="r"><code># plot chosen model
 plot(cows_global)</code></pre>
 <p><img src="mod_2_glm_files/figure-html/plot%20model-1.png" width="672" /><img src="mod_2_glm_files/figure-html/plot%20model-2.png" width="672" /><img src="mod_2_glm_files/figure-html/plot%20model-3.png" width="672" /><img src="mod_2_glm_files/figure-html/plot%20model-4.png" width="672" /></p>
@@ -1941,7 +1946,7 @@ plot(cows_global)</code></pre>
 <p>For a <strong>binomial</strong> glm we can assess the Area under
 Curve or Receiver operating characteristic (ROC) curve is used to
 evaluate the performance. It measures how wel the model is able to
-disntinguish between the two classifications of the model.</p>
+distinguish between the two classifications of the model.</p>
 <pre class="r"><code>c.roccurve &lt;- roc(cows$damage, 
                   predict(cows_global, type = &#39;response&#39;))
 
@@ -1949,6 +1954,48 @@ auc(c.roccurve)</code></pre>
 <pre><code>## Area under the curve: 0.7213</code></pre>
 <pre class="r"><code>plot.roc(c.roccurve, main=&quot;Area Under the Curve for best model&quot;)</code></pre>
 <p><img src="mod_2_glm_files/figure-html/auc-1.png" width="672" /></p>
+</div>
+<div id="r-squared" class="section level3">
+<h3>R squared</h3>
+<p>You can also calculate a pseudo R squared value for your model which
+indicates how much of the variance is explained by the covariates in
+your model.</p>
+<p>To do this we use the null and residual deviance values in the model
+summary</p>
+<pre class="r"><code>summary(cows_global)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = damage ~ scale(bear_abund) + scale(dist_to_forest) + 
+##     scale(dist_to_town) + openhab_10k + ag_10k + shdi_10k, family = binomial, 
+##     data = cows)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.5286  -0.7965  -0.5511   0.2031   2.3067  
+## 
+## Coefficients:
+##                       Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)           -1.48007    0.08118 -18.231  &lt; 2e-16 ***
+## scale(bear_abund)      0.23537    0.06530   3.605 0.000313 ***
+## scale(dist_to_forest) -0.88574    0.19736  -4.488 7.19e-06 ***
+## scale(dist_to_town)   -0.05242    0.08539  -0.614 0.539241    
+## openhab_10k            0.54972    0.06525   8.425  &lt; 2e-16 ***
+## ag_10k                 0.20918    0.11977   1.746 0.080736 .  
+## shdi_10k               0.37035    0.08474   4.371 1.24e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 1822  on 1619  degrees of freedom
+## Residual deviance: 1629  on 1613  degrees of freedom
+## AIC: 1643
+## 
+## Number of Fisher Scoring iterations: 6</code></pre>
+<pre class="r"><code># 1 - (Residual Deviance/Null Deviance)
+
+1 - (1629/1822) # you want a high r square so this is not a very good fitting model</code></pre>
+<pre><code>## [1] 0.1059276</code></pre>
 <blockquote>
 <p>There are no practice problems for this module as you will be working
 with your own data to run a GLM.</p>
