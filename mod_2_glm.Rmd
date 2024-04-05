@@ -36,6 +36,8 @@ library(rphylopic)
 library(MuMIn)
 library(car)
 library(AER)
+library(broom)
+library(pROC)
 
 ```
 
@@ -206,6 +208,8 @@ head(cows_cor)
 
 Now we will create a correlation chart using the *PerformanceAnalytics* package that provides a correlation coefficient (r2) values for pairwise combinations of variables.
 
+When looking at this matrix the plots on the diagonal provide histograms (distribution of data) for each variable and the variable name. Above the diagonal are the correlation coefficients for each pairwise combination of variables, and below the diagonal are correlation plots for each pariwsie combination of variables.
+
 ```{r}
 
 # correlation matrix - Pearson
@@ -241,6 +245,8 @@ chart.Correlation(cows_cor,
 This process also serves as a great data check step. Do you notice anything else odd about the correlation matrix?
 
 One of the r2 values is 1.00, this means that the data are perfectly correlated which should make you question this data as that happens if the data are exactly the same. Likely an error was made when extracting one of these variables in GIS and it was named as both variables. Luckily this isn't the final version if this data from our manuscript. I noticed this issue during the analysis and we re-extracted the landscape variables in GIS to correct the issue. A great example of why it's really important to look at your data again, and again, and again.... 
+
+
 
 ### Model syntax
 
@@ -363,7 +369,6 @@ For positive values you calculate a percentage directly from the decimal of the 
 
 1.73 - 1 = 0.73 * 100 = 73%
 
-
 ### Scaling
 
 One issue with interpreting odds ratios with our current model is we can't compare the relative importance of our variables that have different units. For example, is a 1% increase per increase of 1 bear (bear abundance) more or less than a 23% increase in proportion of agricultural habitat (ag_10k)?
@@ -402,6 +407,75 @@ exp(coefficients(cows_global))
 ```
 
 Now the interpretation is a bit less intuitive because we have to consider the probability of damage for each standard deviation increase in the explanatory variable rather than each unit increase, but we can tell that *bear_abund* has a greater effect size than *ag_10k* which we would not have been able to tell from the unscaled data.
+
+
+### Plot odds ratios
+
+Plotting the odds ratios for each covariate in the model can be a very helpful way to visualize the model results. 
+
+The code below shows one way (myabe not the most elegant but it works) to extract the model coefficients and confidence intervals and put them into a data frame for plotting
+
+```{r}
+
+model_odds <- 
+tidy(cows_global,
+     exponentiate = TRUE,
+     confint.int = TRUE) %>% 
+  
+  # bind the estiamtes with the confidence intervals from the model
+  cbind(exp(confint(cows_global))) %>% 
+  
+  # change format to a tibble so works nicely with ggplot
+  as.tibble() %>% 
+  
+  rename(lower = '2.5 %',
+         upper = '97.5 %') %>% 
+  
+  filter(term != '(Intercept)')
+```
+
+Now let's use ggplot to make a nice graphic of these
+
+```{r plot odds}
+# specify data and mapping asesthetics
+ggplot(data = model_odds,
+       aes(x = term,
+           y = estimate)) +
+  
+  # add points for the odss
+  geom_point() +
+  
+  # add errorbars for the confidence intervals
+  geom_errorbar(aes(ymin = lower,
+                    ymax = upper),
+                linewidth = 0.5,
+                width = 0.4) +
+  
+  geom_hline(yintercept = 1,
+             alpha = 0.5) +
+  
+  # rename the x axis labels
+  scale_x_discrete(labels = c('Agriculture',
+                              'Opoen habitat',
+                              'Bear abundance',
+                              'Distance to forest',
+                              'Distance to town',
+                              'SHDI')) +
+  
+  # rename y axis title
+  ylab('Odds ratio') +
+  
+  # flip x and y axis 
+      coord_flip() +
+
+  # specify theme
+  theme_bw() +
+  
+  # specify theme elements
+  theme(panel.grid = element_blank(),
+        axis.title.y = element_blank())
+```
+
 
 ### Predicted probabilities
 
@@ -586,7 +660,7 @@ ggplot(data = new_data_bear_pred, aes(x = bear_abund, y = fit)) +
   # add cow image
   add_phylopic(cows_phylopic, 
                alpha = 1,
-               ysize = 5,
+               ysize = 0.1,
                x = 73,
                y = 0.98)
 ```
@@ -682,6 +756,45 @@ Delta AICc represents the difference between the top model and each following mo
 The AICc weight represents the relatively likelihood of a model compared to all other models in the in the table where a value of 1.0 = the most likely. 
 
 For our model comparison we have a clear top model that is well above 2 AICc better than all the other models and is the most likely with a weight of 1.0.
+
+
+## Model validation/fit
+
+One final step in the process is to make sure you have a well-fit model, so not just a model that outperformed the others in your model set but one that actually fits the data well and describes a decent amount of the variance. 
+
+We've already done one step of this process, which was including a null model in our model set and ensuring that our chosen model performs better than a null.
+
+### Plot model
+
+A first initial step after you have chosen your model, is usually to plot your model using the `plot()` function.
+
+> However, it's important to note though that R does not have a distinct `plot.glm()` function, when you run the `plot()` function it calls `plot.lm` which is appropriate for linear models and not necessarily non-linear models, which is what we've modeled here using `glm()`. If you want to learn more about interpreting these plots, check out a great response by @gung on [StackExchange](https://stats.stackexchange.com/questions/121490/interpretation-of-plot-glm-model)    
+
+
+Let's run the `plot()` function of our top model, which will return 4 plots by default to illustrate this with the cows data.
+
+```{r plot model}
+
+# plot chosen model
+plot(cows_global)
+
+```
+
+
+### Area under the curve
+
+For a **binomial** glm we can assess the Area under Curve or Receiver operating characteristic (ROC) curve is used to evaluate the performance. It measures how wel the model is able to disntinguish between the two classifications of the model. 
+
+```{r auc}
+
+c.roccurve <- roc(cows$damage, 
+                  predict(cows_global, type = 'response'))
+
+auc(c.roccurve)
+
+plot.roc(c.roccurve, main="Area Under the Curve for best model")
+```
+
 
 
 > There are no practice problems for this module as you will be working with your own data to run a GLM.

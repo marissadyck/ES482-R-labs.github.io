@@ -413,10 +413,7 @@ div.tocify {
       <a href="assign_3.html">Assignment 3</a>
     </li>
     <li>
-      <a href="assign_4.html">Assignment 4 (coming soon)</a>
-    </li>
-    <li>
-      <a href="assign_5.html">Assignment 5 (coming soon)</a>
+      <a href="assign_4.html">Assignment 4</a>
     </li>
   </ul>
 </li>
@@ -728,6 +725,11 @@ head(cows_cor)</code></pre>
 <p>Now we will create a correlation chart using the
 <em>PerformanceAnalytics</em> package that provides a correlation
 coefficient (r2) values for pairwise combinations of variables.</p>
+<p>When looking at this matrix the plots on the diagonal provide
+histograms (distribution of data) for each variable and the variable
+name. Above the diagonal are the correlation coefficients for each
+pairwise combination of variables, and below the diagonal are
+correlation plots for each pariwsie combination of variables.</p>
 <pre class="r"><code># correlation matrix - Pearson
 chart.Correlation(cows_cor, 
                   histogram = TRUE, 
@@ -1044,6 +1046,68 @@ in the explanatory variable rather than each unit increase, but we can
 tell that <em>bear_abund</em> has a greater effect size than
 <em>ag_10k</em> which we would not have been able to tell from the
 unscaled data.</p>
+</div>
+<div id="plot-odds-ratios" class="section level3">
+<h3>Plot odds ratios</h3>
+<p>Plotting the odds ratios for each covariate in the model can be a
+very helpful way to visualize the model results.</p>
+<p>The code below shows one way (myabe not the most elegant but it
+works) to extract the model coefficients and confidence intervals and
+put them into a data frame for plotting</p>
+<pre class="r"><code>model_odds &lt;- 
+tidy(cows_global,
+     exponentiate = TRUE,
+     confint.int = TRUE) %&gt;% 
+  
+  # bind the estiamtes with the confidence intervals from the model
+  cbind(exp(confint(cows_global))) %&gt;% 
+  
+  # change format to a tibble so works nicely with ggplot
+  as.tibble() %&gt;% 
+  
+  rename(lower = &#39;2.5 %&#39;,
+         upper = &#39;97.5 %&#39;) %&gt;% 
+  
+  filter(term != &#39;(Intercept)&#39;)</code></pre>
+<p>Now let’s use ggplot to make a nice graphic of these</p>
+<pre class="r"><code># specify data and mapping asesthetics
+ggplot(data = model_odds,
+       aes(x = term,
+           y = estimate)) +
+  
+  # add points for the odss
+  geom_point() +
+  
+  # add errorbars for the confidence intervals
+  geom_errorbar(aes(ymin = lower,
+                    ymax = upper),
+                linewidth = 0.5,
+                width = 0.4) +
+  
+  geom_hline(yintercept = 1,
+             alpha = 0.5) +
+  
+  # rename the x axis labels
+  scale_x_discrete(labels = c(&#39;Agriculture&#39;,
+                              &#39;Opoen habitat&#39;,
+                              &#39;Bear abundance&#39;,
+                              &#39;Distance to forest&#39;,
+                              &#39;Distance to town&#39;,
+                              &#39;SHDI&#39;)) +
+  
+  # rename y axis title
+  ylab(&#39;Odds ratio&#39;) +
+  
+  # flip x and y axis 
+      coord_flip() +
+
+  # specify theme
+  theme_bw() +
+  
+  # specify theme elements
+  theme(panel.grid = element_blank(),
+        axis.title.y = element_blank())</code></pre>
+<p><img src="mod_2_glm_files/figure-html/plot%20odds-1.png" width="672" /></p>
 </div>
 <div id="predicted-probabilities" class="section level3">
 <h3>Predicted probabilities</h3>
@@ -1651,7 +1715,7 @@ ggplot(data = new_data_bear_pred, aes(x = bear_abund, y = fit)) +
   geom_ribbon(aes(ymin = lwr,
                   ymax = upr),
               alpha = 0.5) # changes opacity so you can see the main line</code></pre>
-<p><img src="mod_2_glm_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="mod_2_glm_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <p>Now we have a graphical representation of the relationship between
 bear abundance and the probability of bear predation on cows.</p>
 <p>For practice, make this graph look nicer by</p>
@@ -1708,10 +1772,10 @@ ggplot(data = new_data_bear_pred, aes(x = bear_abund, y = fit)) +
   # add cow image
   add_phylopic(cows_phylopic, 
                alpha = 1,
-               ysize = 5,
+               ysize = 0.1,
                x = 73,
                y = 0.98)</code></pre>
-<p><img src="mod_2_glm_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="mod_2_glm_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 </div>
 </div>
 <div id="model-selection" class="section level2">
@@ -1776,7 +1840,8 @@ cows_4 &lt;- glm(damage ~ scale(bear_abund) +
 <p>Now that we have run a few models to compare we can use the
 <code>model.sel()</code> <strong>function</strong> in the <em>MuMIn</em>
 package to generate a model selection table</p>
-<pre class="r"><code>model.sel(cows_global,
+<pre class="r"><code># compare models with model.sel
+model.sel(cows_global,
           cows_null,
           cows_1,
           cows_2,
@@ -1839,6 +1904,51 @@ the most likely.</p>
 <p>For our model comparison we have a clear top model that is well above
 2 AICc better than all the other models and is the most likely with a
 weight of 1.0.</p>
+</div>
+</div>
+<div id="model-validationfit" class="section level2">
+<h2>Model validation/fit</h2>
+<p>One final step in the process is to make sure you have a well-fit
+model, so not just a model that outperformed the others in your model
+set but one that actually fits the data well and describes a decent
+amount of the variance.</p>
+<p>We’ve already done one step of this process, which was including a
+null model in our model set and ensuring that our chosen model performs
+better than a null.</p>
+<div id="plot-model" class="section level3">
+<h3>Plot model</h3>
+<p>A first initial step after you have chosen your model, is usually to
+plot your model using the <code>plot()</code> function.</p>
+<blockquote>
+<p>However, it’s important to note though that R does not have a
+distinct <code>plot.glm()</code> function, when you run the
+<code>plot()</code> function it calls <code>plot.lm</code> which is
+appropriate for linear models and not necessarily non-linear models,
+which is what we’ve modeled here using <code>glm()</code>. If you want
+to learn more about interpreting these plots, check out a great response
+by <span class="citation">@gung</span> on <a
+href="https://stats.stackexchange.com/questions/121490/interpretation-of-plot-glm-model">StackExchange</a></p>
+</blockquote>
+<p>Let’s run the <code>plot()</code> function of our top model, which
+will return 4 plots by default to illustrate this with the cows
+data.</p>
+<pre class="r"><code># plot chosen model
+plot(cows_global)</code></pre>
+<p><img src="mod_2_glm_files/figure-html/plot%20model-1.png" width="672" /><img src="mod_2_glm_files/figure-html/plot%20model-2.png" width="672" /><img src="mod_2_glm_files/figure-html/plot%20model-3.png" width="672" /><img src="mod_2_glm_files/figure-html/plot%20model-4.png" width="672" /></p>
+</div>
+<div id="area-under-the-curve" class="section level3">
+<h3>Area under the curve</h3>
+<p>For a <strong>binomial</strong> glm we can assess the Area under
+Curve or Receiver operating characteristic (ROC) curve is used to
+evaluate the performance. It measures how wel the model is able to
+disntinguish between the two classifications of the model.</p>
+<pre class="r"><code>c.roccurve &lt;- roc(cows$damage, 
+                  predict(cows_global, type = &#39;response&#39;))
+
+auc(c.roccurve)</code></pre>
+<pre><code>## Area under the curve: 0.7213</code></pre>
+<pre class="r"><code>plot.roc(c.roccurve, main=&quot;Area Under the Curve for best model&quot;)</code></pre>
+<p><img src="mod_2_glm_files/figure-html/auc-1.png" width="672" /></p>
 <blockquote>
 <p>There are no practice problems for this module as you will be working
 with your own data to run a GLM.</p>
